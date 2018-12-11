@@ -1,8 +1,12 @@
 {
-  "presets": [
-    "next/babel"
-  ],
-  "plugins": [
-    "styled-components"
-  ]
+    "presets": ["next/babel"],
+    "plugins": [
+        [
+            "wrap-in-js",
+            {
+                "extensions": ["css$", "scss$"]
+            }
+        ],
+        "styled-components"
+    ]
 }

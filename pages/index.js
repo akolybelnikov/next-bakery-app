@@ -1,22 +1,23 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import styled from 'styled-components'
 import withData from '../withData'
 import { Query } from 'react-apollo'
 import LIST_OFFERS from '../graphql/queries/offers'
-import '../styles/styles.scss'
+import '../styles/index.scss'
+import '../styles/_bulma.scss'
 
 const Title = styled.h1`
   line-height: 1.5rem;
-  color: ${props => props.theme.primary};
+  
 `
 
 class Home extends React.Component {
   render() {
     return (
-      <>
-        <Title className="example">My page</Title>
-        <Offers />
-      </>
+      <Fragment>
+        <Title className="example has-text-success">My page</Title>
+        <div className="has-text-primary"><Offers /></div>
+      </Fragment>
     )
   }
 }
@@ -31,14 +32,14 @@ const Offers = () => {
           return null
         if (data) {
           return (
-            <>
+            <Fragment>
               {data.listOffers.items.length && data
                 .listOffers
                 .items
                 .map(offer => (
                   <p key={offer.id}>{offer.content}</p>
                 ))}
-            </>
+            </Fragment>
           )
         }
       }}
