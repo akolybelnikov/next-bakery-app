@@ -15,8 +15,8 @@ class Home extends React.Component {
   render() {
     return (
       <Fragment>
-        <Title className="example has-text-success">My page</Title>
-        <div className="has-text-primary"><Offers /></div>
+        <Title className="example has-text-primary">My page</Title>
+        <div className="has-text-success is-size-5"><Offers /></div>
       </Fragment>
     )
   }

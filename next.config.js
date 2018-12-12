@@ -2,18 +2,27 @@ const { parsed: localEnv } = require('dotenv').config()
 const webpack = require('webpack')
 const withSass = require('@zeit/next-sass')
 const withBundleAnalyzer = require('@zeit/next-bundle-analyzer')
-const withTM = require('next-plugin-transpile-modules')
 
 module.exports = withSass(
     withBundleAnalyzer(
-        withTM({
-            transpileModules: ['styles', 'node_modules'],
+        {
             webpack: config => {
                 config.plugins.push(new webpack.EnvironmentPlugin(localEnv))
                 // Fixes npm packages that depend on `fs` module
                 config.node = {
-                    fs: "empty"
+                    fs: 'empty'
                 }
+
+                config.module.rules.push({
+                    test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
+                    use: {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 100000,
+                            name: '[name].[ext]'
+                        }
+                    }
+                })
 
                 return config
             },
@@ -51,6 +60,6 @@ module.exports = withSass(
                     reportFilename: "../bundles/client.html"
                 }
             }
-        })
+        }
     )
 )
