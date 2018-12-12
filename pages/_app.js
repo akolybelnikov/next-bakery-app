@@ -1,18 +1,19 @@
-import App, { Container } from 'next/app'
-import React from 'react'
-import { compose } from 'react-apollo'
-import * as resolvers from '../graphql/resolvers/index'
+import App, { Container } from "next/app"
+import React from "react"
+import { compose } from "react-apollo"
+import * as resolvers from "../graphql/resolvers/index"
+import withData from "../withData"
 
-import { Container } from 'bloomer'
-import { maxMedia, minMedia } from '../styles/style-utils/'
-import styled from 'styled-components'
+import { maxMedia, minMedia } from "../styles/style-utils"
+import styled from "styled-components"
+import '../styles/index.scss'
 
-import {Header} from '../components/Header'
+import Header from "../components/Header"
 
-const LayoutContainer = styled(Container)`
-  ${minMedia.touch`padding-top: 5rem;`};
-  ${maxMedia.touch`padding-top: 2.25rem;`};
-  color: ${props => props.theme.info}!important;
+const LayoutContainer = styled.div`
+    ${minMedia.largehandset`padding-top: 6rem;`};
+    ${maxMedia.largehandset`padding-top: 5.25rem;`};
+    color: ${props => props.theme.info}!important;
 `
 
 class MyApp extends App {
@@ -28,10 +29,10 @@ class MyApp extends App {
 
     render() {
         const { Component, pageProps } = this.props
-
+        console.log(pageProps)
         return (
             <Container>
-                <LayoutContainer>
+                <LayoutContainer className="container is-fluid">
                     <Header />
                     <Component {...pageProps} />
                 </LayoutContainer>
@@ -40,4 +41,10 @@ class MyApp extends App {
     }
 }
 
-export default MyApp
+const AppWithData = compose(
+    resolvers.listCategories,
+    resolvers.listNews,
+    resolvers.listOffers
+)(MyApp)
+
+export default withData(AppWithData)

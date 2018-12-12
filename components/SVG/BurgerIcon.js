@@ -73,4 +73,4 @@ const BurgerIcon = props => {
 
 }
 
-export default Burger
+export default BurgerIcon

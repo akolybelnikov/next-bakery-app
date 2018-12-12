@@ -1,7 +1,7 @@
 import { withAppSyncData } from 'next-apollo-appsync'
 import getConfig from 'next/config'
 import Amplify, { Auth } from 'aws-amplify'
-import { defaultDataIdFromObject } from 'aws-appsync';
+import { defaultDataIdFromObject } from 'aws-appsync'
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -37,13 +37,15 @@ const config = {
         }
     },
     cacheOptions: {
-        dataIdFromObject: (obj) => {
+        dataIdFromObject: obj => {
             let id = defaultDataIdFromObject(obj)
 
             if (!id) {
                 const { __typename: typename } = obj
                 switch (typename) {
-                    case 'User':
+                    case 'UserConnection':
+                        return `${typename}:${obj}.id`
+                    case 'OfferConnection':
                         return `${typename}:${obj}.id`
                     default:
                         return id

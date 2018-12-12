@@ -1,3 +1,4 @@
+import { graphql } from 'react-apollo'
 import { LIST_OFFERS } from '../queries/offers'
 import { LIST_NEWS } from '../queries/news'
 import { LIST_CATEGORIES } from '../queries/categories'

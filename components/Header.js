@@ -67,31 +67,30 @@ const Burger = styled(NavbarItem)`
 export default class Header extends PureComponent {
     constructor(props) {
         super(props);
-        this.login = React.createRef()
 
         this.state = {
             isMenuActive: false
         };
     }
 
-    async componentDidMount() {
-        try {
-            const info = await Auth.currentUserInfo()
-            if (info && (info.attributes.sub !== process.env.DEFAULT_USERNAME)) {
-                this
-                    .props
-                    .userHasAuthenticated(true)
-            } else {
-                this
-                    .props
-                    .userHasAuthenticated(false)
-            }
-        } catch (e) {
-            this
-                .props
-                .userHasAuthenticated(false)
-        }
-    }
+    // async componentDidMount() {
+    //     try {
+    //         const info = await Auth.currentUserInfo()
+    //         if (info && (info.attributes.sub !== process.env.DEFAULT_USERNAME)) {
+    //             this
+    //                 .props
+    //                 .userHasAuthenticated(true)
+    //         } else {
+    //             this
+    //                 .props
+    //                 .userHasAuthenticated(false)
+    //         }
+    //     } catch (e) {
+    //         this
+    //             .props
+    //             .userHasAuthenticated(false)
+    //     }
+    // }
 
     onClickBurger = () => {
         this.setState({
@@ -110,7 +109,7 @@ export default class Header extends PureComponent {
                     <UserLogin isHidden="desktop">
                         {isAuthenticated
                             ? <Link href="/user"><User id={username} /></Link>
-                            : <Link href="/authenticate">
+                            : <Link href="/about">
                                 <span className="is-size-7">Вход пользователя</span>
                             </Link>
                         }
