@@ -1,22 +1,26 @@
 import { css } from 'styled-components'
+import Responsive from 'react-responsive'
 
-const sizes = {
+const maxWidth = {
+    smallhandset: 359,
     handset: 599,
-    touch: 959,
-    tablet: 1279,
-    desktop: 1919,
-    widescreen: 5000
+    largehandset: 719,
+    tablet: 1023,
+    laptop: 1439,
+    desktop: 1919
 }
 
-const minSizes = {
-    handset: 600,
-    touch: 960,
-    tablet: 1280,
-    desktop: 1920
+const minWidth = {
+    handset: 360,
+    largehandset: 600,
+    tablet: 720,
+    laptop: 960,
+    desktop: 1440,
+    widescreen: 1920
 }
 
-export const maxMedia = Object.keys(sizes).reduce((acc, label) => {
-    const emSize = sizes[label] / 16
+export const maxMedia = Object.keys(maxWidth).reduce((acc, label) => {
+    const emSize = maxWidth[label] / 16
     acc[label] = (...args) => css`
       @media screen and (max-width: ${emSize}em) {
           ${css(...args)};
@@ -25,8 +29,8 @@ export const maxMedia = Object.keys(sizes).reduce((acc, label) => {
     return acc
 }, {})
 
-export const minMedia = Object.keys(minSizes).reduce((acc, label) => {
-    const emSize = minSizes[label] / 16
+export const minMedia = Object.keys(minWidth).reduce((acc, label) => {
+    const emSize = minWidth[label] / 16
     acc[label] = (...args) => css`
       @media screen and (min-width: ${emSize}em) {
           ${css(...args)};
@@ -34,3 +38,12 @@ export const minMedia = Object.keys(minSizes).reduce((acc, label) => {
     `
     return acc
 }, {})
+
+export const WideScreen = props => <Responsive {...props} minWidth={1920} />
+export const Desktop = props => <Responsive {...props} minWidth={1440} maxWidth={1919} />
+export const Laptop = props => <Responsive {...props} minWidth={960} maxWidth={1439} />
+export const Tablet = props => <Responsive {...props} minWidth={720} maxWidth={1023} orientation="portrait" />
+export const HandsetLandscape = props => <Responsive {...props} minWidth={480} maxWidth={959} orientation="landscape" />
+export const LargeHandset = props => <Responsive {...props} minWidth={600} maxWidth={719} orientation="portrait" />
+export const Handset = props => <Responsive {...props} minWidth={360} maxWidth={599} />
+export const SmallHandset = props => <Responsive {...props} maxWidth={359} />

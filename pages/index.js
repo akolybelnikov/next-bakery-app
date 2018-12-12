@@ -1,10 +1,9 @@
-import React, {Fragment} from 'react'
+import React, { Fragment } from 'react'
 import styled from 'styled-components'
 import withData from '../withData'
 import { Query } from 'react-apollo'
-import LIST_OFFERS from '../graphql/queries/offers'
+import { LIST_OFFERS } from '../graphql/queries/offers'
 import '../styles/index.scss'
-import '../styles/_bulma.scss'
 
 const Title = styled.h1`
   line-height: 1.5rem;
@@ -24,7 +23,7 @@ class Home extends React.Component {
 
 const Offers = () => {
   return (
-    <Query query={LIST_OFFERS} fetchPolicy="cache-and-network" errorPolicy="all">
+    <Query query={LIST_OFFERS} fetchPolicy="cache-first" errorPolicy="all">
       {({ loading, error, data }) => {
         if (loading)
           return null
