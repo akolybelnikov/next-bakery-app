@@ -29,7 +29,8 @@
     "react-dom": "^16.6.3",
     "react-progressive-bg-image": "^3.0.0",
     "react-responsive": "^6.0.1",
-    "styled-components": "4.0.3"
+    "styled-components": "4.0.3",
+    "styled-jsx": "^3.1.2"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.8.0",

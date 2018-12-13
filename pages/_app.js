@@ -1,7 +1,5 @@
 import App, { Container } from "next/app"
 import React from "react"
-import { compose } from "react-apollo"
-import * as resolvers from "../graphql/resolvers/index"
 import withData from "../withData"
 
 import { maxMedia, minMedia } from "../styles/style-utils"
@@ -41,10 +39,4 @@ class MyApp extends App {
     }
 }
 
-const AppWithData = compose(
-    resolvers.listCategories,
-    resolvers.listNews,
-    resolvers.listOffers
-)(MyApp)
-
-export default withData(AppWithData)
+export default withData(MyApp)

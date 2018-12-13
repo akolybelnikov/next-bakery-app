@@ -22,16 +22,6 @@ class Index extends React.Component {
     }
 }
 
-const AppWithData = graphql(LIST_OFFERS, {
-    options: {
-        fetchPolicy: "cache-first",
-        errorPolicy: "all"
-    },
-    props: props => ({
-        offers: props.data.listOffers ? props.data.listOffers.items : []
-    })
-})(Index)
-
 const Offers = () => {
     return (
         <Query query={LIST_OFFERS} fetchPolicy="cache-and-network" errorPolicy="all">
@@ -53,4 +43,4 @@ const Offers = () => {
     )
 }
 
-export default withData(AppWithData)
+export default withData(Index)

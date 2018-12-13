@@ -4,9 +4,9 @@ import { Auth } from 'aws-amplify'
 import { GET_USER } from '../graphql/queries/user'
 import { Query } from 'react-apollo'
 
-import { NavbarBrand, NavbarItem, NavbarEnd, Image, Icon } from 'bloomer'
+import { NavbarBrand, NavbarItem, NavbarLink, Image, Icon, NavbarMenu, Button } from 'bloomer'
 import styled from 'styled-components'
-import Logo from '../static/logos/logo.svg'
+import Logo from '../components/SVG/Logo'
 import BurgerIcon from '../components/SVG/BurgerIcon'
 
 const StyledNavbar = styled.nav`
@@ -50,15 +50,8 @@ const HeaderImage = styled(Image)`
         width: 65px;
     }
 `
-const StyledNavbarItem = styled(NavbarItem)`
-    flex-grow: 1;
-    justify-content: flex-end;
-    span.icon {
-        transition: all 1s ease-in-out;
-    }
-    @media screen and (max-width: 320px) {
-        padding: 0.5rem;
-    }
+const StyledMenu = styled(NavbarMenu)`
+    justify-content: space-evenly;
 `
 const Burger = styled(NavbarItem)`
     cursor: pointer;
@@ -103,15 +96,13 @@ export default class Header extends PureComponent {
         return (
             <StyledNavbar className="navbar is-fixed-top">
                 <StyledNavbarBrand>
-                    <NavbarItem>
-                        <Link href="/"><Logo width="150" height="80" /></Link>
+                    <NavbarItem isHidden="desktop">
+                        <Link href="/"><Logo width="65" height="35" /></Link>
                     </NavbarItem>
                     <UserLogin isHidden="desktop">
                         {isAuthenticated
-                            ? <Link href="/user"><User id={username} /></Link>
-                            : <Link href="/about">
-                                <span className="is-size-7">Вход пользователя</span>
-                            </Link>
+                            ? <User id={username} />
+                            : <Link href="/authenticate" prefetch><Button  isSize="small" isInverted>Вход пользователя</Button></Link>
                         }
                     </UserLogin>
                     <Burger isHidden="desktop">
@@ -121,9 +112,26 @@ export default class Header extends PureComponent {
                         />
                     </Burger>
                 </StyledNavbarBrand>
-                <NavbarEnd>
-                    <NavbarItem isHidden="touch"></NavbarItem>
-                </NavbarEnd>
+                <StyledMenu isActive={this.state.isMenuActive}>
+                    <NavbarItem>
+                        <Link href="/products"><NavbarLink>Ассортимент</NavbarLink></Link>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <Link href="/offers"><NavbarLink>Спецпредложения</NavbarLink></Link>
+                    </NavbarItem>
+                    <NavbarItem isHidden="touch">
+                        <Link href="/"><Logo width="150" height="80" /></Link>
+                    </NavbarItem>
+                    <NavbarItem>
+                        <Link href="/contact"><NavbarLink>Контакт</NavbarLink></Link>
+                    </NavbarItem>
+                    <UserLogin isHidden="touch">
+                        {isAuthenticated
+                            ? <User id={username} />
+                            : <Link href="/authenticate" prefetch><Button isInverted>Вход пользователя</Button></Link>
+                        }
+                    </UserLogin>
+                </StyledMenu>
             </StyledNavbar>
         )
     }
@@ -147,13 +155,13 @@ const User = ({ id }) => {
                 if (data) {
                     if (data.getUser.firstname) {
                         return (
-                            <span className="is-size-7 is-capitalized">
+                            <Link href="/user" prefetch className="button is-outlined"><span className="is-capitalized">
                                 Здравствуйте, {data.getUser.fisrtname}
-                            </span>
+                            </span></Link>
                         )
                     } else {
                         return (
-                            <span className="is-size-7">{data.getUser.email}</span>
+                            <Link href="/user" prefetch className="button is-outlined">{data.getUser.email}</Link>
                         )
                     }
                 } else

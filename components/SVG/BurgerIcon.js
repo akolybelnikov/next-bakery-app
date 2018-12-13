@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const BurgerIconSvg = styled.svg `
+const BurgerIconSvg = styled.svg`
     width: 60px;
     height: 60px;
     @media screen and (min-width: 415px) {
@@ -9,25 +9,25 @@ const BurgerIconSvg = styled.svg `
     height: 80px;
     }
 `
-const BurgerIconTopBar = styled.path `
+const BurgerIconTopBar = styled.path`
     stroke-width: 20;
     stroke-linecap: round;
-    stroke: ${props => props.theme.primary};
+    stroke: #52082d;
     fill: none;
     transition: all 0.5s ease-in-out;
     stroke-dasharray: 240px 910px;
 `
-const BurgerIconMiddleBar = styled.path `
+const BurgerIconMiddleBar = styled.path`
     stroke-width: 20;
     stroke-linecap: round;
-    stroke: ${props => props.theme.primary};
+    stroke: #52082d;
     fill: none;
     transition: all 0.5s ease-in-out;
 `
-const BurgerIconBottomBar = styled.path `
+const BurgerIconBottomBar = styled.path`
     stroke-width: 20;
     stroke-linecap: round;
-    stroke: ${props => props.theme.primary};
+    stroke: #52082d;
     fill: none;
     transition: all 0.5s ease-in-out;
     stroke-dasharray: 240px 910px;
@@ -47,27 +47,34 @@ const BurgerIcon = props => {
 
     return (
         <BurgerIconSvg viewBox="0 0 800 600" onClick={props.onClickBurger}>
-            <BurgerIconTopBar
-                style={{
-                strokeDashoffset: offsetTopBottom
-            }}
-                d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200"/>
+            <path className="BurgerIconTopBar"
+                d="M300,220 C300,220 520,220 540,220 C740,220 640,540 520,420 C440,340 300,200 300,200" />
+            <style jsx>{
+                `path.BurgerIconTopBar {
+                stroke-width: 20;
+                stroke-linecap: round;
+                stroke: #52082d;
+                fill: none;
+                transition: all 0.5s ease-in-out;
+                stroke-dasharray: 240px 910px;
+                strokeDashoffset: ${offsetTopBottom}`
+            }</style>
 
             <BurgerIconMiddleBar
                 id="burger-icon-middlebar"
                 style={{
-                strokeDasharray: arrayMiddle,
-                strokeDashoffset: offsetMiddle
-            }}
-                d="M300,320 L540,320"/>
+                    strokeDasharray: arrayMiddle,
+                    strokeDashoffset: offsetMiddle
+                }}
+                d="M300,320 L540,320" />
 
             <BurgerIconBottomBar
                 id="burger-icon-bottombar"
                 style={{
-                strokeDashoffset: offsetTopBottom
-            }}
+                    strokeDashoffset: offsetTopBottom
+                }}
                 d="M300,210 C300,210 520,210 540,210 C740,210 640,530 520,410 C440,330 300,190 300,190"
-                transform="translate(480, 320) scale(1, -1) translate(-480, -318)"/>
+                transform="translate(480, 320) scale(1, -1) translate(-480, -318)" />
         </BurgerIconSvg>
     )
 

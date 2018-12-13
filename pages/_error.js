@@ -8,7 +8,7 @@ export default class Page extends React.Component {
     const statusCode = res.statusCode > 200 ? res.statusCode : false
     const json = await res.json()
 
-    return { statusCode, stars: json.stargazers_count }
+    return { statusCode, stars: 'stars' }
   }
 
   render() {
