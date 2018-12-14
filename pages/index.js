@@ -1,19 +1,12 @@
 import React, { Fragment } from "react"
-import styled from "styled-components"
 import withData from "../withData"
-import { graphql } from "react-apollo"
 import { Query } from "react-apollo"
 import { LIST_OFFERS } from "../graphql/queries/offers"
-
-const Title = styled.h1`
-    line-height: 1.5rem;
-`
 
 class Index extends React.Component {
     render() {
         return (
             <Fragment>
-                <Title className="example has-text-primary">My page</Title>
                 <div className="has-text-success is-size-5">
                     <Offers />
                 </div>

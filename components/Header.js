@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import Link from 'next/link'
-import { Auth } from 'aws-amplify'
 import { GET_USER } from '../graphql/queries/user'
 import { Query } from 'react-apollo'
 
@@ -57,7 +56,7 @@ const Burger = styled(NavbarItem)`
     cursor: pointer;
 `
 
-export default class Header extends PureComponent {
+class Header extends PureComponent {
     constructor(props) {
         super(props);
 
@@ -97,7 +96,7 @@ export default class Header extends PureComponent {
             <StyledNavbar className="navbar is-fixed-top">
                 <StyledNavbarBrand>
                     <NavbarItem isHidden="desktop">
-                        <Link href="/"><Logo width="65" height="35" /></Link>
+                        <Link href="/"><a><Logo width="65" height="35" /></a></Link>
                     </NavbarItem>
                     <UserLogin isHidden="desktop">
                         {isAuthenticated
@@ -170,3 +169,5 @@ const User = ({ id }) => {
         </Query>
     )
 }
+
+export default Header

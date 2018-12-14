@@ -2,7 +2,6 @@
     "presets": ["next/babel"],
     "plugins": [
         "styled-components",
-        "inline-react-svg",
-        "styled-jsx/babel"
+        "inline-react-svg"
     ]
 }

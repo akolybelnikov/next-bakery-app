@@ -1,6 +1,5 @@
 import App, { Container } from "next/app"
 import React from "react"
-import withData from "../withData"
 
 import { maxMedia, minMedia } from "../styles/style-utils"
 import styled from "styled-components"
@@ -27,7 +26,6 @@ class MyApp extends App {
 
     render() {
         const { Component, pageProps } = this.props
-        console.log(pageProps)
         return (
             <Container>
                 <LayoutContainer className="container is-fluid">
@@ -39,4 +37,4 @@ class MyApp extends App {
     }
 }
 
-export default withData(MyApp)
+export default MyApp
