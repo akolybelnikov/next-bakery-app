@@ -1,26 +1,27 @@
-import Document from 'next/document'
-import { ServerStyleSheet } from 'styled-components'
-import { ThemeProvider } from 'styled-components'
-
-const theme = {
-  primary: '#52082d',
-  info: '#331507',
-  success: '#eaccb2',
-  primaryShadow: 'rgba(82, 8, 45, 0.3)',
-  infoShadow: 'rgba(51, 21, 7, 0.3)',
-  successShadow: 'rgba(234, 204, 178, 0.3)'
-}
+import Document, { Head, Main, NextScript } from "next/document"
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx) {
-    const sheet = new ServerStyleSheet()
+    static async getInitialProps(ctx) {
+        const initialProps = await Document.getInitialProps(ctx)
+        return { ...initialProps }
+    }
 
-    const originalRenderPage = ctx.renderPage
-    ctx.renderPage = () => originalRenderPage({
-      enhanceApp: App => props => sheet.collectStyles(<ThemeProvider theme={theme}><App {...props} /></ThemeProvider>)
-    })
-
-    const initialProps = await Document.getInitialProps(ctx)
-    return { ...initialProps, styles: [...initialProps.styles, ...sheet.getStyleElement()] }
-  }
+    render() {
+        return (
+            <html>
+                <Head />
+                <body className="custom_body">
+                    <Main />
+                    <NextScript />
+                    <style jsx global>
+                        {`
+                            .custom_body {
+                                color: #331507;
+                            }
+                        `}
+                    </style>
+                </body>
+            </html>
+        )
+    }
 }

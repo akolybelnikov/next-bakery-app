@@ -1,17 +1,10 @@
 import App, { Container } from "next/app"
+import Head from "next/head"
 import React from "react"
-
-import { maxMedia, minMedia } from "../styles/style-utils"
-import styled from "styled-components"
-import '../styles/index.scss'
+import MediaQuery from "react-responsive"
+import "../styles/_bulma.scss"
 
 import Header from "../components/Header"
-
-const LayoutContainer = styled.div`
-    ${minMedia.largehandset`padding-top: 6rem;`};
-    ${maxMedia.largehandset`padding-top: 5.25rem;`};
-    color: ${props => props.theme.info}!important;
-`
 
 class MyApp extends App {
     static async getInitialProps({ Component, router, ctx }) {
@@ -28,10 +21,31 @@ class MyApp extends App {
         const { Component, pageProps } = this.props
         return (
             <Container>
-                <LayoutContainer className="container is-fluid">
+                <Head>
+                    <title>My page title</title>
+                    <meta
+                        name="viewport"
+                        content="initial-scale=1.0, width=device-width"
+                    />
+                </Head>
+                <div className="container">
                     <Header />
                     <Component {...pageProps} />
-                </LayoutContainer>
+                </div>
+                <style jsx global>
+                    {`
+                        @media all and (min-width: 600px) {
+                            html {
+                                padding-top: 3.25rem;
+                            }
+                        }
+                        @media all and (max-width: 599px) {
+                            html {
+                                padding-top: 2.25rem;
+                            }
+                        }
+                    `}
+                </style>
             </Container>
         )
     }

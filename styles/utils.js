@@ -1,5 +1,14 @@
-import { css } from 'styled-components'
+import css from 'styled-jsx/css'
 import Responsive from 'react-responsive'
+
+export const theme = {
+    primary: "#52082d",
+    info: "#331507",
+    success: "#eaccb2",
+    primaryShadow: "rgba(82, 8, 45, 0.3)",
+    infoShadow: "rgba(51, 21, 7, 0.3)",
+    successShadow: "rgba(234, 204, 178, 0.3)"
+}
 
 const maxWidth = {
     smallhandset: 359,
@@ -21,9 +30,9 @@ const minWidth = {
 
 export const maxMedia = Object.keys(maxWidth).reduce((acc, label) => {
     const emSize = maxWidth[label] / 16
-    acc[label] = (...args) => css`
+    acc[label] = (...args) => css.resolve`
       @media screen and (max-width: ${emSize}em) {
-          ${css(...args)};
+          ${css.resolve(...args)};
       }
     `
     return acc
@@ -31,9 +40,9 @@ export const maxMedia = Object.keys(maxWidth).reduce((acc, label) => {
 
 export const minMedia = Object.keys(minWidth).reduce((acc, label) => {
     const emSize = minWidth[label] / 16
-    acc[label] = (...args) => css`
+    acc[label] = (...args) => css.resolve`
       @media screen and (min-width: ${emSize}em) {
-          ${css(...args)};
+          ${css.resolve(...args)};
       }
     `
     return acc

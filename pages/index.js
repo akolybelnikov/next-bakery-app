@@ -2,15 +2,16 @@ import React, { Fragment } from "react"
 import withData from "../withData"
 import { Query } from "react-apollo"
 import { LIST_OFFERS } from "../graphql/queries/offers"
+import {Section} from 'bloomer'
 
 class Index extends React.Component {
     render() {
         return (
-            <Fragment>
-                <div className="has-text-success is-size-5">
+            <Section>
+                <div className="is-size-7-mobile is-size-6-tablet is-size-5-desktop">
                     <Offers />
                 </div>
-            </Fragment>
+            </Section>
         )
     }
 }
