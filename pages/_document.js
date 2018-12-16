@@ -1,6 +1,6 @@
-import Document, { Head, Main, NextScript } from 'next/document'
+import Document, { Head, Main, NextScript } from "next/document"
 
-export default class MyDocument extends Document {
+class CustomDocument extends Document {
     static async getInitialProps(ctx) {
         const initialProps = await Document.getInitialProps(ctx)
         return { ...initialProps }
@@ -8,9 +8,28 @@ export default class MyDocument extends Document {
 
     render() {
         return (
-            <html>
-                <Head />
-                <body className='custom_body'>
+            <html lang="ru">
+                <Head>
+                    <meta charSet="utf-8" />
+                    <link rel="shortcut icon" href="/static/favicon.ico" />
+                    <meta
+                        name="viewport"
+                        content="width=device-width, initial-scale=1"
+                    />
+                    <meta name="og:theme_color" content="#52082d" />
+                    <meta name="og:url" content="https://vsebulochki.com" />
+                    <meta
+                        name="og:keywords"
+                        content="bread, bakery, cakes, wedding, celebration, milk, sweets, cupcakes"
+                    />
+                    <meta
+                        property="og:image"
+                        content="/static/manifest/icons/icon-512x512.png"
+                    />
+                    <link rel="manifest" href="/static/manifest/manifest.json" />
+                    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"></link>
+                </Head>
+                <body className="custom_body">
                     <Main />
                     <NextScript />
                     <style jsx global>
@@ -25,3 +44,5 @@ export default class MyDocument extends Document {
         )
     }
 }
+
+export default CustomDocument

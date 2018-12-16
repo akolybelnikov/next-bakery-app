@@ -57,9 +57,15 @@ module.exports = withSass(
                 reportFilename: "../bundles/client.html"
             }
         },
+        manifest: {
+            icons: {
+                src: "./static/icons/icon-512x512.png",
+                cache: false
+            }
+        }
         // exportPathMap: function() {
         //     return {
-        //         "/": { page: "/" }
+        //         '/': { page: '/' }
         //     }
         // }
     })

@@ -1,10 +1,10 @@
-import App, { Container } from 'next/app'
-import Head from 'next/head'
-import React from 'react'
+import App, { Container } from "next/app"
+import Head from "next/head"
+import React from "react"
 
-import Header from '../components/Header'
-import { currentUser } from '../lib/awsAuth'
-import '../styles/_bulma.scss'
+import Header from "../components/Header"
+import { currentUser } from "../lib/awsAuth"
+import "../styles/_bulma.scss"
 
 class MyApp extends App {
     static async getInitialProps({ Component, router, ctx }) {
@@ -41,13 +41,9 @@ class MyApp extends App {
         return (
             <Container>
                 <Head>
-                    <title>Vse Bulochki Tut</title>
-                    <meta
-                        name='viewport'
-                        content='initial-scale=1.0, width=device-width'
-                    />
+                    <title>Все Булочки Тут</title>
                 </Head>
-                <div className='container'>
+                <div className="container">
                     <Header
                         {...pageProps}
                         username={this.state.username}
