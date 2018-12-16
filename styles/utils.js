@@ -56,3 +56,4 @@ export const HandsetLandscape = props => <Responsive {...props} minWidth={480} m
 export const LargeHandset = props => <Responsive {...props} minWidth={600} maxWidth={719} orientation='portrait' />
 export const Handset = props => <Responsive {...props} minWidth={360} maxWidth={599} />
 export const SmallHandset = props => <Responsive {...props} maxWidth={359} />
+export const Default = props => <Responsive {...props} minWidth={600} />

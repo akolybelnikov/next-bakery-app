@@ -4,18 +4,11 @@ import withData from "../withData"
 import { Query } from "react-apollo"
 
 import { NavbarBrand, NavbarItem, NavbarLink, NavbarMenu, Icon } from "bloomer"
-import Logo from "../components/SVG/Logo"
+import LogoSVG from "../static/logos/logo.svg"
 import BurgerIcon from "../components/SVG/BurgerIcon"
 import GET_USER from "../graphql/queries/user"
 
-import {
-    SmallHandset,
-    Handset,
-    LargeHandset,
-    HandsetLandscape,
-    Tablet,
-    Laptop
-} from "../styles/utils"
+import { SmallHandset, Handset, Default } from "../styles/utils"
 
 class Header extends Component {
     constructor(props) {
@@ -43,44 +36,41 @@ class Header extends Component {
                 <NavbarBrand>
                     <NavbarItem className="logo" isHidden="desktop">
                         <Link prefetch href="/">
-                            <a>
-                                <SmallHandset>
-                                    <Logo width="70" />
-                                </SmallHandset>
-                                <Handset>
-                                    <Logo width="90" />
-                                </Handset>
-                                <LargeHandset>
-                                    <Logo width="110" />
-                                </LargeHandset>
-                                <HandsetLandscape>
-                                    <Logo width="110" />
-                                </HandsetLandscape>
-                                <Tablet>
-                                    <Logo width="150" />
-                                </Tablet>
-                                <Laptop>
-                                    <Logo width="160" />
-                                </Laptop>
-                            </a>
+                            <NavbarLink className="is-arrowless">
+                                <LogoSVG className="logoSVG" />
+                            </NavbarLink>
                         </Link>
                     </NavbarItem>
 
                     <NavbarItem isHidden="desktop">
-                        {isAuthenticated ? (
-                            <User id={username} />
-                        ) : (
-                            <Login />
-                        )}
+                        {isAuthenticated ? <User id={username} /> : <Login />}
                     </NavbarItem>
 
                     <NavbarItem className="burgericon" isHidden="desktop">
-                        <BurgerIcon
-                            height={60}
-                            width={60}
-                            isActive={this.state.isMenuActive}
-                            onToggleMenu={this.onToggleMenu}
-                        />
+                        <SmallHandset>
+                            <BurgerIcon
+                                height={60}
+                                width={60}
+                                isActive={this.state.isMenuActive}
+                                onToggleMenu={this.onToggleMenu}
+                            />
+                        </SmallHandset>
+                        <Handset>
+                            <BurgerIcon
+                                height={70}
+                                width={70}
+                                isActive={this.state.isMenuActive}
+                                onToggleMenu={this.onToggleMenu}
+                            />
+                        </Handset>
+                        <Default>
+                            <BurgerIcon
+                                height={80}
+                                width={80}
+                                isActive={this.state.isMenuActive}
+                                onToggleMenu={this.onToggleMenu}
+                            />
+                        </Default>
                     </NavbarItem>
                 </NavbarBrand>
                 <NavbarMenu isActive={this.state.isMenuActive}>
@@ -105,7 +95,7 @@ class Header extends Component {
                     <NavbarItem isHidden="touch">
                         <Link href="/" prefetch>
                             <NavbarLink className="is-arrowless">
-                                <Logo width="150" />
+                                <LogoSVG className="logoSVG" />
                             </NavbarLink>
                         </Link>
                     </NavbarItem>
@@ -142,16 +132,43 @@ class Header extends Component {
                         }
                         .logo {
                             transition: all 1s ease-in-out;
-                            justify-conent: center;
+                            justify-content: center;
+                            padding: 0;
+                        }
+                        .logoSVG {
+                            height: auto;
                         }
                         .userlogin {
                             transition: all 1s ease-in-out;
                             word-break: break-word;
                             text-align: center;
                         }
-                        @media all and (max-width: 360px) {
+                        @media all and (max-width: 359px) {
                             .userlogin {
                                 max-width: 110px;
+                            }
+                            .logoSVG {
+                                width: 70px;
+                            }
+                        }
+                        @media all and (min-width: 360px) and (max-width: 599px) {
+                            .logoSVG {
+                                width: 90px;
+                            }
+                        }
+                        @media all and (min-width: 600px) and (max-width: 719px) {
+                            .logoSVG {
+                                width: 110px;
+                            }
+                        }
+                        @media all and (min-width: 720px) and (max-width: 1023px) {
+                            .logoSVG {
+                                width: 150px;
+                            }
+                        }
+                        @media all and (min-width: 1024px) {
+                            .logoSVG {
+                                width: 160px;
                             }
                         }
                     `}
@@ -202,7 +219,7 @@ const User = id => {
 
 const Login = () => (
     <Link href="/authenticate" prefetch>
-        <NavbarLink className="is-arrowless userlogin has-text-primary is-size-7-mobile is-size-6-tablet">
+        <NavbarLink className="is-arrowless userlogin has-text-primary is-size-7-mobile is-size-5-tablet">
             Вход пользователя
         </NavbarLink>
     </Link>
