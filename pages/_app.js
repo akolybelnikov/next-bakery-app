@@ -1,13 +1,13 @@
 import App, { Container } from "next/app"
 import Head from "next/head"
 import React from "react"
-import MediaQuery from "react-responsive"
-import "../styles/_bulma.scss"
 
 import Header from "../components/Header"
+import { currentUser } from "../lib/awsAuth"
+import "../styles/_bulma.scss"
 
 class MyApp extends App {
-    static async getInitialProps({ Component, router, ctx }) {
+    static async getInitialProps({ Component, ctx }) {
         let pageProps = {}
 
         if (Component.getInitialProps) {
@@ -15,6 +15,26 @@ class MyApp extends App {
         }
 
         return { pageProps }
+    }
+
+    state = {
+        username: null,
+        isAuthenticated: false
+    }
+
+    async componentDidMount() {
+        const authUser = await currentUser()
+        if (authUser) {
+            console.log(userData)
+            this.setCurrentUser(authUser.sub, true)
+        }
+    }
+
+    setCurrentUser = (username, authenticated) => {
+        this.setState({
+            username: username,
+            isAuthenticated: authenticated
+        })
     }
 
     render() {
@@ -29,14 +49,18 @@ class MyApp extends App {
                     />
                 </Head>
                 <div className="container">
-                    <Header />
+                    <Header
+                        {...pageProps}
+                        username={this.state.username}
+                        isAuthenticated={this.state.isAuthenticated}
+                    />
                     <Component {...pageProps} />
                 </div>
                 <style jsx global>
                     {`
                         @media all and (min-width: 600px) {
                             html {
-                                padding-top: 3.25rem;
+                                padding-top: 4.25rem;
                             }
                         }
                         @media all and (max-width: 599px) {

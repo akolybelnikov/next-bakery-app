@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-export const LIST_OFFERS = gql(`
+const LIST_OFFERS = gql(`
     query {
         listOffers (filter: {status: {eq: "active"}}) {
             items {
@@ -12,3 +12,5 @@ export const LIST_OFFERS = gql(`
         }
     }
 `)
+
+export default LIST_OFFERS

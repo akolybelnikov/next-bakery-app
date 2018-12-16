@@ -14,7 +14,7 @@ const BurgerIcon = props => {
     let offsetMiddle = props.isActive ? "-120px" : "0"
 
     return (
-        <svg viewBox="0 0 800 600" width={props.width} height={props.height} onClick={props.onClickBurger}>
+        <svg viewBox="0 0 800 600" width={props.width} height={props.height} onClick={props.onToggleMenu}>
             <path
                 style={{
                     strokeDashoffset: offsetTopBottom,

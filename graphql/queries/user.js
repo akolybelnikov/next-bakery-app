@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-export const GET_USER = gql(`
+const GET_USER = gql(`
     query ($id: ID!) {
         getUser(id: $id) {
             status
@@ -16,3 +16,5 @@ export const GET_USER = gql(`
         }
     }
   `)
+
+  export default GET_USER

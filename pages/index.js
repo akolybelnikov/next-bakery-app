@@ -1,16 +1,15 @@
-import React, { Fragment } from "react"
-import withData from "../withData"
-import { Query } from "react-apollo"
-import { LIST_OFFERS } from "../graphql/queries/offers"
-import {Section} from 'bloomer'
+import React, { Fragment } from 'react'
+import withData from '../withData'
+import { Query } from 'react-apollo'
+
+import LIST_OFFERS from '../graphql/queries/offers'
+import { Section } from 'bloomer'
 
 class Index extends React.Component {
+
     render() {
         return (
             <Section>
-                <div className="is-size-7-mobile is-size-6-tablet is-size-5-desktop">
-                    <Offers />
-                </div>
             </Section>
         )
     }
@@ -18,7 +17,10 @@ class Index extends React.Component {
 
 const Offers = () => {
     return (
-        <Query query={LIST_OFFERS} fetchPolicy="cache-and-network" errorPolicy="all">
+        <Query
+            query={LIST_OFFERS}
+            fetchPolicy='cache-and-network'
+            errorPolicy='all'>
             {({ loading, error, data }) => {
                 if (loading) return null
                 if (error) return null

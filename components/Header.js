@@ -1,45 +1,23 @@
-import React, { PureComponent } from "react"
+import React, { Component } from "react"
 import Link from "next/link"
-import { GET_USER } from "../graphql/queries/user"
+import withData from "../withData"
 import { Query } from "react-apollo"
 
-import { NavbarBrand, NavbarItem, NavbarLink, Icon, NavbarMenu } from "bloomer"
+import { NavbarBrand, NavbarItem, NavbarLink, NavbarMenu, Icon } from "bloomer"
 import Logo from "../components/SVG/Logo"
 import BurgerIcon from "../components/SVG/BurgerIcon"
+import GET_USER from "../graphql/queries/user"
 
 import {
     SmallHandset,
     Handset,
     LargeHandset,
-    HandsetLandscape
+    HandsetLandscape,
+    Tablet,
+    Laptop
 } from "../styles/utils"
 
-// const HeaderImage = styled(Image)`
-//     height: 80px;
-//     width: 150px;
-//     transition: all 1s ease-in-out;
-//     @media screen and (min-width: 769px) {
-//         margin-left: 1rem;
-//     }
-//     @media screen and (max-width: 825px) {
-//         height: 70px;
-//         width: 130px;
-//     }
-//     @media screen and (max-width: 599px) {
-//         height: 60px;
-//         width: 112.5px;
-//     }
-//     @media screen and (max-width: 568px) {
-//         height: 48px;
-//         width: 90px;
-//     }
-//     @media screen and (max-width: 320px) {
-//         height: 35px;
-//         width: 65px;
-//     }
-// `
-
-class Header extends PureComponent {
+class Header extends Component {
     constructor(props) {
         super(props)
 
@@ -48,33 +26,19 @@ class Header extends PureComponent {
         }
     }
 
-    // async componentDidMount() {
-    //     try {
-    //         const info = await Auth.currentUserInfo()
-    //         if (info && (info.attributes.sub !== process.env.DEFAULT_USERNAME)) {
-    //             this
-    //                 .props
-    //                 .userHasAuthenticated(true)
-    //         } else {
-    //             this
-    //                 .props
-    //                 .userHasAuthenticated(false)
-    //         }
-    //     } catch (e) {
-    //         this
-    //             .props
-    //             .userHasAuthenticated(false)
-    //     }
-    // }
-
-    onClickBurger = () => {
+    onToggleMenu = () => {
         this.setState({
             isMenuActive: !this.state.isMenuActive
         })
     }
 
+    onCloseMenu = () => {
+        if (this.state.isMenuActive) this.setState({ isMenuActive: false })
+    }
+
     render() {
         const { isAuthenticated, username } = this.props
+        console.log(this.props)
         return (
             <nav className="navbar is-fixed-top">
                 <NavbarBrand>
@@ -87,9 +51,18 @@ class Header extends PureComponent {
                                 <Handset>
                                     <Logo width="90" />
                                 </Handset>
+                                <LargeHandset>
+                                    <Logo width="110" />
+                                </LargeHandset>
                                 <HandsetLandscape>
                                     <Logo width="110" />
                                 </HandsetLandscape>
+                                <Tablet>
+                                    <Logo width="150" />
+                                </Tablet>
+                                <Laptop>
+                                    <Logo width="160" />
+                                </Laptop>
                             </a>
                         </Link>
                     </NavbarItem>
@@ -98,11 +71,7 @@ class Header extends PureComponent {
                         {isAuthenticated ? (
                             <User id={username} />
                         ) : (
-                            <Link href="/authenticate" prefetch>
-                                <NavbarLink className="is-arrowless userlogin has-text-primary is-size-7-mobile is-size-6-tablet">
-                                    Вход пользователя
-                                </NavbarLink>
-                            </Link>
+                            <Login />
                         )}
                     </NavbarItem>
 
@@ -111,21 +80,25 @@ class Header extends PureComponent {
                             height={60}
                             width={60}
                             isActive={this.state.isMenuActive}
-                            onClickBurger={this.onClickBurger}
+                            onToggleMenu={this.onToggleMenu}
                         />
                     </NavbarItem>
                 </NavbarBrand>
                 <NavbarMenu isActive={this.state.isMenuActive}>
                     <NavbarItem>
                         <Link href="/products" prefetch>
-                            <NavbarLink className="is-arrowless">
+                            <NavbarLink
+                                onClick={this.onCloseMenu}
+                                className="is-arrowless">
                                 Ассортимент
                             </NavbarLink>
                         </Link>
                     </NavbarItem>
                     <NavbarItem>
                         <Link href="/offers" prefetch>
-                            <NavbarLink className="is-arrowless">
+                            <NavbarLink
+                                onClick={this.onCloseMenu}
+                                className="is-arrowless">
                                 Спецпредложения
                             </NavbarLink>
                         </Link>
@@ -139,21 +112,15 @@ class Header extends PureComponent {
                     </NavbarItem>
                     <NavbarItem>
                         <Link href="/contact" prefetch>
-                            <NavbarLink className="is-arrowless">
+                            <NavbarLink
+                                onClick={this.onCloseMenu}
+                                className="is-arrowless">
                                 Контакт
                             </NavbarLink>
                         </Link>
                     </NavbarItem>
                     <NavbarItem isHidden="touch">
-                        {isAuthenticated ? (
-                            <User id={username} />
-                        ) : (
-                            <Link href="/authenticate" prefetch>
-                                <NavbarLink className="is-arrowless has-text-primary">
-                                    Вход пользователя
-                                </NavbarLink>
-                            </Link>
-                        )}
+                        {isAuthenticated ? <User id={username} /> : <Login />}
                     </NavbarItem>
                 </NavbarMenu>
                 <style jsx global>
@@ -195,15 +162,13 @@ class Header extends PureComponent {
     }
 }
 
-const User = ({ id }) => {
+const User = id => {
     return (
         <Query
             query={GET_USER}
+            variables={id}
             fetchPolicy="cache-and-network"
-            errorPolicy="all"
-            variables={{
-                id
-            }}>
+            errorPolicy="all">
             {({ loading, error, data }) => {
                 if (loading)
                     return (
@@ -213,37 +178,35 @@ const User = ({ id }) => {
                         />
                     )
                 if (error) {
-                    return null
+                    console.error(error)
+                    return <Login />
                 }
-                if (data) {
-                    if (data.getUser.firstname) {
-                        return (
-                            <Link
-                                href="/user"
-                                prefetch
-                                className="button is-outlined">
-                                <span className="is-capitalized">
-                                    Здравствуйте, {data.getUser.fisrtname}
-                                </span>
-                            </Link>
-                        )
-                    } else {
-                        return (
-                            <Link
-                                href="/user"
-                                prefetch
-                                className="button is-outlined">
-                                {data.getUser.email}
-                            </Link>
-                        )
-                    }
-                } else
+                if (data.getUser) {
                     return (
-                        <Icon isSize="medium" className="fas fa-user fa-2x" />
+                        <Link href="/user" prefetch>
+                            {data.getUser.firstname ? (
+                                <a className="is-capitalized">
+                                    Здравствуйте, {data.getUser.fisrtname}
+                                </a>
+                            ) : (
+                                <a>{data.getUser.email}</a>
+                            )}
+                        </Link>
                     )
+                } else {
+                    return <Login />
+                }
             }}
         </Query>
     )
 }
 
-export default Header
+const Login = () => (
+    <Link href="/authenticate" prefetch>
+        <NavbarLink className="is-arrowless userlogin has-text-primary is-size-7-mobile is-size-6-tablet">
+            Вход пользователя
+        </NavbarLink>
+    </Link>
+)
+
+export default withData(Header)
