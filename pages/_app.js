@@ -1,13 +1,13 @@
-import App, { Container } from "next/app"
-import Head from "next/head"
-import React from "react"
+import App, { Container } from 'next/app'
+import Head from 'next/head'
+import React from 'react'
 
-import Header from "../components/Header"
-import { currentUser } from "../lib/awsAuth"
-import "../styles/_bulma.scss"
+import Header from '../components/Header'
+import { currentUser } from '../lib/awsAuth'
+import '../styles/_bulma.scss'
 
 class MyApp extends App {
-    static async getInitialProps({ Component, ctx }) {
+    static async getInitialProps({ Component, router, ctx }) {
         let pageProps = {}
 
         if (Component.getInitialProps) {
@@ -25,7 +25,6 @@ class MyApp extends App {
     async componentDidMount() {
         const authUser = await currentUser()
         if (authUser) {
-            console.log(userData)
             this.setCurrentUser(authUser.sub, true)
         }
     }
@@ -42,13 +41,13 @@ class MyApp extends App {
         return (
             <Container>
                 <Head>
-                    <title>My page title</title>
+                    <title>Vse Bulochki Tut</title>
                     <meta
-                        name="viewport"
-                        content="initial-scale=1.0, width=device-width"
+                        name='viewport'
+                        content='initial-scale=1.0, width=device-width'
                     />
                 </Head>
-                <div className="container">
+                <div className='container'>
                     <Header
                         {...pageProps}
                         username={this.state.username}
