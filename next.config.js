@@ -12,24 +12,28 @@ module.exports = withSass(
                 fs: "empty"
             }
 
-            config.module.rules.push({
-                test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
-                use: {
-                    loader: "url-loader",
-                    options: {
-                        limit: 100000,
-                        name: "[name].[ext]"
+            config.module.rules.push(
+                {
+                    test: /\.(eot|woff|woff2|ttf|svg|png|jpg|gif)$/,
+                    use: {
+                        loader: "url-loader",
+                        options: {
+                            limit: 100000,
+                            name: "[name].[ext]"
+                        }
                     }
+                },
+                {
+                    test: /\.(raw)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                    use: "raw-loader"
                 }
-            })
+            )
 
-            config.module.rules.push({
-                test: /\.(raw)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                use: 'raw-loader',
-            })
-            if (config.mode === 'production') {
+            if (config.mode === "production") {
                 if (Array.isArray(config.optimization.minimizer)) {
-                    config.optimization.minimizer.push(new OptimizeCSSAssetsPlugin({}))
+                    config.optimization.minimizer.push(
+                        new OptimizeCSSAssetsPlugin({})
+                    )
                 }
             }
 
@@ -72,11 +76,16 @@ module.exports = withSass(
                 src: "./static/icons/icon-512x512.png",
                 cache: false
             }
+        },
+        exportPathMap: function() {
+            return {
+                "/": { page: "/" },
+                "/user": { page: "/user" },
+                "/authenticate": { page: "/authenticate" },
+                "/contact": { page: "/contact" },
+                "/offers": { page: "/offers" },
+                "/products": { page: "/products" }
+            }
         }
-        // exportPathMap: function() {
-        //     return {
-        //         '/': { page: '/' }
-        //     }
-        // }
     })
 )

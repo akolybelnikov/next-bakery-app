@@ -2,10 +2,11 @@ import React, { Component } from "react"
 import Link from "next/link"
 import withData from "../withData"
 import { Query } from "react-apollo"
+import dynamic from 'next/dynamic'
 
 import { NavbarBrand, NavbarItem, NavbarLink, NavbarMenu, Icon } from "bloomer"
 import LogoSVG from "../static/logos/logo.svg"
-import BurgerIcon from "../components/SVG/BurgerIcon"
+const BurgerIcon = dynamic(() => import("../components/SVG/BurgerIcon"), {ssr: false})
 import GET_USER from "../graphql/queries/user"
 
 import { SmallHandset, Handset, Default } from "../styles/utils"

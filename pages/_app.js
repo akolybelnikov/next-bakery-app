@@ -4,6 +4,7 @@ import React from "react"
 
 import Header from "../components/Header"
 import { currentUser } from "../lib/awsAuth"
+import Fonts from "../lib/fonts"
 import "../styles/index.scss"
 
 class MyApp extends App {
@@ -27,6 +28,7 @@ class MyApp extends App {
         if (authUser) {
             this.setCurrentUser(authUser.sub, true)
         }
+        await Fonts()
     }
 
     setCurrentUser = (username, authenticated) => {
@@ -51,6 +53,27 @@ class MyApp extends App {
                     />
                     <Component {...pageProps} />
                 </div>
+                <style jsx global>
+                    {`
+                        .custom_body {
+                            color: #331507;
+                        }
+                        @media all and (min-width: 600px) {
+                            html {
+                                padding-top: 4.25rem;
+                            }
+                        }
+                        @media all and (max-width: 599px) {
+                            html {
+                                padding-top: 2.25rem;
+                            }
+                        }
+                        @font-face {
+                            font-family: "Raleway";
+                            font-display: auto;
+                        }
+                    `}
+                </style>
             </Container>
         )
     }

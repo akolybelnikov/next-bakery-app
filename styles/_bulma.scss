@@ -2,45 +2,6 @@
 @import "~bulma/sass/utilities/_all";
 @import "./variables";
 
-@font-face {
-    font-family: "Raleway";
-    src: local("Raleway"), url("../static/fonts/Raleway-v4020-Bold.eot");
-    src: local("Raleway"),
-        url("../static/fonts/Raleway-v4020-Bold.eot?#iefix")
-            format("embedded-opentype"),
-        url("../static/fonts/Raleway-v4020-Bold.woff") format("woff"),
-        url("../static/fonts/Raleway-v4020-Bold.ttf") format("truetype");
-    font-weight: bold;
-    font-style: normal;
-    font-display: auto;
-}
-
-@font-face {
-    font-family: "Raleway";
-    src: local("Raleway"), url("../static/fonts/Raleway-v4020-SemiBold.eot");
-    src: local("Raleway"),
-        url("../static/fonts/Raleway-v4020-SemiBold.eot?#iefix")
-            format("embedded-opentype"),
-        url("../static/fonts/Raleway-v4020-SemiBold.woff") format("woff"),
-        url("../static/fonts/Raleway-v4020-SemiBold.ttf") format("truetype");
-    font-weight: 600;
-    font-style: normal;
-    font-display: auto;
-}
-
-@font-face {
-    font-family: "Raleway";
-    src: local("Raleway"), url("../static/fonts/Raleway-v4020-Regular.eot");
-    src: local("Raleway"),
-        url("../static/fonts/Raleway-v4020-Regular.eot?#iefix")
-            format("embedded-opentype"),
-        url("../static/fonts/Raleway-v4020-Regular.woff") format("woff"),
-        url("../static/fonts/Raleway-v4020-Regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: auto;
-}
-
 // override ./static/fonts
 $family-sans-serif: apple-system, BlinkMacSystemFont, "Raleway", "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
@@ -109,4 +70,4 @@ $panel-block-color: $info;
 $panel-block-hover-background-color: $success-shadow;
 $panel-tab-active-border-bottom-color: $info;
 
-@import "~bulma/bulma";
+@import "~bulma";

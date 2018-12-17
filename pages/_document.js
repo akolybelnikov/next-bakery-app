@@ -12,6 +12,10 @@ class CustomDocument extends Document {
                 <Head>
                     <meta charSet="utf-8" />
                     <link rel="shortcut icon" href="/static/favicon.ico" />
+                    <link
+                        rel="stylesheet"
+                        href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700,900"
+                    />
                     <meta
                         name="viewport"
                         content="width=device-width, initial-scale=1"
@@ -26,29 +30,19 @@ class CustomDocument extends Document {
                         property="og:image"
                         content="/static/manifest/icons/icon-512x512.png"
                     />
-                    <link rel="manifest" href="/static/manifest/manifest.json" />
-                    <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon"></link>
+                    <link
+                        rel="manifest"
+                        href="/static/manifest/manifest.json"
+                    />
+                    <link
+                        rel="shortcut icon"
+                        href="/static/favicon.ico"
+                        type="image/x-icon"
+                    />
                 </Head>
                 <body className="custom_body">
                     <Main />
                     <NextScript />
-                    <style jsx global>
-                        {`
-                            .custom_body {
-                                color: #331507;
-                            }
-                            @media all and (min-width: 600px) {
-                                html {
-                                    padding-top: 4.25rem;
-                                }
-                            }
-                            @media all and (max-width: 599px) {
-                                html {
-                                    padding-top: 2.25rem;
-                                }
-                            }
-                        `}
-                    </style>
                 </body>
             </html>
         )
