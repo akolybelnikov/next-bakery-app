@@ -4,7 +4,7 @@ import React from "react"
 
 import Header from "../components/Header"
 import { currentUser } from "../lib/awsAuth"
-import "../styles/_bulma.scss"
+import "../styles/index.scss"
 
 class MyApp extends App {
     static async getInitialProps({ Component, router, ctx }) {
@@ -51,20 +51,6 @@ class MyApp extends App {
                     />
                     <Component {...pageProps} />
                 </div>
-                <style jsx global>
-                    {`
-                        @media all and (min-width: 600px) {
-                            html {
-                                padding-top: 4.25rem;
-                            }
-                        }
-                        @media all and (max-width: 599px) {
-                            html {
-                                padding-top: 2.25rem;
-                            }
-                        }
-                    `}
-                </style>
             </Container>
         )
     }

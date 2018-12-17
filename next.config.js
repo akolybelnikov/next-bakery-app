@@ -2,12 +2,12 @@ const { parsed: localEnv } = require("dotenv").config()
 const webpack = require("webpack")
 const withSass = require("@zeit/next-sass")
 const withBundleAnalyzer = require("@zeit/next-bundle-analyzer")
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 
 module.exports = withSass(
     withBundleAnalyzer({
         webpack: config => {
             config.plugins.push(new webpack.EnvironmentPlugin(localEnv))
-            // Fixes npm packages that depend on `fs` module
             config.node = {
                 fs: "empty"
             }
@@ -22,6 +22,16 @@ module.exports = withSass(
                     }
                 }
             })
+
+            config.module.rules.push({
+                test: /\.(raw)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                use: 'raw-loader',
+            })
+            if (config.mode === 'production') {
+                if (Array.isArray(config.optimization.minimizer)) {
+                    config.optimization.minimizer.push(new OptimizeCSSAssetsPlugin({}))
+                }
+            }
 
             return config
         },
