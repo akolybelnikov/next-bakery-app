@@ -1,24 +1,20 @@
 import React from 'react'
 import withData from '../withData'
-import { Section } from 'bloomer'
+import Error from 'next/error'
 
-class Error extends React.Component {
+class ErrorPage extends React.Component {
     static getInitialProps({ res, err }) {
-        const statusCode = res ? res.statusCode : err ? err.statusCode : null
+        const statusCode = res && res.statusCode > 200 ? res.statusCode : null
         return { statusCode }
     }
 
     render() {
         return (
-            <Section>
-                <p>
-                    {this.props.statusCode
-                        ? `An error ${this.props.statusCode} occurred on server`
-                        : 'An error occurred on client'}
-                </p>
-            </Section>
+            this.props.statusCode
+                ? <Error statusCode={this.props.statusCode} />
+                : <Error />
         )
     }
 }
 
-export default withData(Error)
+export default withData(ErrorPage)

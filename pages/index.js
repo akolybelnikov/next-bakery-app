@@ -3,15 +3,16 @@ import withData from "../withData"
 import { Query } from "react-apollo"
 
 import LIST_OFFERS from "../graphql/queries/offers"
-import { Section } from "bloomer"
+import {Section, Media, MediaLeft, MediaContent, Image, Content} from 'bloomer'
+import Offers from '../components/Offers'
 
 class Index extends React.Component {
     render() {
-        return <Section />
+        return <Fragment><Offers offers={'offers'}/></Fragment>
     }
 }
 
-const Offers = () => {
+const OffersData = () => {
     return (
         <Query
             query={LIST_OFFERS}
@@ -24,8 +25,17 @@ const Offers = () => {
                     return (
                         <Fragment>
                             {data.listOffers.items.length &&
-                                data.listOffers.items.map(offer => (
-                                    <p key={offer.id}>{offer.content}</p>
+                                data.listOffers.items.map((offer, index) => (
+                                    <Media key={index}>
+                                        <MediaLeft>
+                                            <Image isSize="128x128" src={offer.image}/>
+                                        </MediaLeft>
+                                        <MediaContent>
+                                            <Content>
+                                                <p>{offer.content}</p>
+                                            </Content>
+                                        </MediaContent>
+                                    </Media>
                                 ))}
                         </Fragment>
                     )

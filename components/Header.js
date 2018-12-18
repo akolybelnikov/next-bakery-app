@@ -79,7 +79,7 @@ class Header extends Component {
                         <Link href="/products" prefetch>
                             <NavbarLink
                                 onClick={this.onCloseMenu}
-                                className="is-arrowless">
+                                className="is-arrowless is-size-5-tablet">
                                 Ассортимент
                             </NavbarLink>
                         </Link>
@@ -88,7 +88,7 @@ class Header extends Component {
                         <Link href="/offers" prefetch>
                             <NavbarLink
                                 onClick={this.onCloseMenu}
-                                className="is-arrowless">
+                                className="is-arrowless is-size-5-tablet">
                                 Спецпредложения
                             </NavbarLink>
                         </Link>
@@ -104,7 +104,7 @@ class Header extends Component {
                         <Link href="/contact" prefetch>
                             <NavbarLink
                                 onClick={this.onCloseMenu}
-                                className="is-arrowless">
+                                className="is-arrowless is-size-5-tablet">
                                 Контакт
                             </NavbarLink>
                         </Link>
@@ -130,6 +130,8 @@ class Header extends Component {
                         .burgericon {
                             transition: all 1s ease-in-out;
                             cursor: pointer;
+                            min-width: 95px;
+                            min-height: 85px;
                         }
                         .logo {
                             transition: all 1s ease-in-out;

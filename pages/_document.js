@@ -43,6 +43,7 @@ class CustomDocument extends Document {
                 <body className="custom_body">
                     <Main />
                     <NextScript />
+                    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
                 </body>
             </html>
         )
