@@ -130,7 +130,7 @@ class Header extends Component {
                         .burgericon {
                             transition: all 1s ease-in-out;
                             cursor: pointer;
-                            min-width: 95px;
+                            min-width: 85px;
                             min-height: 85px;
                         }
                         .logo {
