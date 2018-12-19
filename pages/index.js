@@ -1,17 +1,30 @@
-import React, { Fragment } from "react"
-import withData from "../withData"
-import bulmaCarousel from 'bulma-carousel'
-import OffersCarousel from '../components/Offers'
+import React, { Fragment } from 'react';
+import withData from '../withData';
+import { graphql, compose } from 'react-apollo';
+
+import LIST_OFFERS from '../graphql/queries/offers';
+import OffersCarousel from '../components/OffersCarousel';
 
 class Index extends React.Component {
-
-    componentDidMount() {
-        bulmaCarousel.attach()
-    }
-    
-    render() {
-        return <Fragment><OffersCarousel {...this.props} /></Fragment>
-    }
+	render() {
+		return (
+			<Fragment>
+				<OffersCarousel offers={this.props.offers} />
+			</Fragment>
+		);
+	}
 }
 
-export default withData(Index)
+const Home = compose(
+	graphql(LIST_OFFERS, {
+		options: {
+			fetchPolicy: 'cache-and-network',
+			errorPolicy: 'all',
+		},
+		props: props => ({
+			offers: props.data.listOffers ? props.data.listOffers.items : [],
+		}),
+	}),
+)(Index);
+
+export default withData(Home);
