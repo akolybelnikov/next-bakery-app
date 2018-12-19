@@ -5,6 +5,7 @@ import React from "react"
 import Header from "../components/Header"
 import { currentUser } from "../lib/awsAuth"
 import Fonts from "../lib/fonts"
+
 import "../styles/index.scss"
 
 class MyApp extends App {

@@ -1,50 +1,72 @@
-import bulmaCarousel from 'bulma-carousel'
-import {Icon} from 'bloomer'
 
-class Offers extends React.PureComponent {
+import React from 'react'
+import withData from "../withData"
+import { Query } from "react-apollo"
 
-    componentDidMount() {
-        bulmaCarousel.attach()
-    }
+import LIST_OFFERS from "../graphql/queries/offers"
+import { Media, MediaLeft, MediaContent, Content } from 'bloomer'
 
-    render() {
-        return (
-            <div className='carousel carousel-animated carousel-animate-slide' data-autoplay="true" data-delay="10000">
-                <div className='carousel-container'>
-                    <div className='carousel-item has-background is-active'>
-                        <div className="title">Merry Christmas</div>
-                    </div>
-                    <div className='carousel-item has-background'>
+import ProgressiveImage from "react-progressive-bg-image"
+import getConfig from 'next/config'
+const { publicRuntimeConfig } = getConfig()
 
-                        <div className="title">Original Gift: Offer a song with</div>
-                    </div>
-                    <div className='carousel-item has-background'>
+const OffersCarousel = () => {
 
-                        <div className="title">Sushi time</div>
-                    </div>
-                    <div className='carousel-item has-background'>
-
-                        <div className="title">Life</div>
-                    </div>
-                </div>
-                <div className="carousel-navigation is-overlay">
-                    <div className="carousel-nav-left">
-                        <Icon className="fas fa-chevron-left" aria-hidden="true"/>
-                    </div>
-                    <div className="carousel-nav-right">
-                        <Icon className="fas fa-chevron-right" aria-hidden="true"/>
-                    </div>
-                </div>
-                <style jsx>
-                    {`
-                        div.carousel-container {
-                            min-height: 200px;
-                        }
-                    `}
-                </style>n
-            </div>
-        )
-    }
+    return (
+        <Query
+            query={LIST_OFFERS}
+            fetchPolicy="cache-and-network"
+            errorPolicy="all">
+            {({ loading, error, data }) => {
+                if (loading) return null
+                if (error) return null
+                if (data) {
+                    return (
+                        <div className='carousel carousel-animated carousel-animate-fade' data-autoplay="true" data-delay="10000">
+                            <div className='carousel-container'>
+                                {data.listOffers.items.length &&
+                                    data.listOffers.items.map((offer, index) => (
+                                        <div className='carousel-item has-background' key={index}>
+                                            <Media>
+                                                <MediaLeft>
+                                                    {offer.image && <figure className="image">
+                                                        <ProgressiveImage
+                                                            className="bg-image"
+                                                            placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${offer.image}`}
+                                                            src={`${publicRuntimeConfig.imagehandler}/256x256/${offer.image}`}
+                                                            component="img" />
+                                                    </figure>}
+                                                </MediaLeft>
+                                                <MediaContent>
+                                                    <Content>
+                                                        <p>{offer.content}</p>
+                                                    </Content>
+                                                </MediaContent>
+                                            </Media>
+                                        </div>
+                                    ))}
+                            </div>
+                            <style jsx>
+                                {`
+                                        div {
+                                            padding-top: 2.25rem;
+                                        }
+                                        .image .bg-image {
+                                            height: auto;
+                                            transition: all 1.5s linear;
+                                            max-width: 100%;
+                                            width: 100%;
+                                            background-size: cover;
+                                            background-position: center center;
+                                        }
+                                    `}
+                            </style>
+                        </div>
+                    )
+                }
+            }}
+        </Query>
+    )
 }
 
-export default Offers
+export default withData(OffersCarousel)
