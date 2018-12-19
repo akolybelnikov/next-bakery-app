@@ -13,6 +13,22 @@ const Image = ({ src, alt, className, placeholder }) => (
                 <noscript>
                     <img src={src} alt={alt} className={className} />
                 </noscript>
+                <style jsx>
+                    {`
+                        @media screen and (min-width: 600px) {
+                            img {
+                                min-width: 100%;
+                            }
+                        }
+                        img {
+                            opacity: 1;
+                            transition: opacity 0.25s ease-in;
+                        }
+                        img.loading-progressive-image {
+                            opacity: 0.5;
+                        }
+                    `}
+                </style>
             </Fragment>
         )}
     </ProgressiveImage>
