@@ -93,6 +93,17 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@aws-amplify/ui/dist/style.css":
+/*!*****************************************************!*\
+  !*** ./node_modules/@aws-amplify/ui/dist/style.css ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ "./pages/authenticate.js":
 /*!*******************************!*\
   !*** ./pages/authenticate.js ***!
@@ -109,6 +120,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var bloomer__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(bloomer__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var aws_amplify_react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! aws-amplify-react */ "aws-amplify-react");
 /* harmony import */ var aws_amplify_react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(aws_amplify_react__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_aws_amplify_ui_dist_style_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../node_modules/@aws-amplify/ui/dist/style.css */ "./node_modules/@aws-amplify/ui/dist/style.css");
+/* harmony import */ var _node_modules_aws_amplify_ui_dist_style_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_aws_amplify_ui_dist_style_css__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -126,6 +139,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 

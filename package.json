@@ -15,8 +15,6 @@
     "aws-amplify-react": "^2.1.7",
     "aws-appsync": "^1.6.0",
     "aws-appsync-react": "^1.2.4",
-    "babel-plugin-css-modules-transform": "^1.6.2",
-    "babel-plugin-inline-react-svg": "^1.0.1",
     "bloomer": "^0.6.5",
     "bulma": "^0.7.2",
     "bulma-carousel": "^3.0.0",
@@ -39,8 +37,12 @@
     "theming": "^2.2.0"
   },
   "devDependencies": {
+    "autoprefixer": "^9.4.3",
+    "babel-plugin-css-modules-transform": "^1.6.2",
+    "babel-plugin-inline-react-svg": "^1.0.1",
     "file-loader": "^2.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "postcss-loader": "^3.0.0",
     "url-loader": "^1.1.2"
   },
   "license": "ISC",

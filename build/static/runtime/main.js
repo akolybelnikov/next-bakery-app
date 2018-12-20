@@ -5626,7 +5626,7 @@ function connect(options) {
       error.name = err.name;
       error.stack = err.stack; // __NEXT_DIST_DIR is provided by webpack
 
-      (0, _sourceMapSupport.rewriteStacktrace)(error, "C:\\Users\\Andrey\\Downloads\\next-bakery-app\\build");
+      (0, _sourceMapSupport.rewriteStacktrace)(error, "C:\\Users\\akolybelnikov\\win_projects\\next-bakery-app\\build");
       return error;
     }
   };
@@ -17946,7 +17946,7 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\Andrey\Downloads\next-bakery-app\node_modules\next\dist\client\next-dev */"./node_modules/next/dist/client/next-dev.js");
+module.exports = __webpack_require__(/*! C:\Users\akolybelnikov\win_projects\next-bakery-app\node_modules\next\dist\client\next-dev */"./node_modules/next/dist/client/next-dev.js");
 
 
 /***/ }),
