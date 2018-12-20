@@ -77,14 +77,7 @@ const nextConfig = {
 
 module.exports = withPlugins(
     [
-        [
-            css,
-            {
-                postcssLoaderOptions: {
-                    parser: true
-                }
-            }
-        ],
+        css,
         sass,
         [
             analyze,
