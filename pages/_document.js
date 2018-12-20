@@ -12,10 +12,6 @@ class CustomDocument extends Document {
                 <Head>
                     <meta charSet="utf-8" />
                     <link rel="shortcut icon" href="/static/favicon.ico" />
-                    <link
-                        rel="stylesheet"
-                        href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700,900"
-                    />
                     <meta
                         name="viewport"
                         content="width=device-width, initial-scale=1"
