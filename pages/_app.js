@@ -25,7 +25,7 @@ class MyApp extends App {
 	async componentDidMount() {
 		const authUser = await currentUser();
 		if (authUser) {
-			this.setCurrentUser(authUser.sub, true);
+			this.setCurrentUser(authUser.username, true);
 		}
 		await Fonts();
 	}
