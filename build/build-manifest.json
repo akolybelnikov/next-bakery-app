@@ -1,54 +1,31 @@
 {
-  "devFiles": [],
+  "devFiles": [
+    "static/development/dll/dll_902c0d8e342f4a2f6d51.js"
+  ],
   "pages": {
     "/_app": [
-      "static/runtime/webpack-17975e54fcec003002cc.js",
-      "static/chunks/commons.b691a1f141a6b386f0c4.js",
-      "static/css/styles.426d1166.chunk.css",
-      "static/chunks/styles.2645271f3603f7119e83.js",
-      "static/runtime/main-acf00d6c5d471dd7ec09.js"
+      "static/runtime/webpack.js",
+      "static/css/styles.chunk.css",
+      "static/chunks/styles.js",
+      "static/runtime/main.js"
     ],
     "/_error": [
-      "static/runtime/webpack-17975e54fcec003002cc.js",
-      "static/chunks/commons.b691a1f141a6b386f0c4.js",
-      "static/runtime/main-acf00d6c5d471dd7ec09.js"
-    ],
-    "/authenticate": [
-      "static/runtime/webpack-17975e54fcec003002cc.js",
-      "static/chunks/commons.b691a1f141a6b386f0c4.js",
-      "static/css/styles.426d1166.chunk.css",
-      "static/chunks/styles.2645271f3603f7119e83.js",
-      "static/runtime/main-acf00d6c5d471dd7ec09.js"
-    ],
-    "/contact": [
-      "static/runtime/webpack-17975e54fcec003002cc.js",
-      "static/chunks/commons.b691a1f141a6b386f0c4.js",
-      "static/runtime/main-acf00d6c5d471dd7ec09.js"
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ],
     "/index": [
-      "static/runtime/webpack-17975e54fcec003002cc.js",
-      "static/chunks/commons.b691a1f141a6b386f0c4.js",
-      "static/runtime/main-acf00d6c5d471dd7ec09.js"
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ],
-    "/offers": [
-      "static/runtime/webpack-17975e54fcec003002cc.js",
-      "static/chunks/commons.b691a1f141a6b386f0c4.js",
-      "static/runtime/main-acf00d6c5d471dd7ec09.js"
-    ],
-    "/products": [
-      "static/runtime/webpack-17975e54fcec003002cc.js",
-      "static/chunks/commons.b691a1f141a6b386f0c4.js",
-      "static/runtime/main-acf00d6c5d471dd7ec09.js"
-    ],
-    "/user": [
-      "static/runtime/webpack-17975e54fcec003002cc.js",
-      "static/chunks/commons.b691a1f141a6b386f0c4.js",
-      "static/runtime/main-acf00d6c5d471dd7ec09.js"
+    "/authenticate": [
+      "static/runtime/webpack.js",
+      "static/css/styles.chunk.css",
+      "static/chunks/styles.js",
+      "static/runtime/main.js"
     ],
     "/": [
-      "static/runtime/webpack-17975e54fcec003002cc.js",
-      "static/chunks/commons.b691a1f141a6b386f0c4.js",
-      "static/runtime/main-acf00d6c5d471dd7ec09.js"
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
     ]
   }
 }

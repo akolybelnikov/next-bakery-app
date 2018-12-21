@@ -88,10 +88,280 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./components/AWS/SignIn.js":
+/*!**********************************!*\
+  !*** ./components/AWS/SignIn.js ***!
+  \**********************************/
+/*! exports provided: CustomizedSignIn */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomizedSignIn", function() { return CustomizedSignIn; });
+/* harmony import */ var aws_amplify_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! aws-amplify-react */ "aws-amplify-react");
+/* harmony import */ var aws_amplify_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(aws_amplify_react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var bloomer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bloomer */ "bloomer");
+/* harmony import */ var bloomer__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bloomer__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var CustomizedSignIn =
+/*#__PURE__*/
+function (_SignIn) {
+  _inherits(CustomizedSignIn, _SignIn);
+
+  function CustomizedSignIn(props) {
+    var _this;
+
+    _classCallCheck(this, CustomizedSignIn);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CustomizedSignIn).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "signIn", function () {
+      _get(_getPrototypeOf(CustomizedSignIn.prototype), "signIn", _assertThisInitialized(_this)).call(_assertThisInitialized(_this)).then(function (res) {
+        return console.log('signedIn', res);
+      });
+    });
+
+    _this._validAuthStates = ['signIn', 'signedOut', 'signedUp'];
+    return _this;
+  }
+
+  _createClass(CustomizedSignIn, [{
+    key: "showComponent",
+    value: function showComponent() {
+      var _this2 = this;
+
+      console.log(this.props);
+      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Container"], {
+        style: {
+          paddingTop: '8rem'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Columns"], {
+        style: {
+          margin: '0 auto'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Column"], {
+        isSize: {
+          mobile: 12,
+          tablet: 6,
+          desktop: 4
+        },
+        isOffset: {
+          tablet: 3,
+          desktop: 4
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Field"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        htmlFor: "username"
+      }, "\u0410\u0434\u0440\u0435\u0441 \u044D\u043B. \u043F\u043E\u0447\u0442\u044B"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Control"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+        key: "username",
+        name: "username",
+        onChange: this.handleInputChange,
+        type: "text",
+        placeholder: "\u0410\u0434\u0440\u0435\u0441 \u044D\u043B. \u043F\u043E\u0447\u0442\u044B"
+      }))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Field"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        htmlFor: "password"
+      }, "\u041F\u0430\u0440\u043E\u043B\u044C"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Control"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+        key: "password",
+        name: "password",
+        onChange: this.handleInputChange,
+        type: "password",
+        placeholder: "******************"
+      }))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Field"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", null, "\u041F\u0430\u0440\u043E\u043B\u044C \u0443\u0442\u0435\u0440\u044F\u043D?", react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("a", {
+        style: {
+          marginLeft: '10px'
+        },
+        className: "has-text-success",
+        onClick: function onClick() {
+          return _get(_getPrototypeOf(CustomizedSignIn.prototype), "changeState", _this2).call(_this2, 'forgotPassword');
+        }
+      }, "\u0417\u0430\u043F\u0440\u043E\u0441\u0438\u0442\u044C \u043D\u043E\u0432\u044B\u0439 \u043F\u0430\u0440\u043E\u043B\u044C"))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Field"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        isFullWidth: true,
+        isColor: "primary",
+        type: "button",
+        onClick: this.signIn
+      }, "\u0412\u043E\u0439\u0442\u0438")), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Field"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", null, "\u041D\u0435\u0442 \u043F\u0440\u043E\u0444\u0438\u043B\u044F?", react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("a", {
+        style: {
+          marginLeft: '10px'
+        },
+        className: "has-text-success",
+        onClick: function onClick() {
+          return _get(_getPrototypeOf(CustomizedSignIn.prototype), "changeState", _this2).call(_this2, 'signUp');
+        }
+      }, "\u0421\u043E\u0437\u0434\u0430\u0442\u044C \u043F\u0440\u043E\u0444\u0438\u043B\u044C")))))));
+    }
+  }]);
+
+  return CustomizedSignIn;
+}(aws_amplify_react__WEBPACK_IMPORTED_MODULE_0__["SignIn"]);
+
+/***/ }),
+
+/***/ "./components/AWS/SignUp.js":
+/*!**********************************!*\
+  !*** ./components/AWS/SignUp.js ***!
+  \**********************************/
+/*! exports provided: CustomizedSignUp */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomizedSignUp", function() { return CustomizedSignUp; });
+/* harmony import */ var aws_amplify_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! aws-amplify-react */ "aws-amplify-react");
+/* harmony import */ var aws_amplify_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(aws_amplify_react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var bloomer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bloomer */ "bloomer");
+/* harmony import */ var bloomer__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bloomer__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _get(target, property, receiver) { if (typeof Reflect !== "undefined" && Reflect.get) { _get = Reflect.get; } else { _get = function _get(target, property, receiver) { var base = _superPropBase(target, property); if (!base) return; var desc = Object.getOwnPropertyDescriptor(base, property); if (desc.get) { return desc.get.call(receiver); } return desc.value; }; } return _get(target, property, receiver || target); }
+
+function _superPropBase(object, property) { while (!Object.prototype.hasOwnProperty.call(object, property)) { object = _getPrototypeOf(object); if (object === null) break; } return object; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var CustomizedSignUp =
+/*#__PURE__*/
+function (_SignUp) {
+  _inherits(CustomizedSignUp, _SignUp);
+
+  function CustomizedSignUp(props) {
+    var _this;
+
+    _classCallCheck(this, CustomizedSignUp);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(CustomizedSignUp).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "signUp", function () {
+      _get(_getPrototypeOf(CustomizedSignUp.prototype), "signUp", _assertThisInitialized(_this)).call(_assertThisInitialized(_this));
+
+      console.log(_this.props);
+    });
+
+    _this._validAuthStates = ['signUp', 'signedOut'];
+    return _this;
+  }
+
+  _createClass(CustomizedSignUp, [{
+    key: "showComponent",
+    value: function showComponent() {
+      var _this2 = this;
+
+      console.log(this.props);
+      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Container"], {
+        style: {
+          paddingTop: '8rem'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Columns"], {
+        style: {
+          margin: '0 auto'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Column"], {
+        isSize: {
+          mobile: 12,
+          tablet: 6,
+          desktop: 4
+        },
+        isOffset: {
+          tablet: 3,
+          desktop: 4
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("form", null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Field"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        htmlFor: "username"
+      }, "\u0418\u043C\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Control"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+        key: "username",
+        name: "username",
+        onChange: this.handleInputChange,
+        type: "text",
+        placeholder: "\u0418\u043C\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044F"
+      }))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Field"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        htmlFor: "email"
+      }, "\u0410\u0434\u0440\u0435\u0441 \u044D\u043B. \u043F\u043E\u0447\u0442\u044B"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Control"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+        key: "email",
+        name: "email",
+        onChange: this.handleInputChange,
+        type: "text",
+        placeholder: "\u0410\u0434\u0440\u0435\u0441 \u044D\u043B. \u043F\u043E\u0447\u0442\u044B"
+      }))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Field"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        htmlFor: "password"
+      }, "\u041F\u0430\u0440\u043E\u043B\u044C"), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Control"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Input"], {
+        key: "password",
+        name: "password",
+        onChange: this.handleInputChange,
+        type: "password",
+        placeholder: "******************"
+      }))), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Field"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        isFullWidth: true,
+        isColor: "primary",
+        type: "button",
+        onClick: this.signUp
+      }, "\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F")), react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Field"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("span", null, "\u0415\u0441\u0442\u044C \u043F\u0440\u043E\u0444\u0438\u043B\u044C?", react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement("a", {
+        style: {
+          marginLeft: '10px'
+        },
+        className: "has-text-success",
+        onClick: function onClick() {
+          return _get(_getPrototypeOf(CustomizedSignUp.prototype), "changeState", _this2).call(_this2, 'signIn');
+        }
+      }, "\u0412\u043E\u0439\u0442\u0438")))))));
+    }
+  }]);
+
+  return CustomizedSignUp;
+}(aws_amplify_react__WEBPACK_IMPORTED_MODULE_0__["SignUp"]);
+
+/***/ }),
 
 /***/ "./pages/authenticate.js":
 /*!*******************************!*\
@@ -104,12 +374,12 @@ module.exports =
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var aws_amplify_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! aws-amplify-react */ "aws-amplify-react");
 /* harmony import */ var aws_amplify_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(aws_amplify_react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var bloomer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bloomer */ "bloomer");
-/* harmony import */ var bloomer__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bloomer__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _styles_utils__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles/utils */ "./styles/utils.js");
-/* harmony import */ var _withData__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../withData */ "./withData.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_AWS_SignIn__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/AWS/SignIn */ "./components/AWS/SignIn.js");
+/* harmony import */ var _components_AWS_SignUp__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/AWS/SignUp */ "./components/AWS/SignUp.js");
+/* harmony import */ var _styles_utils__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styles/utils */ "./styles/utils.js");
+/* harmony import */ var _withData__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../withData */ "./withData.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -132,7 +402,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
- // import '../node_modules/@aws-amplify/ui/dist/style.css';
+
+
 
 var Authenticate =
 /*#__PURE__*/
@@ -148,16 +419,17 @@ function (_React$PureComponent) {
   _createClass(Authenticate, [{
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(bloomer__WEBPACK_IMPORTED_MODULE_1__["Section"], null, react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(aws_amplify_react__WEBPACK_IMPORTED_MODULE_0__["Authenticator"], {
-        theme: _styles_utils__WEBPACK_IMPORTED_MODULE_3__["AwsTheme"]
-      }));
+      return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(aws_amplify_react__WEBPACK_IMPORTED_MODULE_0__["Authenticator"], {
+        hideDefault: true,
+        theme: _styles_utils__WEBPACK_IMPORTED_MODULE_4__["AwsTheme"]
+      }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_AWS_SignIn__WEBPACK_IMPORTED_MODULE_2__["CustomizedSignIn"], null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_AWS_SignUp__WEBPACK_IMPORTED_MODULE_3__["CustomizedSignUp"], null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(aws_amplify_react__WEBPACK_IMPORTED_MODULE_0__["ForgotPassword"], null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(aws_amplify_react__WEBPACK_IMPORTED_MODULE_0__["RequireNewPassword"], null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(aws_amplify_react__WEBPACK_IMPORTED_MODULE_0__["VerifyContact"], null), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(aws_amplify_react__WEBPACK_IMPORTED_MODULE_0__["ConfirmSignUp"], null));
     }
   }]);
 
   return Authenticate;
-}(react__WEBPACK_IMPORTED_MODULE_2___default.a.PureComponent);
+}(react__WEBPACK_IMPORTED_MODULE_1___default.a.PureComponent);
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(_withData__WEBPACK_IMPORTED_MODULE_4__["default"])(Authenticate));
+/* harmony default export */ __webpack_exports__["default"] = (Object(_withData__WEBPACK_IMPORTED_MODULE_5__["default"])(Authenticate));
 
 /***/ }),
 
@@ -247,6 +519,8 @@ var AwsTheme = (_AwsTheme = {
   color: theme.info
 }), _defineProperty(_AwsTheme, "hint", {
   color: theme.info
+}), _defineProperty(_AwsTheme, "toast", {
+  backgroundColor: theme.primary
 }), _AwsTheme);
 var maxWidth = {
   smallhandset: 359,
@@ -273,7 +547,7 @@ var maxMedia = Object.keys(maxWidth).reduce(function (acc, label) {
     return {
       styles: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default.a, {
         styleId: "3601533382",
-        css: "@media screen and (max-width:".concat(emSize, "em){.__jsx-style-dynamic-selector{").concat((_css = css).resolve.apply(_css, arguments), ";}}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkM6XFxVc2Vyc1xcQW5kcmV5XFxEb3dubG9hZHNcXG5leHQtYmFrZXJ5LWFwcFxcc3R5bGVzXFx1dGlscy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFnRnNDLEFBR3VDLDZCQUNoQyIsImZpbGUiOiJDOlxcVXNlcnNcXEFuZHJleVxcRG93bmxvYWRzXFxuZXh0LWJha2VyeS1hcHBcXHN0eWxlc1xcdXRpbHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ3N0eWxlZC1qc3gvY3NzJztcbmltcG9ydCBSZXNwb25zaXZlIGZyb20gJ3JlYWN0LXJlc3BvbnNpdmUnO1xuXG5leHBvcnQgY29uc3QgdGhlbWUgPSB7XG5cdHByaW1hcnk6ICcjNTIwODJkJyxcblx0aW5mbzogJyMzMzE1MDcnLFxuXHRzdWNjZXNzOiAnI2VhY2NiMicsXG5cdHByaW1hcnlTaGFkb3c6ICdyZ2JhKDgyLCA4LCA0NSwgMC4zKScsXG5cdGluZm9TaGFkb3c6ICdyZ2JhKDUxLCAyMSwgNywgMC41KScsXG5cdHN1Y2Nlc3NTaGFkb3c6ICdyZ2JhKDIzNCwgMjA0LCAxNzgsIDAuMyknLFxufTtcblxuZXhwb3J0IGNvbnN0IEF3c1RoZW1lID0ge1xuXHRidXR0b246IHtcblx0XHRiYWNrZ3JvdW5kQ29sb3I6IHRoZW1lLnByaW1hcnksXG5cdH0sXG5cdG5hdkJ1dHRvbjoge1xuXHRcdGJhY2tncm91bmRDb2xvcjogdGhlbWUucHJpbWFyeSxcblx0fSxcblx0YToge1xuXHRcdGNvbG9yOiB0aGVtZS5zdWNjZXNzLFxuXHR9LFxuXHRzZWN0aW9uQm9keToge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRjb250YWluZXI6IHtcblx0XHRjb2xvcjogdGhlbWUuaW5mbyxcblx0fSxcblx0Zm9ybUNvbnRhaW5lcjoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRmb3JtU2VjdGlvbjoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRmb3JtRmllbGQ6IHtcblx0XHRjb2xvcjogdGhlbWUuaW5mbyxcblx0fSxcblx0c2VjdGlvbkhlYWRlcjoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRzZWN0aW9uQm9keToge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRzZWN0aW9uRm9vdGVyOiB7XG5cdFx0Y29sb3I6IHRoZW1lLmluZm8sXG5cdH0sXG5cdHNlY3Rpb25Gb290ZXJQcmltYXJ5Q29udGVudDoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRzZWN0aW9uRm9vdGVyU2Vjb25kYXJ5Q29udGVudDoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRpbnB1dDoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRoaW50OiB7XG5cdFx0Y29sb3I6IHRoZW1lLmluZm8sXG5cdH0sXG59O1xuXG5jb25zdCBtYXhXaWR0aCA9IHtcblx0c21hbGxoYW5kc2V0OiAzNTksXG5cdGhhbmRzZXQ6IDU5OSxcblx0bGFyZ2VoYW5kc2V0OiA3MTksXG5cdHRhYmxldDogMTAyMyxcblx0bGFwdG9wOiAxNDM5LFxuXHRkZXNrdG9wOiAxOTE5LFxufTtcblxuY29uc3QgbWluV2lkdGggPSB7XG5cdGhhbmRzZXQ6IDM2MCxcblx0bGFyZ2VoYW5kc2V0OiA2MDAsXG5cdHRhYmxldDogNzIwLFxuXHRsYXB0b3A6IDk2MCxcblx0ZGVza3RvcDogMTQ0MCxcblx0d2lkZXNjcmVlbjogMTkyMCxcbn07XG5cbmV4cG9ydCBjb25zdCBtYXhNZWRpYSA9IE9iamVjdC5rZXlzKG1heFdpZHRoKS5yZWR1Y2UoKGFjYywgbGFiZWwpID0+IHtcblx0Y29uc3QgZW1TaXplID0gbWF4V2lkdGhbbGFiZWxdIC8gMTY7XG5cdGFjY1tsYWJlbF0gPSAoLi4uYXJncykgPT4gY3NzLnJlc29sdmVgXG4gICAgICBAbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiAke2VtU2l6ZX1lbSkge1xuICAgICAgICAgICR7Y3NzLnJlc29sdmUoLi4uYXJncyl9O1xuICAgICAgfVxuICAgIGA7XG5cdHJldHVybiBhY2M7XG59LCB7fSk7XG5cbmV4cG9ydCBjb25zdCBtaW5NZWRpYSA9IE9iamVjdC5rZXlzKG1pbldpZHRoKS5yZWR1Y2UoKGFjYywgbGFiZWwpID0+IHtcblx0Y29uc3QgZW1TaXplID0gbWluV2lkdGhbbGFiZWxdIC8gMTY7XG5cdGFjY1tsYWJlbF0gPSAoLi4uYXJncykgPT4gY3NzLnJlc29sdmVgXG4gICAgICBAbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiAke2VtU2l6ZX1lbSkge1xuICAgICAgICAgICR7Y3NzLnJlc29sdmUoLi4uYXJncyl9O1xuICAgICAgfVxuICAgIGA7XG5cdHJldHVybiBhY2M7XG59LCB7fSk7XG5cbmV4cG9ydCBjb25zdCBXaWRlU2NyZWVuID0gcHJvcHMgPT4gPFJlc3BvbnNpdmUgey4uLnByb3BzfSBtaW5XaWR0aD17MTkyMH0gLz47XG5leHBvcnQgY29uc3QgRGVza3RvcCA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmUgey4uLnByb3BzfSBtaW5XaWR0aD17MTQ0MH0gbWF4V2lkdGg9ezE5MTl9IC8+XG4pO1xuZXhwb3J0IGNvbnN0IExhcHRvcCA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmVcblx0XHR7Li4ucHJvcHN9XG5cdFx0bWluV2lkdGg9ezk2MH1cblx0XHRtYXhXaWR0aD17MTQzOX1cblx0XHRvcmllbnRhdGlvbj1cImxhbmRzY2FwZVwiXG5cdC8+XG4pO1xuZXhwb3J0IGNvbnN0IFRhYmxldCA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmVcblx0XHR7Li4ucHJvcHN9XG5cdFx0bWluV2lkdGg9ezcyMH1cblx0XHRtYXhXaWR0aD17MTAyM31cblx0XHRvcmllbnRhdGlvbj1cInBvcnRyYWl0XCJcblx0Lz5cbik7XG5leHBvcnQgY29uc3QgSGFuZHNldExhbmRzY2FwZSA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmVcblx0XHR7Li4ucHJvcHN9XG5cdFx0bWluV2lkdGg9ezQ4MH1cblx0XHRtYXhXaWR0aD17OTU5fVxuXHRcdG9yaWVudGF0aW9uPVwibGFuZHNjYXBlXCJcblx0Lz5cbik7XG5leHBvcnQgY29uc3QgTGFyZ2VIYW5kc2V0ID0gcHJvcHMgPT4gKFxuXHQ8UmVzcG9uc2l2ZVxuXHRcdHsuLi5wcm9wc31cblx0XHRtaW5XaWR0aD17NjAwfVxuXHRcdG1heFdpZHRoPXs3MTl9XG5cdFx0b3JpZW50YXRpb249XCJwb3J0cmFpdFwiXG5cdC8+XG4pO1xuZXhwb3J0IGNvbnN0IEhhbmRzZXQgPSBwcm9wcyA9PiAoXG5cdDxSZXNwb25zaXZlIHsuLi5wcm9wc30gbWluV2lkdGg9ezM2MH0gbWF4V2lkdGg9ezU5OX0gLz5cbik7XG5leHBvcnQgY29uc3QgU21hbGxIYW5kc2V0ID0gcHJvcHMgPT4gPFJlc3BvbnNpdmUgey4uLnByb3BzfSBtYXhXaWR0aD17MzU5fSAvPjtcbmV4cG9ydCBjb25zdCBEZWZhdWx0ID0gcHJvcHMgPT4gPFJlc3BvbnNpdmUgey4uLnByb3BzfSBtaW5XaWR0aD17NjAwfSAvPjtcbiJdfQ== */\n/*@ sourceURL=C:\\Users\\Andrey\\Downloads\\next-bakery-app\\styles\\utils.js */"),
+        css: "@media screen and (max-width:".concat(emSize, "em){.__jsx-style-dynamic-selector{").concat((_css = css).resolve.apply(_css, arguments), ";}}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkM6XFxVc2Vyc1xcQW5kcmV5XFxEb3dubG9hZHNcXG5leHQtYmFrZXJ5LWFwcFxcc3R5bGVzXFx1dGlscy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFtRnNDLEFBR3VDLDZCQUNoQyIsImZpbGUiOiJDOlxcVXNlcnNcXEFuZHJleVxcRG93bmxvYWRzXFxuZXh0LWJha2VyeS1hcHBcXHN0eWxlc1xcdXRpbHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ3N0eWxlZC1qc3gvY3NzJztcbmltcG9ydCBSZXNwb25zaXZlIGZyb20gJ3JlYWN0LXJlc3BvbnNpdmUnO1xuXG5leHBvcnQgY29uc3QgdGhlbWUgPSB7XG5cdHByaW1hcnk6ICcjNTIwODJkJyxcblx0aW5mbzogJyMzMzE1MDcnLFxuXHRzdWNjZXNzOiAnI2VhY2NiMicsXG5cdHByaW1hcnlTaGFkb3c6ICdyZ2JhKDgyLCA4LCA0NSwgMC4zKScsXG5cdGluZm9TaGFkb3c6ICdyZ2JhKDUxLCAyMSwgNywgMC41KScsXG5cdHN1Y2Nlc3NTaGFkb3c6ICdyZ2JhKDIzNCwgMjA0LCAxNzgsIDAuMyknLFxufTtcblxuZXhwb3J0IGNvbnN0IEF3c1RoZW1lID0ge1xuXHRidXR0b246IHtcblx0XHRiYWNrZ3JvdW5kQ29sb3I6IHRoZW1lLnByaW1hcnksXG5cdH0sXG5cdG5hdkJ1dHRvbjoge1xuXHRcdGJhY2tncm91bmRDb2xvcjogdGhlbWUucHJpbWFyeSxcblx0fSxcblx0YToge1xuXHRcdGNvbG9yOiB0aGVtZS5zdWNjZXNzLFxuXHR9LFxuXHRzZWN0aW9uQm9keToge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRjb250YWluZXI6IHtcblx0XHRjb2xvcjogdGhlbWUuaW5mbyxcblx0fSxcblx0Zm9ybUNvbnRhaW5lcjoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRmb3JtU2VjdGlvbjoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRmb3JtRmllbGQ6IHtcblx0XHRjb2xvcjogdGhlbWUuaW5mbyxcblx0fSxcblx0c2VjdGlvbkhlYWRlcjoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRzZWN0aW9uQm9keToge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRzZWN0aW9uRm9vdGVyOiB7XG5cdFx0Y29sb3I6IHRoZW1lLmluZm8sXG5cdH0sXG5cdHNlY3Rpb25Gb290ZXJQcmltYXJ5Q29udGVudDoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRzZWN0aW9uRm9vdGVyU2Vjb25kYXJ5Q29udGVudDoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRpbnB1dDoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRoaW50OiB7XG5cdFx0Y29sb3I6IHRoZW1lLmluZm8sXG5cdH0sXG5cdHRvYXN0OiB7XG5cdFx0YmFja2dyb3VuZENvbG9yOiB0aGVtZS5wcmltYXJ5LFxuXHR9XG59O1xuXG5jb25zdCBtYXhXaWR0aCA9IHtcblx0c21hbGxoYW5kc2V0OiAzNTksXG5cdGhhbmRzZXQ6IDU5OSxcblx0bGFyZ2VoYW5kc2V0OiA3MTksXG5cdHRhYmxldDogMTAyMyxcblx0bGFwdG9wOiAxNDM5LFxuXHRkZXNrdG9wOiAxOTE5LFxufTtcblxuY29uc3QgbWluV2lkdGggPSB7XG5cdGhhbmRzZXQ6IDM2MCxcblx0bGFyZ2VoYW5kc2V0OiA2MDAsXG5cdHRhYmxldDogNzIwLFxuXHRsYXB0b3A6IDk2MCxcblx0ZGVza3RvcDogMTQ0MCxcblx0d2lkZXNjcmVlbjogMTkyMCxcbn07XG5cbmV4cG9ydCBjb25zdCBtYXhNZWRpYSA9IE9iamVjdC5rZXlzKG1heFdpZHRoKS5yZWR1Y2UoKGFjYywgbGFiZWwpID0+IHtcblx0Y29uc3QgZW1TaXplID0gbWF4V2lkdGhbbGFiZWxdIC8gMTY7XG5cdGFjY1tsYWJlbF0gPSAoLi4uYXJncykgPT4gY3NzLnJlc29sdmVgXG4gICAgICBAbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiAke2VtU2l6ZX1lbSkge1xuICAgICAgICAgICR7Y3NzLnJlc29sdmUoLi4uYXJncyl9O1xuICAgICAgfVxuICAgIGA7XG5cdHJldHVybiBhY2M7XG59LCB7fSk7XG5cbmV4cG9ydCBjb25zdCBtaW5NZWRpYSA9IE9iamVjdC5rZXlzKG1pbldpZHRoKS5yZWR1Y2UoKGFjYywgbGFiZWwpID0+IHtcblx0Y29uc3QgZW1TaXplID0gbWluV2lkdGhbbGFiZWxdIC8gMTY7XG5cdGFjY1tsYWJlbF0gPSAoLi4uYXJncykgPT4gY3NzLnJlc29sdmVgXG4gICAgICBAbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiAke2VtU2l6ZX1lbSkge1xuICAgICAgICAgICR7Y3NzLnJlc29sdmUoLi4uYXJncyl9O1xuICAgICAgfVxuICAgIGA7XG5cdHJldHVybiBhY2M7XG59LCB7fSk7XG5cbmV4cG9ydCBjb25zdCBXaWRlU2NyZWVuID0gcHJvcHMgPT4gPFJlc3BvbnNpdmUgey4uLnByb3BzfSBtaW5XaWR0aD17MTkyMH0gLz47XG5leHBvcnQgY29uc3QgRGVza3RvcCA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmUgey4uLnByb3BzfSBtaW5XaWR0aD17MTQ0MH0gbWF4V2lkdGg9ezE5MTl9IC8+XG4pO1xuZXhwb3J0IGNvbnN0IExhcHRvcCA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmVcblx0XHR7Li4ucHJvcHN9XG5cdFx0bWluV2lkdGg9ezk2MH1cblx0XHRtYXhXaWR0aD17MTQzOX1cblx0XHRvcmllbnRhdGlvbj1cImxhbmRzY2FwZVwiXG5cdC8+XG4pO1xuZXhwb3J0IGNvbnN0IFRhYmxldCA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmVcblx0XHR7Li4ucHJvcHN9XG5cdFx0bWluV2lkdGg9ezcyMH1cblx0XHRtYXhXaWR0aD17MTAyM31cblx0XHRvcmllbnRhdGlvbj1cInBvcnRyYWl0XCJcblx0Lz5cbik7XG5leHBvcnQgY29uc3QgSGFuZHNldExhbmRzY2FwZSA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmVcblx0XHR7Li4ucHJvcHN9XG5cdFx0bWluV2lkdGg9ezQ4MH1cblx0XHRtYXhXaWR0aD17OTU5fVxuXHRcdG9yaWVudGF0aW9uPVwibGFuZHNjYXBlXCJcblx0Lz5cbik7XG5leHBvcnQgY29uc3QgTGFyZ2VIYW5kc2V0ID0gcHJvcHMgPT4gKFxuXHQ8UmVzcG9uc2l2ZVxuXHRcdHsuLi5wcm9wc31cblx0XHRtaW5XaWR0aD17NjAwfVxuXHRcdG1heFdpZHRoPXs3MTl9XG5cdFx0b3JpZW50YXRpb249XCJwb3J0cmFpdFwiXG5cdC8+XG4pO1xuZXhwb3J0IGNvbnN0IEhhbmRzZXQgPSBwcm9wcyA9PiAoXG5cdDxSZXNwb25zaXZlIHsuLi5wcm9wc30gbWluV2lkdGg9ezM2MH0gbWF4V2lkdGg9ezU5OX0gLz5cbik7XG5leHBvcnQgY29uc3QgU21hbGxIYW5kc2V0ID0gcHJvcHMgPT4gPFJlc3BvbnNpdmUgey4uLnByb3BzfSBtYXhXaWR0aD17MzU5fSAvPjtcbmV4cG9ydCBjb25zdCBEZWZhdWx0ID0gcHJvcHMgPT4gPFJlc3BvbnNpdmUgey4uLnByb3BzfSBtaW5XaWR0aD17NjAwfSAvPjtcbiJdfQ== */\n/*@ sourceURL=C:\\Users\\Andrey\\Downloads\\next-bakery-app\\styles\\utils.js */"),
         dynamic: [emSize, (_css2 = css).resolve.apply(_css2, arguments)]
       }),
       className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default.a.dynamic([["3601533382", [emSize, (_css2 = css).resolve.apply(_css2, arguments)]]])
@@ -291,7 +565,7 @@ var minMedia = Object.keys(minWidth).reduce(function (acc, label) {
     return {
       styles: react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default.a, {
         styleId: "3499177448",
-        css: "@media screen and (min-width:".concat(emSize, "em){.__jsx-style-dynamic-selector{").concat((_css3 = css).resolve.apply(_css3, arguments), ";}}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkM6XFxVc2Vyc1xcQW5kcmV5XFxEb3dubG9hZHNcXG5leHQtYmFrZXJ5LWFwcFxcc3R5bGVzXFx1dGlscy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUEwRnNDLEFBR3VDLDZCQUNoQyIsImZpbGUiOiJDOlxcVXNlcnNcXEFuZHJleVxcRG93bmxvYWRzXFxuZXh0LWJha2VyeS1hcHBcXHN0eWxlc1xcdXRpbHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ3N0eWxlZC1qc3gvY3NzJztcbmltcG9ydCBSZXNwb25zaXZlIGZyb20gJ3JlYWN0LXJlc3BvbnNpdmUnO1xuXG5leHBvcnQgY29uc3QgdGhlbWUgPSB7XG5cdHByaW1hcnk6ICcjNTIwODJkJyxcblx0aW5mbzogJyMzMzE1MDcnLFxuXHRzdWNjZXNzOiAnI2VhY2NiMicsXG5cdHByaW1hcnlTaGFkb3c6ICdyZ2JhKDgyLCA4LCA0NSwgMC4zKScsXG5cdGluZm9TaGFkb3c6ICdyZ2JhKDUxLCAyMSwgNywgMC41KScsXG5cdHN1Y2Nlc3NTaGFkb3c6ICdyZ2JhKDIzNCwgMjA0LCAxNzgsIDAuMyknLFxufTtcblxuZXhwb3J0IGNvbnN0IEF3c1RoZW1lID0ge1xuXHRidXR0b246IHtcblx0XHRiYWNrZ3JvdW5kQ29sb3I6IHRoZW1lLnByaW1hcnksXG5cdH0sXG5cdG5hdkJ1dHRvbjoge1xuXHRcdGJhY2tncm91bmRDb2xvcjogdGhlbWUucHJpbWFyeSxcblx0fSxcblx0YToge1xuXHRcdGNvbG9yOiB0aGVtZS5zdWNjZXNzLFxuXHR9LFxuXHRzZWN0aW9uQm9keToge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRjb250YWluZXI6IHtcblx0XHRjb2xvcjogdGhlbWUuaW5mbyxcblx0fSxcblx0Zm9ybUNvbnRhaW5lcjoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRmb3JtU2VjdGlvbjoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRmb3JtRmllbGQ6IHtcblx0XHRjb2xvcjogdGhlbWUuaW5mbyxcblx0fSxcblx0c2VjdGlvbkhlYWRlcjoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRzZWN0aW9uQm9keToge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRzZWN0aW9uRm9vdGVyOiB7XG5cdFx0Y29sb3I6IHRoZW1lLmluZm8sXG5cdH0sXG5cdHNlY3Rpb25Gb290ZXJQcmltYXJ5Q29udGVudDoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRzZWN0aW9uRm9vdGVyU2Vjb25kYXJ5Q29udGVudDoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRpbnB1dDoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRoaW50OiB7XG5cdFx0Y29sb3I6IHRoZW1lLmluZm8sXG5cdH0sXG59O1xuXG5jb25zdCBtYXhXaWR0aCA9IHtcblx0c21hbGxoYW5kc2V0OiAzNTksXG5cdGhhbmRzZXQ6IDU5OSxcblx0bGFyZ2VoYW5kc2V0OiA3MTksXG5cdHRhYmxldDogMTAyMyxcblx0bGFwdG9wOiAxNDM5LFxuXHRkZXNrdG9wOiAxOTE5LFxufTtcblxuY29uc3QgbWluV2lkdGggPSB7XG5cdGhhbmRzZXQ6IDM2MCxcblx0bGFyZ2VoYW5kc2V0OiA2MDAsXG5cdHRhYmxldDogNzIwLFxuXHRsYXB0b3A6IDk2MCxcblx0ZGVza3RvcDogMTQ0MCxcblx0d2lkZXNjcmVlbjogMTkyMCxcbn07XG5cbmV4cG9ydCBjb25zdCBtYXhNZWRpYSA9IE9iamVjdC5rZXlzKG1heFdpZHRoKS5yZWR1Y2UoKGFjYywgbGFiZWwpID0+IHtcblx0Y29uc3QgZW1TaXplID0gbWF4V2lkdGhbbGFiZWxdIC8gMTY7XG5cdGFjY1tsYWJlbF0gPSAoLi4uYXJncykgPT4gY3NzLnJlc29sdmVgXG4gICAgICBAbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiAke2VtU2l6ZX1lbSkge1xuICAgICAgICAgICR7Y3NzLnJlc29sdmUoLi4uYXJncyl9O1xuICAgICAgfVxuICAgIGA7XG5cdHJldHVybiBhY2M7XG59LCB7fSk7XG5cbmV4cG9ydCBjb25zdCBtaW5NZWRpYSA9IE9iamVjdC5rZXlzKG1pbldpZHRoKS5yZWR1Y2UoKGFjYywgbGFiZWwpID0+IHtcblx0Y29uc3QgZW1TaXplID0gbWluV2lkdGhbbGFiZWxdIC8gMTY7XG5cdGFjY1tsYWJlbF0gPSAoLi4uYXJncykgPT4gY3NzLnJlc29sdmVgXG4gICAgICBAbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiAke2VtU2l6ZX1lbSkge1xuICAgICAgICAgICR7Y3NzLnJlc29sdmUoLi4uYXJncyl9O1xuICAgICAgfVxuICAgIGA7XG5cdHJldHVybiBhY2M7XG59LCB7fSk7XG5cbmV4cG9ydCBjb25zdCBXaWRlU2NyZWVuID0gcHJvcHMgPT4gPFJlc3BvbnNpdmUgey4uLnByb3BzfSBtaW5XaWR0aD17MTkyMH0gLz47XG5leHBvcnQgY29uc3QgRGVza3RvcCA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmUgey4uLnByb3BzfSBtaW5XaWR0aD17MTQ0MH0gbWF4V2lkdGg9ezE5MTl9IC8+XG4pO1xuZXhwb3J0IGNvbnN0IExhcHRvcCA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmVcblx0XHR7Li4ucHJvcHN9XG5cdFx0bWluV2lkdGg9ezk2MH1cblx0XHRtYXhXaWR0aD17MTQzOX1cblx0XHRvcmllbnRhdGlvbj1cImxhbmRzY2FwZVwiXG5cdC8+XG4pO1xuZXhwb3J0IGNvbnN0IFRhYmxldCA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmVcblx0XHR7Li4ucHJvcHN9XG5cdFx0bWluV2lkdGg9ezcyMH1cblx0XHRtYXhXaWR0aD17MTAyM31cblx0XHRvcmllbnRhdGlvbj1cInBvcnRyYWl0XCJcblx0Lz5cbik7XG5leHBvcnQgY29uc3QgSGFuZHNldExhbmRzY2FwZSA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmVcblx0XHR7Li4ucHJvcHN9XG5cdFx0bWluV2lkdGg9ezQ4MH1cblx0XHRtYXhXaWR0aD17OTU5fVxuXHRcdG9yaWVudGF0aW9uPVwibGFuZHNjYXBlXCJcblx0Lz5cbik7XG5leHBvcnQgY29uc3QgTGFyZ2VIYW5kc2V0ID0gcHJvcHMgPT4gKFxuXHQ8UmVzcG9uc2l2ZVxuXHRcdHsuLi5wcm9wc31cblx0XHRtaW5XaWR0aD17NjAwfVxuXHRcdG1heFdpZHRoPXs3MTl9XG5cdFx0b3JpZW50YXRpb249XCJwb3J0cmFpdFwiXG5cdC8+XG4pO1xuZXhwb3J0IGNvbnN0IEhhbmRzZXQgPSBwcm9wcyA9PiAoXG5cdDxSZXNwb25zaXZlIHsuLi5wcm9wc30gbWluV2lkdGg9ezM2MH0gbWF4V2lkdGg9ezU5OX0gLz5cbik7XG5leHBvcnQgY29uc3QgU21hbGxIYW5kc2V0ID0gcHJvcHMgPT4gPFJlc3BvbnNpdmUgey4uLnByb3BzfSBtYXhXaWR0aD17MzU5fSAvPjtcbmV4cG9ydCBjb25zdCBEZWZhdWx0ID0gcHJvcHMgPT4gPFJlc3BvbnNpdmUgey4uLnByb3BzfSBtaW5XaWR0aD17NjAwfSAvPjtcbiJdfQ== */\n/*@ sourceURL=C:\\Users\\Andrey\\Downloads\\next-bakery-app\\styles\\utils.js */"),
+        css: "@media screen and (min-width:".concat(emSize, "em){.__jsx-style-dynamic-selector{").concat((_css3 = css).resolve.apply(_css3, arguments), ";}}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkM6XFxVc2Vyc1xcQW5kcmV5XFxEb3dubG9hZHNcXG5leHQtYmFrZXJ5LWFwcFxcc3R5bGVzXFx1dGlscy5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUE2RnNDLEFBR3VDLDZCQUNoQyIsImZpbGUiOiJDOlxcVXNlcnNcXEFuZHJleVxcRG93bmxvYWRzXFxuZXh0LWJha2VyeS1hcHBcXHN0eWxlc1xcdXRpbHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgY3NzIGZyb20gJ3N0eWxlZC1qc3gvY3NzJztcbmltcG9ydCBSZXNwb25zaXZlIGZyb20gJ3JlYWN0LXJlc3BvbnNpdmUnO1xuXG5leHBvcnQgY29uc3QgdGhlbWUgPSB7XG5cdHByaW1hcnk6ICcjNTIwODJkJyxcblx0aW5mbzogJyMzMzE1MDcnLFxuXHRzdWNjZXNzOiAnI2VhY2NiMicsXG5cdHByaW1hcnlTaGFkb3c6ICdyZ2JhKDgyLCA4LCA0NSwgMC4zKScsXG5cdGluZm9TaGFkb3c6ICdyZ2JhKDUxLCAyMSwgNywgMC41KScsXG5cdHN1Y2Nlc3NTaGFkb3c6ICdyZ2JhKDIzNCwgMjA0LCAxNzgsIDAuMyknLFxufTtcblxuZXhwb3J0IGNvbnN0IEF3c1RoZW1lID0ge1xuXHRidXR0b246IHtcblx0XHRiYWNrZ3JvdW5kQ29sb3I6IHRoZW1lLnByaW1hcnksXG5cdH0sXG5cdG5hdkJ1dHRvbjoge1xuXHRcdGJhY2tncm91bmRDb2xvcjogdGhlbWUucHJpbWFyeSxcblx0fSxcblx0YToge1xuXHRcdGNvbG9yOiB0aGVtZS5zdWNjZXNzLFxuXHR9LFxuXHRzZWN0aW9uQm9keToge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRjb250YWluZXI6IHtcblx0XHRjb2xvcjogdGhlbWUuaW5mbyxcblx0fSxcblx0Zm9ybUNvbnRhaW5lcjoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRmb3JtU2VjdGlvbjoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRmb3JtRmllbGQ6IHtcblx0XHRjb2xvcjogdGhlbWUuaW5mbyxcblx0fSxcblx0c2VjdGlvbkhlYWRlcjoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRzZWN0aW9uQm9keToge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRzZWN0aW9uRm9vdGVyOiB7XG5cdFx0Y29sb3I6IHRoZW1lLmluZm8sXG5cdH0sXG5cdHNlY3Rpb25Gb290ZXJQcmltYXJ5Q29udGVudDoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRzZWN0aW9uRm9vdGVyU2Vjb25kYXJ5Q29udGVudDoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRpbnB1dDoge1xuXHRcdGNvbG9yOiB0aGVtZS5pbmZvLFxuXHR9LFxuXHRoaW50OiB7XG5cdFx0Y29sb3I6IHRoZW1lLmluZm8sXG5cdH0sXG5cdHRvYXN0OiB7XG5cdFx0YmFja2dyb3VuZENvbG9yOiB0aGVtZS5wcmltYXJ5LFxuXHR9XG59O1xuXG5jb25zdCBtYXhXaWR0aCA9IHtcblx0c21hbGxoYW5kc2V0OiAzNTksXG5cdGhhbmRzZXQ6IDU5OSxcblx0bGFyZ2VoYW5kc2V0OiA3MTksXG5cdHRhYmxldDogMTAyMyxcblx0bGFwdG9wOiAxNDM5LFxuXHRkZXNrdG9wOiAxOTE5LFxufTtcblxuY29uc3QgbWluV2lkdGggPSB7XG5cdGhhbmRzZXQ6IDM2MCxcblx0bGFyZ2VoYW5kc2V0OiA2MDAsXG5cdHRhYmxldDogNzIwLFxuXHRsYXB0b3A6IDk2MCxcblx0ZGVza3RvcDogMTQ0MCxcblx0d2lkZXNjcmVlbjogMTkyMCxcbn07XG5cbmV4cG9ydCBjb25zdCBtYXhNZWRpYSA9IE9iamVjdC5rZXlzKG1heFdpZHRoKS5yZWR1Y2UoKGFjYywgbGFiZWwpID0+IHtcblx0Y29uc3QgZW1TaXplID0gbWF4V2lkdGhbbGFiZWxdIC8gMTY7XG5cdGFjY1tsYWJlbF0gPSAoLi4uYXJncykgPT4gY3NzLnJlc29sdmVgXG4gICAgICBAbWVkaWEgc2NyZWVuIGFuZCAobWF4LXdpZHRoOiAke2VtU2l6ZX1lbSkge1xuICAgICAgICAgICR7Y3NzLnJlc29sdmUoLi4uYXJncyl9O1xuICAgICAgfVxuICAgIGA7XG5cdHJldHVybiBhY2M7XG59LCB7fSk7XG5cbmV4cG9ydCBjb25zdCBtaW5NZWRpYSA9IE9iamVjdC5rZXlzKG1pbldpZHRoKS5yZWR1Y2UoKGFjYywgbGFiZWwpID0+IHtcblx0Y29uc3QgZW1TaXplID0gbWluV2lkdGhbbGFiZWxdIC8gMTY7XG5cdGFjY1tsYWJlbF0gPSAoLi4uYXJncykgPT4gY3NzLnJlc29sdmVgXG4gICAgICBAbWVkaWEgc2NyZWVuIGFuZCAobWluLXdpZHRoOiAke2VtU2l6ZX1lbSkge1xuICAgICAgICAgICR7Y3NzLnJlc29sdmUoLi4uYXJncyl9O1xuICAgICAgfVxuICAgIGA7XG5cdHJldHVybiBhY2M7XG59LCB7fSk7XG5cbmV4cG9ydCBjb25zdCBXaWRlU2NyZWVuID0gcHJvcHMgPT4gPFJlc3BvbnNpdmUgey4uLnByb3BzfSBtaW5XaWR0aD17MTkyMH0gLz47XG5leHBvcnQgY29uc3QgRGVza3RvcCA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmUgey4uLnByb3BzfSBtaW5XaWR0aD17MTQ0MH0gbWF4V2lkdGg9ezE5MTl9IC8+XG4pO1xuZXhwb3J0IGNvbnN0IExhcHRvcCA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmVcblx0XHR7Li4ucHJvcHN9XG5cdFx0bWluV2lkdGg9ezk2MH1cblx0XHRtYXhXaWR0aD17MTQzOX1cblx0XHRvcmllbnRhdGlvbj1cImxhbmRzY2FwZVwiXG5cdC8+XG4pO1xuZXhwb3J0IGNvbnN0IFRhYmxldCA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmVcblx0XHR7Li4ucHJvcHN9XG5cdFx0bWluV2lkdGg9ezcyMH1cblx0XHRtYXhXaWR0aD17MTAyM31cblx0XHRvcmllbnRhdGlvbj1cInBvcnRyYWl0XCJcblx0Lz5cbik7XG5leHBvcnQgY29uc3QgSGFuZHNldExhbmRzY2FwZSA9IHByb3BzID0+IChcblx0PFJlc3BvbnNpdmVcblx0XHR7Li4ucHJvcHN9XG5cdFx0bWluV2lkdGg9ezQ4MH1cblx0XHRtYXhXaWR0aD17OTU5fVxuXHRcdG9yaWVudGF0aW9uPVwibGFuZHNjYXBlXCJcblx0Lz5cbik7XG5leHBvcnQgY29uc3QgTGFyZ2VIYW5kc2V0ID0gcHJvcHMgPT4gKFxuXHQ8UmVzcG9uc2l2ZVxuXHRcdHsuLi5wcm9wc31cblx0XHRtaW5XaWR0aD17NjAwfVxuXHRcdG1heFdpZHRoPXs3MTl9XG5cdFx0b3JpZW50YXRpb249XCJwb3J0cmFpdFwiXG5cdC8+XG4pO1xuZXhwb3J0IGNvbnN0IEhhbmRzZXQgPSBwcm9wcyA9PiAoXG5cdDxSZXNwb25zaXZlIHsuLi5wcm9wc30gbWluV2lkdGg9ezM2MH0gbWF4V2lkdGg9ezU5OX0gLz5cbik7XG5leHBvcnQgY29uc3QgU21hbGxIYW5kc2V0ID0gcHJvcHMgPT4gPFJlc3BvbnNpdmUgey4uLnByb3BzfSBtYXhXaWR0aD17MzU5fSAvPjtcbmV4cG9ydCBjb25zdCBEZWZhdWx0ID0gcHJvcHMgPT4gPFJlc3BvbnNpdmUgey4uLnByb3BzfSBtaW5XaWR0aD17NjAwfSAvPjtcbiJdfQ== */\n/*@ sourceURL=C:\\Users\\Andrey\\Downloads\\next-bakery-app\\styles\\utils.js */"),
         dynamic: [emSize, (_css4 = css).resolve.apply(_css4, arguments)]
       }),
       className: styled_jsx_style__WEBPACK_IMPORTED_MODULE_1___default.a.dynamic([["3499177448", [emSize, (_css4 = css).resolve.apply(_css4, arguments)]]])
@@ -450,7 +724,7 @@ var config = {
 
 /***/ }),
 
-/***/ 4:
+/***/ 3:
 /*!*************************************!*\
   !*** multi ./pages/authenticate.js ***!
   \*************************************/

@@ -4,7 +4,14 @@ import Link from 'next/link';
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
 import { fromEvent, Subscription } from 'rxjs';
-import { distinctUntilChanged, filter, map, pairwise, share, throttleTime } from 'rxjs/operators';
+import {
+	distinctUntilChanged,
+	filter,
+	map,
+	pairwise,
+	share,
+	throttleTime,
+} from 'rxjs/operators';
 import GET_USER from '../graphql/queries/user';
 import LogoSVG from '../static/logos/logo.svg';
 import { Default, Handset, SmallHandset } from '../styles/utils';
@@ -33,6 +40,7 @@ class Header extends Component {
 	scrollDownSubscription = new Subscription();
 
 	componentDidMount() {
+		console.log(window.pageYOffset);
 		const scroll$ = fromEvent(window, 'scroll').pipe(
 			throttleTime(10),
 			map(() => window.pageYOffset),
@@ -49,12 +57,14 @@ class Header extends Component {
 			filter(direction => direction === Direction.Down),
 		);
 
-		this.scrollUpSubscription = scrollUp$.subscribe(() =>
-			this.setState({ isScrolledUp: true }),
-		);
-		this.scrollDownSubscription = scrollDown$.subscribe(() =>
-			this.setState({ isScrolledUp: false }),
-		);
+		this.scrollUpSubscription = scrollUp$.subscribe(() => {
+			return this.setState({ isScrolledUp: true });
+		});
+		this.scrollDownSubscription = scrollDown$.subscribe(() => {
+			if (window.pageYOffset > 0) {
+				return this.setState({ isScrolledUp: false });
+			}
+		});
 	}
 
 	componentWillUnmount() {

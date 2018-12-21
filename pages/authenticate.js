@@ -1,17 +1,21 @@
-import { Authenticator } from 'aws-amplify-react';
-import { Section } from 'bloomer';
+import { Authenticator, ForgotPassword, RequireNewPassword, VerifyContact, ConfirmSignUp } from 'aws-amplify-react';
 import React from 'react';
+import { CustomizedSignIn } from '../components/AWS/SignIn';
+import { CustomizedSignUp } from '../components/AWS/SignUp';
 import { AwsTheme } from '../styles/utils';
 import withData from '../withData';
-
-// import '../node_modules/@aws-amplify/ui/dist/style.css';
 
 class Authenticate extends React.PureComponent {
 	render() {
 		return (
-			<Section>
-				<Authenticator theme={AwsTheme} />
-			</Section>
+			<Authenticator hideDefault={true} theme={AwsTheme}>
+				<CustomizedSignIn />
+				<CustomizedSignUp />
+				<ForgotPassword />
+				<RequireNewPassword />
+				<VerifyContact />
+				<ConfirmSignUp />
+			</Authenticator>
 		);
 	}
 }

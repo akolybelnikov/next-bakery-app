@@ -56,6 +56,9 @@ export const AwsTheme = {
 	hint: {
 		color: theme.info,
 	},
+	toast: {
+		backgroundColor: theme.primary,
+	}
 };
 
 const maxWidth = {
