@@ -1,13 +1,16 @@
-import React from 'react';
-import withData from '../withData';
-import { Section } from 'bloomer';
 import { Authenticator } from 'aws-amplify-react';
+import { Section } from 'bloomer';
+import React from 'react';
+import { AwsTheme } from '../styles/utils';
+import withData from '../withData';
+
+// import '../node_modules/@aws-amplify/ui/dist/style.css';
 
 class Authenticate extends React.PureComponent {
 	render() {
 		return (
 			<Section>
-				<Authenticator />
+				<Authenticator theme={AwsTheme} />
 			</Section>
 		);
 	}

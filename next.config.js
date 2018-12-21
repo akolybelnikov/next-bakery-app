@@ -6,6 +6,11 @@ const analyze = require('@zeit/next-bundle-analyzer');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const withPlugins = require('next-compose-plugins');
 
+if (typeof require !== 'undefined') {
+	require.extensions['.less'] = () => {};
+	require.extensions['.css'] = file => {};
+}
+
 const nextConfig = {
 	distDir: 'build',
 	webpack: config => {
