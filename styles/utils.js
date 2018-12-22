@@ -1,5 +1,6 @@
 import css from 'styled-jsx/css';
 import Responsive from 'react-responsive';
+import { red } from 'ansi-colors';
 
 export const theme = {
 	primary: '#52082d',
@@ -8,6 +9,7 @@ export const theme = {
 	primaryShadow: 'rgba(82, 8, 45, 0.3)',
 	infoShadow: 'rgba(51, 21, 7, 0.5)',
 	successShadow: 'rgba(234, 204, 178, 0.3)',
+	minWidth: '300px'
 };
 
 export const AwsTheme = {
@@ -28,9 +30,11 @@ export const AwsTheme = {
 	},
 	formContainer: {
 		color: theme.info,
+		minWidth: theme.minWidth
 	},
 	formSection: {
 		color: theme.info,
+		minWidth: theme.minWidth
 	},
 	formField: {
 		color: theme.info,

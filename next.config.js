@@ -33,10 +33,6 @@ const nextConfig = {
             {
                 test: /\.(raw)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 use: "raw-loader"
-            },
-            {
-                test: /\.css$/,
-                use: ["postcss-loader"]
             }
         )
 
