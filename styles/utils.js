@@ -7,6 +7,7 @@ export const theme = {
 	info: '#331507',
 	success: '#eaccb2',
 	primaryShadow: 'rgba(82, 8, 45, 0.3)',
+	primaryHalf: 'rgba(82, 8, 45, 0.8)',
 	infoShadow: 'rgba(51, 21, 7, 0.5)',
 	successShadow: 'rgba(234, 204, 178, 0.3)',
 	minWidth: '300px'

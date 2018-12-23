@@ -35,7 +35,7 @@ const OffersCarousel = ({ offers }) => {
 											className="progressive-image is-background"
 											src={`${
 												publicRuntimeConfig.imagehandler
-											}/1280x1280/${offer.image}`}
+											}/980x980/${offer.image}`}
 											placeholder={`${
 												publicRuntimeConfig.imagehandler
 											}/15x15/${offer.image}`}
@@ -48,7 +48,7 @@ const OffersCarousel = ({ offers }) => {
 											className="progressive-image is-background"
 											src={`${
 												publicRuntimeConfig.imagehandler
-											}/1400x1400/${offer.image}`}
+											}/1440x1440/${offer.image}`}
 											placeholder={`${
 												publicRuntimeConfig.imagehandler
 											}/15x15/${offer.image}`}

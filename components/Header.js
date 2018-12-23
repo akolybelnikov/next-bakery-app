@@ -33,7 +33,6 @@ class Header extends Component {
     scrollDownSubscription = new Subscription()
 
     componentDidMount() {
-        console.log(window.pageYOffset)
         const scroll$ = fromEvent(window, "scroll").pipe(
             throttleTime(10),
             map(() => window.pageYOffset),
@@ -76,7 +75,7 @@ class Header extends Component {
     }
 
     render() {
-        const { isAuthenticated, username } = this.props
+        const { isAuthenticated } = this.props
         return (
             <nav className="navbar is-fixed-top">
                 <NavbarBrand>
