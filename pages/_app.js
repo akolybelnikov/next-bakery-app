@@ -52,7 +52,10 @@ class MyApp extends App {
             isAuthenticated={this.state.isAuthenticated}
           />
           <Component {...pageProps} />
-		  <MobileFooter {...pageProps}/>
+          <MobileFooter
+            {...pageProps}
+            isAuthenticated={this.state.isAuthenticated}
+          />
         </div>
         <style jsx global>
           {`
@@ -72,10 +75,10 @@ class MyApp extends App {
             @font-face {
               font-family: "Raleway";
               font-display: auto;
-			}
-			.container {
-				position: relative;
-			}
+            }
+            .container {
+              position: relative;
+            }
           `}
         </style>
       </Container>
