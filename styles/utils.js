@@ -67,6 +67,9 @@ export const AwsTheme = {
   },
   toast: {
     backgroundColor: theme.primary
+  },
+  navItem: {
+    display: `block`
   }
 };
 

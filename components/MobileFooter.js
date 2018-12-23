@@ -1,6 +1,5 @@
 import { Icon, Level, LevelItem } from "bloomer";
 import Link from "next/link";
-import { ApolloConsumer } from "react-apollo";
 import { fromEvent, Subscription } from "rxjs";
 import { distinctUntilChanged, filter, map, pairwise, share, throttleTime } from "rxjs/operators";
 import { theme } from "../styles/utils";
@@ -26,7 +25,7 @@ class MobileFooter extends React.Component {
   scrollUpSubscription = new Subscription();
   scrollDownSubscription = new Subscription();
 
-  componentDidMount() {
+  async componentDidMount() {
     this.setState({ windowY: window.pageYOffset });
     const scroll$ = fromEvent(window, "scroll").pipe(
       throttleTime(10),
@@ -59,69 +58,64 @@ class MobileFooter extends React.Component {
 
   render() {
     const { isAuthenticated } = this.props;
-    console.log(this.props);
     return (
-      <ApolloConsumer>
-        {client => {
-          console.log(client);
-          return (
-            <div className="mobile-footer">
-              <Level className="mobile-footer-nav" isMobile="true">
-                <LevelItem
-                  aria-label="Facebook link"
-                  href="https://www.facebook.com/CONFERTRU.RU"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <FacebookIcon width="24px" />
-                </LevelItem>
-                <LevelItem
-                  aria-label="Instagram link"
-                  href="https://www.instagram.com/confertru.ru"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <InstagramIcon width="24px" />
-                </LevelItem>
-                <LevelItem className="has-text-warning">
-                  <Link prefetch href="/contact">
-                    <Icon className="fas fa-map-pin fa-lg" />
-                  </Link>
-                </LevelItem>
-                <LevelItem className="has-text-success">
-                  {client.cache.data.data.User ? (
-                    <Link prefetch href="/user">
-                      <Icon className="fas fa-sign-out-alt fa-lg" />
-                    </Link>
-                  ) : (
-                    <Link prefetch href="/authenticate">
-                      <Icon className="fas fa-sign-in-alt fa-lg" />
-                    </Link>
-                  )}
-                </LevelItem>
-              </Level>
-              <style global jsx>
-                {`
-                  div.mobile-footer {
-                    transition: all 0.5s ease-in-out;
-                    position: fixed;
-                    right: 0;
-                    margin: 0 auto;
-                    left: 0;
-                    background-color: ${theme.primaryHalf};
-                    bottom: ${this.state.isScrolledDown
-                      ? this.state.windowY - 7.25
-                      : 0}em !important;
-                  }
-                  nav.mobile-footer-nav {
-                    padding: 0.8rem 0 !important;
-                  }
-                `}
-              </style>
-            </div>
-          );
-        }}
-      </ApolloConsumer>
+      <div className="mobile-footer">
+        <Level className="mobile-footer-nav" isMobile="true">
+          <LevelItem
+            aria-label="Facebook link"
+            href="https://www.facebook.com/CONFERTRU.RU"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FacebookIcon width="24px" />
+          </LevelItem>
+          <LevelItem
+            aria-label="Instagram link"
+            href="https://www.instagram.com/confertru.ru"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <InstagramIcon width="24px" />
+          </LevelItem>
+          <LevelItem className="has-text-warning">
+            <Link prefetch href="/contact">
+              <Icon className="fas fa-map-pin fa-lg" />
+            </Link>
+          </LevelItem>
+          {isAuthenticated && (
+            <LevelItem className="has-text-success">
+              <Link prefetch href="/user">
+                <Icon className="fas fa-user-circle fa-lg" />
+              </Link>
+            </LevelItem>
+          )}
+          {!isAuthenticated && (
+            <LevelItem className="has-text-success">
+              <Link prefetch href="/authenticate">
+                <Icon className="fas fa-sign-in-alt fa-lg" />
+              </Link>
+            </LevelItem>
+          )}
+        </Level>
+        <style global jsx>
+          {`
+            div.mobile-footer {
+              transition: all 0.5s ease-in-out;
+              position: fixed;
+              right: 0;
+              margin: 0 auto;
+              left: 0;
+              background-color: ${theme.primaryHalf};
+              bottom: ${this.state.isScrolledDown
+                ? this.state.windowY - 7.25
+                : 0}em !important;
+            }
+            nav.mobile-footer-nav {
+              padding: 0.8rem 0 !important;
+            }
+          `}
+        </style>
+      </div>
     );
   }
 }

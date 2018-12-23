@@ -1,24 +1,17 @@
 import { I18n } from "@aws-amplify/core";
-import {
-  Authenticator,
-  ConfirmSignUp,
-  ForgotPassword,
-  RequireNewPassword,
-  SignIn,
-  SignUp,
-  VerifyContact
-} from "aws-amplify-react";
+import { Authenticator, ConfirmSignUp, ForgotPassword, RequireNewPassword, SignIn, SignUp, VerifyContact } from "aws-amplify-react";
 import { Container } from "bloomer";
 import Router from "next/router";
 import { Mutation, Query } from "react-apollo";
+import ErrorBoundary from "../components/ErrorBoundary";
+import ErrorScreen from "../components/ErrorScreen";
+import LoadingScreen from "../components/LoadingScreen";
+import SuccessScreen from "../components/SuccessScreen";
 import CREATE_USER from "../graphql/mutations/user";
 import GET_USER from "../graphql/queries/user";
 import { currentUser, dict, map } from "../lib/awsAuth";
 import { AwsTheme } from "../styles/utils";
 import withData from "../withData";
-import ErrorBoundary from "../components/ErrorBoundary";
-import LoadingScreen from '../components/LoadingScreen'
-import ErrorScreen from "../components/ErrorScreen";
 
 const withMutation = Component => {
   return function MutationHOC(props) {
@@ -88,11 +81,9 @@ class AWS_Auth extends React.PureComponent {
             >
               {({ loading, error, data }) => {
                 if (loading) {
-                  return (
-                    <LoadingScreen />
-                  );
+                  return <LoadingScreen />;
                 }
-                if (error) return <ErrorScreen />
+                if (error) return <ErrorScreen />;
                 if (!data.getUser) {
                   mutate({
                     variables: {
@@ -104,16 +95,14 @@ class AWS_Auth extends React.PureComponent {
                     }
                   });
                   if (this.props.loading) {
-                    return (
-                      <LoadingScreen />
-                    );
+                    return <LoadingScreen />;
                   }
-                  if (this.props.error) return <ErrorScreen />
-                  Router.push("/home")
-                  return null
+                  if (this.props.error) return <ErrorScreen />;
+                  setTimeout(() => Router.push("/home"), 500);
+                  return <SuccessScreen />;
                 }
-                Router.push("/home")
-                return null;
+                setTimeout(() => Router.push("/home"), 500);
+                return <SuccessScreen />;
               }}
             </Query>
           )}

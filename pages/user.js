@@ -6,6 +6,8 @@ import React from "react";
 import { dict, map } from "../lib/awsAuth";
 import { AwsTheme } from "../styles/utils";
 import withData from "../withData";
+import SuccessScreen from "../components/SuccessScreen";
+import LoadingScreen from "../components/LoadingScreen";
 
 const AlwaysOn = () => {
   return null;
@@ -21,7 +23,7 @@ class UserProfile extends React.Component {
     console.log(authState);
     switch (authState) {
       case "signIn":
-        Router.push("/home");
+        setTimeout(() => Router.push("/home"), 500);
         break;
     }
   };
@@ -39,7 +41,10 @@ class UserProfile extends React.Component {
           hideDefault={true}
           onStateChange={this.onStateChange}
         >
-          <Greetings inGreeting={username => this.getUserData(username)} />
+          <Greetings
+            inGreeting={() => null}
+            outGreeting={() => <SuccessScreen />}
+          />
           <AlwaysOn />
         </Authenticator>
       </Section>

@@ -11,10 +11,10 @@ export default () => {
         maxWidth: "60vw",
         margin: "0 auto"
       }}
-      className="has-text-centered"
+      className="has-text-centered has-text-primary"
     >
       <div>
-        <Icon className="fas fa-spinner fa-pulse fa-2x" style={{display: "block"}}/>
+        <Icon className="fas fa-thumbs-up fa-2x" />
       </div>
     </Section>
   );

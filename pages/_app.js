@@ -26,7 +26,7 @@ class MyApp extends App {
   async componentDidMount() {
     const authUser = await currentUser();
     if (authUser) {
-      this.setCurrentUser(authUser.username, true);
+      this.setCurrentUser(authUser.attributes.email, true);
     }
     await Fonts();
   }
@@ -48,8 +48,8 @@ class MyApp extends App {
         <div className="container">
           <Header
             {...pageProps}
-            username={this.state.username}
             isAuthenticated={this.state.isAuthenticated}
+            username={this.state.username}
           />
           <Component {...pageProps} />
           <MobileFooter
