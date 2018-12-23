@@ -98,10 +98,10 @@ class AWS_Auth extends React.PureComponent {
                     return <LoadingScreen />;
                   }
                   if (this.props.error) return <ErrorScreen />;
-                  setTimeout(() => Router.push("/home"), 500);
+                  setTimeout(() => Router.push("/"), 500);
                   return <SuccessScreen />;
                 }
-                setTimeout(() => Router.push("/home"), 500);
+                setTimeout(() => Router.push("/"), 500);
                 return <SuccessScreen />;
               }}
             </Query>

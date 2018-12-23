@@ -77,7 +77,6 @@ class Header extends Component {
 
   render() {
     const { isAuthenticated, username } = this.props;
-    console.log(this.props)
     return (
       <nav className="navbar is-fixed-top">
         <NavbarBrand>

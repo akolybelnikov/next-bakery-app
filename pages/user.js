@@ -23,7 +23,7 @@ class UserProfile extends React.Component {
     console.log(authState);
     switch (authState) {
       case "signIn":
-        setTimeout(() => Router.push("/home"), 500);
+        setTimeout(() => Router.push("/"), 500);
         break;
     }
   };
