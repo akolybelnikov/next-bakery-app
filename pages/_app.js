@@ -19,7 +19,7 @@ class MyApp extends App {
   }
 
   state = {
-    username: null,
+    email: null,
     isAuthenticated: false
   };
 
@@ -31,8 +31,8 @@ class MyApp extends App {
     await Fonts();
   }
 
-  setCurrentUser = (username, isAuthenticated) => {
-    this.setState({username: username, isAuthenticated: isAuthenticated});
+  setCurrentUser = (email, isAuthenticated) => {
+    this.setState({email: email, isAuthenticated: isAuthenticated});
   };
 
   render() {
@@ -46,7 +46,7 @@ class MyApp extends App {
           <Header
             {...pageProps}
             isAuthenticated={this.state.isAuthenticated}
-            username={this.state.username}
+            email={this.state.email}
           />
           <Component {...pageProps} setCurrentUser={this.setCurrentUser} />
           <MobileFooter

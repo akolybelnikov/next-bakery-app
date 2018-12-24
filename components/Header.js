@@ -76,7 +76,7 @@ class Header extends Component {
   };
 
   render() {
-    const { isAuthenticated, username } = this.props;
+    const { isAuthenticated, email } = this.props;
     return (
       <nav className="navbar is-fixed-top">
         <NavbarBrand>
@@ -87,6 +87,16 @@ class Header extends Component {
               </NavbarLink>
             </Link>
           </NavbarItem>
+
+          {isAuthenticated && (
+            <Default>
+              <NavbarItem isHidden="desktop">
+                <Link prefetch href="/user">
+                  <NavbarLink className="is-arrowless">{email}</NavbarLink>
+                </Link>
+              </NavbarItem>
+            </Default>
+          )}
 
           <NavbarItem className="burgericon" isHidden="desktop">
             <SmallHandset>
@@ -157,9 +167,13 @@ class Header extends Component {
             <Link href={isAuthenticated ? "/user" : "/authenticate"} prefetch>
               <NavbarLink
                 onClick={this.onCloseMenu}
-                className={isAuthenticated ? `is-arrowless is-size-5-tablet` : `is-arrowless`}
+                className={
+                  isAuthenticated
+                    ? `is-arrowless`
+                    : `is-arrowless is-size-5-tablet`
+                }
               >
-                {isAuthenticated ? username : "Вход пользователя"}
+                {isAuthenticated ? email : "Вход пользователя"}
               </NavbarLink>
             </Link>
           </NavbarItem>
