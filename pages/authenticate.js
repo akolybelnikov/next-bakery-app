@@ -47,6 +47,7 @@ class AWS_Auth extends React.PureComponent {
         const authUser = await currentUser();
         if (authUser) {
           this.setState({ currentUser: authUser });
+          this.props.setCurrentUser(authUser.attributes.email, true)
         }
         break;
       default:

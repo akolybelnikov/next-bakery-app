@@ -26,16 +26,13 @@ class MyApp extends App {
   async componentDidMount() {
     const authUser = await currentUser();
     if (authUser) {
-      this.setCurrentUser(authUser.attributes.email, true);
+      this.setCurrentUser(authUser.attributes.email, true)
     }
     await Fonts();
   }
 
-  setCurrentUser = (username, authenticated) => {
-    this.setState({
-      username: username,
-      isAuthenticated: authenticated
-    });
+  setCurrentUser = (username, isAuthenticated) => {
+    this.setState({username: username, isAuthenticated: isAuthenticated});
   };
 
   render() {
@@ -51,9 +48,10 @@ class MyApp extends App {
             isAuthenticated={this.state.isAuthenticated}
             username={this.state.username}
           />
-          <Component {...pageProps} />
+          <Component {...pageProps} setCurrentUser={this.setCurrentUser} />
           <MobileFooter
             {...pageProps}
+            isAuthenticated={this.state.isAuthenticated}
           />
         </div>
         <style jsx global>
