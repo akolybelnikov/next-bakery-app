@@ -157,7 +157,7 @@ class Header extends Component {
             <Link href={isAuthenticated ? "/user" : "/authenticate"} prefetch>
               <NavbarLink
                 onClick={this.onCloseMenu}
-                className={isAuthenticated ? `is-arrowless is-size-5` : `is-arrowless`}
+                className={isAuthenticated ? `is-arrowless is-size-5-tablet` : `is-arrowless`}
               >
                 {isAuthenticated ? username : "Вход пользователя"}
               </NavbarLink>

@@ -54,7 +54,6 @@ class MyApp extends App {
           <Component {...pageProps} />
           <MobileFooter
             {...pageProps}
-            isAuthenticated={this.state.isAuthenticated}
           />
         </div>
         <style jsx global>

@@ -18,7 +18,8 @@ class MobileFooter extends React.Component {
 
     this.state = {
       isScrolledDown: true,
-      windowY: null
+      windowY: null,
+      isAuthenticated: false
     };
   }
 
@@ -26,6 +27,10 @@ class MobileFooter extends React.Component {
   scrollDownSubscription = new Subscription();
 
   async componentDidMount() {
+    const authUser = await currentUser();
+    if (authUser) {
+      this.setState({ isAuthenticated: true });
+    }
     this.setState({ windowY: window.pageYOffset });
     const scroll$ = fromEvent(window, "scroll").pipe(
       throttleTime(10),
@@ -57,7 +62,7 @@ class MobileFooter extends React.Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated } = this.state;
     return (
       <div className="mobile-footer">
         <Level className="mobile-footer-nav" isMobile="true">
