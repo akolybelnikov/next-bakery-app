@@ -3,11 +3,10 @@ import { Authenticator, Greetings } from "aws-amplify-react";
 import { Section } from "bloomer";
 import Router from "next/router";
 import React from "react";
+import SuccessScreen from "../components/SuccessScreen";
 import { dict, map } from "../lib/awsAuth";
 import { AwsTheme } from "../styles/utils";
 import withData from "../withData";
-import SuccessScreen from "../components/SuccessScreen";
-import LoadingScreen from "../components/LoadingScreen";
 
 const AlwaysOn = () => {
   return null;
@@ -26,11 +25,9 @@ class UserProfile extends React.Component {
         this.props.setCurrentUser(null, false);
         setTimeout(() => Router.push("/"), 500);
         break;
+      default:
+        return null;
     }
-  };
-
-  getUserData = username => {
-    console.log(username);
   };
 
   render() {

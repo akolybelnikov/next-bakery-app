@@ -1,6 +1,5 @@
-import css from "styled-jsx/css";
 import Responsive from "react-responsive";
-import { red } from "ansi-colors";
+import css from "styled-jsx/css";
 
 export const theme = {
   primary: "#52082d",
@@ -47,13 +46,15 @@ export const AwsTheme = {
     color: theme.info
   },
   sectionFooter: {
-    color: theme.info
+    color: theme.info,
+    justifyContent: `space-between`
   },
   sectionFooterPrimaryContent: {
     color: theme.info
   },
   sectionFooterSecondaryContent: {
-    color: theme.info
+    color: theme.info,
+    marginRight: `10px`
   },
   input: {
 	color: theme.info,
