@@ -12,6 +12,7 @@ import GET_USER from "../graphql/queries/user";
 import { currentUser, dict, map } from "../lib/awsAuth";
 import { AwsTheme } from "../styles/utils";
 import withData from "../withData";
+import CustomizedSignUp from '../components/AWS/SignUp'
 
 const withMutation = Component => {
   return function MutationHOC(props) {
