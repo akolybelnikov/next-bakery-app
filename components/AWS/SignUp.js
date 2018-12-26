@@ -1,4 +1,3 @@
-import { SignUp } from "aws-amplify-react"
 import {
     Button,
     Card,
@@ -10,23 +9,59 @@ import {
     Container,
     Control,
     Field,
-    Label
+    Label,
+    Icon
 } from "bloomer"
-import { Form, Text } from "informed"
 import React from "react"
+import {
+    EMAIL_REGEX,
+    PASSWORD_REGEX,
+    EMAIL_INVALID_ERROR,
+    PASSWORD_INVALID_ERROR,
+    handleError
+} from "../../lib/awsAuth"
+import { Auth } from "aws-amplify"
+import { Form, Text } from "informed"
 
-export class CustomizedSignUp extends SignUp {
+class CustomizedSignUp extends React.PureComponent {
     constructor(props) {
         super(props)
-        this._validAuthStates = ["signUp", "signedOut"]
     }
 
-    signUp = () => {
-        super.signUp()
-        console.log(this.props)
+    state = {
+        busy: false,
+        error: null,
+        authState: "signUp"
     }
 
-    showComponent() {
+    validateEmail = value => {
+        return !value || !EMAIL_REGEX.test(value) ? EMAIL_INVALID_ERROR : null
+    }
+
+    validatePassword = value => {
+        return !value || !PASSWORD_REGEX.test(value)
+            ? PASSWORD_INVALID_ERROR
+            : null
+    }
+
+    handleSignUp = async values => {
+        if (values.email && values.password) {
+            try {
+                const signup = await Auth.signUp(
+                    values.email.trim(),
+                    values.password.trim()
+                )
+                console.info(signup)
+            } catch (e) {
+                console.warn(e)
+                this.setState({
+                    error: handleError(e.code)
+                })
+            }
+        }
+    }
+
+    render() {
         console.log(this.props)
         return (
             <Container style={{ paddingTop: "8rem" }}>
@@ -34,79 +69,117 @@ export class CustomizedSignUp extends SignUp {
                     <Column
                         isSize={{ mobile: 12, tablet: 6, desktop: 4 }}
                         isOffset={{ tablet: 3, desktop: 4 }}>
-                        <Form>
-                            <Card>
-                                <CardContent>
-                                    <Field>
-                                        <Label htmlFor="email">
-                                            Адрес эл. почты
-                                        </Label>
-                                        <Control>
-                                            <Text
-                                                key="email"
-                                                name="email"
-                                                onChange={
-                                                    this.handleInputChange
-                                                }
-                                                type="text"
-                                                placeholder="Адрес эл. почты"
-                                                className="input"
-                                            />
-                                        </Control>
-                                    </Field>
-                                    <Field>
-                                        <Label htmlFor="password">Пароль</Label>
-                                        <Control>
-                                            <Text
-                                                key="password"
-                                                name="password"
-                                                onChange={
-                                                    this.handleInputChange
-                                                }
-                                                type="password"
-                                                placeholder="******************"
-                                                className="input"
-                                            />
-                                        </Control>
-                                    </Field>
-                                </CardContent>
-                                <CardFooter>
-                                    <CardFooterItem>
+                        <Form onSubmit={this.handleSignUp}>
+                            {({ formState }) => (
+                                <Card>
+                                    <CardContent>
                                         <Field>
+                                            <Label htmlFor="state-email">
+                                                Адрес эл. почты
+                                            </Label>
+                                            <Control>
+                                                <Text
+                                                    validate={
+                                                        this.validateEmail
+                                                    }
+                                                    validateOnBlur
+                                                    field="email"
+                                                    id="state-email"
+                                                    placeholder="email"
+                                                    className="input"
+                                                />
+                                            </Control>
+                                            <p className="has-text-left is-size-7-mobile has-text-warning form-error">
+                                                {formState.errors.email &&
+                                                    formState.errors.email}
+                                            </p>
+                                        </Field>
+                                        <Field>
+                                            <Label htmlFor="state-password">
+                                                Пароль
+                                            </Label>
+                                            <p
+                                                className="has-text-left is-size-7-mobile has-text-info form-error"
+                                                htmlFor="state-password">
+                                                Пароль должен содержать:
+                                                <br />- не менее 1 строчной
+                                                буквы
+                                                <br />- не менее 1 заглавной
+                                                буквы
+                                                <br />
+                                                - не менее 1 цифры
+                                                <br />- не менее 1 специального
+                                                символа (!, @, #, $, %, ^, &)
+                                                <br />и быть длинной не менее
+                                                восьми знаков
+                                            </p>
+                                            <Control className="has-icons-right">
+                                                <Text
+                                                    validate={
+                                                        this.validatePassword
+                                                    }
+                                                    validateOnBlur
+                                                    type={this.props.attribute}
+                                                    field="password"
+                                                    id="state-password"
+                                                    placeholder="password"
+                                                    className="input"
+                                                />
+                                                <span
+                                                    onClick={
+                                                        this.props
+                                                            .onAttributeToggle
+                                                    }
+                                                    className="icon has-text-primary is-right">
+                                                    <Icon className="fas fa-eye" />
+                                                </span>
+                                            </Control>
+                                            <p className="has-text-left is-size-7-mobile has-text-warning">
+                                                {formState.errors.password &&
+                                                    formState.errors.password}
+                                            </p>
+                                        </Field>
+                                    </CardContent>
+                                    <CardFooter>
+                                        <CardFooterItem>
                                             <Button
                                                 isFullWidth
                                                 isColor="primary"
-                                                type="button"
-                                                onClick={this.signUp}>
+                                                type="submit">
                                                 Зарегистрироваться
                                             </Button>
-                                        </Field>
-                                    </CardFooterItem>
-                                    <CardFooterItem>
-                                        <Field>
-                                            <span>
-                                                Зарегистрированы?
-                                                <a
-                                                    style={{
-                                                        marginLeft: "10px"
-                                                    }}
-                                                    className="has-text-success"
-                                                    onClick={() =>
-                                                        super.changeState(
-                                                            "signIn"
-                                                        )
-                                                    }>
-                                                    Войти
-                                                </a>
-                                            </span>
-                                        </Field>
-                                    </CardFooterItem>
-                                </CardFooter>
-                            </Card>
+                                        </CardFooterItem>
+                                        <CardFooterItem>
+                                            <span>Зарегистрированы?</span>
+                                            <a
+                                                style={{
+                                                    marginLeft: "10px"
+                                                }}
+                                                className="has-text-success"
+                                                onClick={() =>
+                                                    this.props.onStateChange("signIn")
+                                                }>
+                                                Войти
+                                            </a>
+                                        </CardFooterItem>
+                                    </CardFooter>
+                                </Card>
+                            )}
                         </Form>
                     </Column>
                 </Columns>
+                <style jsx>{`
+                    .form-error {
+                        min-height: 10px;
+                    }
+                    .fas .fa-eye {
+                        pointer-events: all;
+                        cursor: pointer;
+                    }
+                `}</style>
             </Container>
         )
     }
 }
+
+export default CustomizedSignUp
