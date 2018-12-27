@@ -7,7 +7,7 @@ import ErrorNotification from '../ErrorNotification';
 
 const CustomizedSignUp = props => {
 	const handleSignUp = async formState => {
-		props.setError(null);
+		props.setNotification(null);
 		if (
 			formState.values.email &&
 			formState.values.password &&
@@ -22,21 +22,20 @@ const CustomizedSignUp = props => {
 				props.onStateChange('signedUp');
 			} catch (e) {
 				const error = handleError(e.code);
-				props.setError(error);
+				props.setNotification(error);
 			}
 		}
 	};
 
-	const dismiss = () => props.setError(null);
+	const dismiss = () => props.setNotification(null);
 
 	const onGoToSignIn = () => {
-		props.setError(null);
-		onStateChange('signIn')
+		props.setNotification(null);
+		props.onStateChange('signIn')
 	};
 
 	const {
 		authState,
-		onStateChange,
 		attribute,
 		onAttributeToggle,
 		error,
@@ -60,12 +59,11 @@ const CustomizedSignUp = props => {
 							isOffset={{ tablet: 2 }}
 						>
 							<div
-								className="is-size-7-mobile"
 								style={{ marginBottom: '24px' }}
 							>
-								<span className="subtitle">
+								<h4 className="subtitle has-text-info">
 									Регистрация нового пользователя
-								</span>
+								</h4>
 							</div>
 							<Form>
 								{({ formState }) => (

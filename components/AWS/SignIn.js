@@ -6,7 +6,7 @@ import ErrorNotification from '../ErrorNotification';
 
 const CustomizedSignIn = props => {
 	const signIn = async formState => {
-		props.setError(null);
+		props.setNotification(null);
 
 		if (formState.values.email && formState.values.password) {
 			try {
@@ -20,13 +20,13 @@ const CustomizedSignIn = props => {
 					props.onStateChange('confirmSignUp');
 				} else {
 					const error = handleError(e.code);
-					props.setError(error);
+					props.setNotification(error);
 				}
 			}
 		}
 	};
 
-	const dismiss = () => props.setError(null);
+	const dismiss = () => props.setNotification(null);
 
 	const {
 		authState,
@@ -41,7 +41,7 @@ const CustomizedSignIn = props => {
 			{error && (
 				<ErrorNotification notification={error} dismiss={dismiss} />
 			)}
-			{authState === 'signIn' && (
+			{(authState === 'signIn' || authState === 'signedOut') && (
 				<Container>
 					<Columns
 						style={{
@@ -55,12 +55,11 @@ const CustomizedSignIn = props => {
 							isOffset={{ tablet: 2 }}
 						>
 							<div
-								className="is-size-7-mobile"
 								style={{ marginBottom: '24px' }}
 							>
-								<span className="subtitle">
+								<h4 className="subtitle has-text-info">
 									Вход пользователя
-								</span>
+								</h4>
 							</div>
 							<Form>
 								{({ formState }) => (
