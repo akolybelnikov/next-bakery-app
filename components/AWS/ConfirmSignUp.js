@@ -50,6 +50,7 @@ const CustomizedConfirmSignUp = props => {
 			{error && (
 				<ErrorNotification notification={error} dismiss={dismiss} />
 			)}
+
 			{authState === 'confirmSignUp' || authState === 'signedUp' && (
 				<Container>
 					<Columns
