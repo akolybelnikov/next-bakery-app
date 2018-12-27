@@ -29,6 +29,11 @@ const CustomizedSignUp = props => {
 
 	const dismiss = () => props.setError(null);
 
+	const onGoToSignIn = () => {
+		props.setError(null);
+		onStateChange('signIn')
+	};
+
 	const {
 		authState,
 		onStateChange,
@@ -163,7 +168,7 @@ const CustomizedSignUp = props => {
 														marginLeft: '10px',
 													}}
 													onClick={() =>
-														onStateChange('signIn')
+														onGoToSignIn()
 													}
 												>
 													Войти
