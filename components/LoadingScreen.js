@@ -1,21 +1,22 @@
-import { Icon, Section } from "bloomer";
+import { Icon, Section } from 'bloomer'
+import SpinningCircles from './SVG/SpinningCircles'
 
 export default () => {
   return (
     <Section
       style={{
-        minHeight: "50vh",
-        justifyContent: "center",
-        alignItems: "center",
-        display: "flex",
-        maxWidth: "60vw",
-        margin: "0 auto"
+        minHeight: '50vh',
+        justifyContent: 'center',
+        alignItems: 'center',
+        display: 'flex',
+        maxWidth: '60vw',
+        margin: '0 auto',
       }}
-      className="has-text-centered"
-    >
+      className='has-text-centered'>
       <div>
-        <Icon className="fas fa-spinner fa-pulse fa-2x" style={{display: "block"}}/>
+        <SpinningCircles width="100" heigh="100" fill="rgba(82, 8, 45, 0.3)" />
+        />
       </div>
     </Section>
-  );
-};
+  )
+}

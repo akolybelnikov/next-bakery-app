@@ -22,9 +22,6 @@ export const AwsTheme = {
   a: {
     color: theme.primary
   },
-  sectionBody: {
-    color: theme.info
-  },
   container: {
     color: theme.info
   },

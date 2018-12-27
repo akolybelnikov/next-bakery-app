@@ -19,7 +19,7 @@ export default () => {
       </Message>
       <Link href="/">
         <a className="button is-primary is-small is-outlined">
-          Вернуться в хорошее место.
+          Вернуться.
         </a>
       </Link>
     </Section>
