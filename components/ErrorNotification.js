@@ -5,35 +5,7 @@ export default props => (
     <p>{props.notification}</p>
     <Delete onClick={props.dismiss} />
     <style jsx global>{`
-      @-webkit-keyframes slideInDown {
-        from {
-          -webkit-transform: translate3d(0, -100%, 0);
-          transform: translate3d(0, -100%, 0);
-          visibility: visible;
-        }
-
-        to {
-          -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
-        }
-      }
-
-      @keyframes slideInDown {
-        from {
-          -webkit-transform: translate3d(0, -100%, 0);
-          transform: translate3d(0, -100%, 0);
-          visibility: visible;
-        }
-
-        to {
-          -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
-        }
-      }
-
       .slideInDown {
-        -webkit-animation-name: slideInDown;
-        animation-name: slideInDown;
         position: fixed;
         max-height: 100px;
         width: 320px;
@@ -41,6 +13,13 @@ export default props => (
         right: 50%;
         margin-right: -160px;
         z-index: 20;
+      }
+      @media all and (min-width: 768px) {
+        .slideInDown {
+          top: 7.5rem;
+          width: 640px;
+          margin-right: -320px;
+        }
       }
     `}</style>
   </Notification>
