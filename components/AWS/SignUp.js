@@ -2,49 +2,10 @@ import { Auth } from 'aws-amplify';
 import { Button, Card, CardContent, CardFooter, CardFooterItem, Column, Columns, Container, Control, Field, Icon, Label } from 'bloomer';
 import { Form, Text } from 'informed';
 import React from 'react';
-import { email_invalid, email_regex, handleError, lower, lower_invalid, minMaxLength, minMaxLength_invalid, number, number_invalid, password_missing, special, special_invalid, upper, upper_invalid } from '../../lib/awsAuth';
+import { handleError, validateEmail, validatePassword } from '../../lib/awsAuth';
 import ErrorNotification from '../ErrorNotification';
 
 const CustomizedSignUp = props => {
-	const validateEmail = value => {
-		return !value || !email_regex.test(value) ? email_invalid : null;
-	};
-
-	const validatePassword = value => {
-		return [
-			validateNotNull(value),
-			validateLength(value),
-			validateLower(value),
-			validateNumber(value),
-			validateUpper(value),
-			validateSpecial(value),
-		];
-	};
-
-	const validateNotNull = value => {
-		return !value ? <p>{password_missing}</p> : null;
-	};
-
-	const validateLength = value => {
-		return !minMaxLength.test(value) ? <p>{minMaxLength_invalid}</p> : null;
-	};
-
-	const validateLower = value => {
-		return !lower.test(value) ? <p>{lower_invalid}</p> : null;
-	};
-
-	const validateUpper = value => {
-		return !upper.test(value) ? <p>{upper_invalid}</p> : null;
-	};
-
-	const validateNumber = value => {
-		return !number.test(value) ? <p>{number_invalid}</p> : null;
-	};
-
-	const validateSpecial = value => {
-		return !special.test(value) ? <p>{special_invalid}</p> : null;
-	};
-
 	const handleSignUp = async formState => {
 		props.setError(null);
 		if (
@@ -81,16 +42,26 @@ const CustomizedSignUp = props => {
 				<ErrorNotification notification={error} dismiss={dismiss} />
 			)}
 			{authState === 'signUp' && (
-				<Container
-					style={{
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'center'
-					}}
-				>
-					<Columns style={{ margin: '0 auto', maxWidth: '100%', padding: '35px 0 50px 0' }}>
-						<Column>
-            <div classNmae="is-size-7-mobile" style={{marginBottom: '24px'}}><span className="subtitle">Регистрация нового пользователя</span></div>
+				<Container>
+					<Columns
+						style={{
+							margin: '0 auto',
+							maxWidth: '100%',
+							padding: '35px 0 50px 0',
+						}}
+					>
+						<Column
+							isSize={{ mobile: 12, tablet: 8 }}
+							isOffset={{ tablet: 2 }}
+						>
+							<div
+								className="is-size-7-mobile"
+								style={{ marginBottom: '24px' }}
+							>
+								<span className="subtitle">
+									Регистрация нового пользователя
+								</span>
+							</div>
 							<Form>
 								{({ formState }) => (
 									<Card>
@@ -109,7 +80,7 @@ const CustomizedSignUp = props => {
 														className="input"
 													/>
 												</Control>
-												<p className="has-text-left is-size-7-mobile has-text-primary form-error">
+												<p className="has-text-left is-size-7 has-text-primary">
 													{formState.errors.email &&
 														formState.errors.email}
 												</p>
@@ -128,8 +99,8 @@ const CustomizedSignUp = props => {
 														validate={
 															validatePassword
 														}
-                            validateOnBlur
-                            validateOnChange
+														validateOnBlur
+														validateOnChange
 														type={attribute}
 														field="password"
 														id="password"
@@ -148,7 +119,14 @@ const CustomizedSignUp = props => {
 														className="fas fa-eye has-text-primary"
 													/>
 												</Control>
-												<div className="has-text-left is-size-7-mobile has-text-primary">
+												<div
+													style={{
+														maxWidth: '100%',
+														wordBreak: 'break-word',
+														whiteSpace: 'pre-wrap',
+													}}
+													className="has-text-left is-size-7 has-text-primary"
+												>
 													{formState.errors
 														.password &&
 														formState.errors.password.map(
@@ -163,7 +141,9 @@ const CustomizedSignUp = props => {
 												</div>
 											</Field>
 										</CardContent>
-										<CardFooter style={{flexWrap: 'wrap'}}>
+										<CardFooter
+											style={{ flexWrap: 'wrap' }}
+										>
 											<CardFooterItem>
 												<Button
 													onClick={() =>
@@ -182,7 +162,6 @@ const CustomizedSignUp = props => {
 													style={{
 														marginLeft: '10px',
 													}}
-													className="has-text-success"
 													onClick={() =>
 														onStateChange('signIn')
 													}
@@ -196,15 +175,6 @@ const CustomizedSignUp = props => {
 							</Form>
 						</Column>
 					</Columns>
-					<style jsx>{`
-						.form-error {
-							min-height: 10px;
-						}
-						.fas .fa-eye {
-							pointer-events: all;
-							cursor: pointer;
-						}
-					`}</style>
 				</Container>
 			)}
 		</React.Fragment>

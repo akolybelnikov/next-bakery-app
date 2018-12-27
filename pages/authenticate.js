@@ -1,8 +1,10 @@
 import { I18n } from '@aws-amplify/core';
-import { Authenticator, ConfirmSignUp, ForgotPassword, RequireNewPassword, SignIn, VerifyContact } from 'aws-amplify-react';
+import { Authenticator, ForgotPassword, RequireNewPassword, VerifyContact } from 'aws-amplify-react';
 import { Container } from 'bloomer';
 import Router from 'next/router';
 import { Mutation, Query } from 'react-apollo';
+import CustomizedConfirmSignUp from '../components/AWS/ConfirmSignUp';
+import CustomizedSignIn from '../components/AWS/SignIn';
 import CustomizedSignUp from '../components/AWS/SignUp';
 import ErrorBoundary from '../components/ErrorBoundary';
 import ErrorScreen from '../components/ErrorScreen';
@@ -13,11 +15,6 @@ import GET_USER from '../graphql/queries/user';
 import { currentUser, dict, map } from '../lib/awsAuth';
 import { AwsTheme } from '../styles/utils';
 import withData from '../withData';
-
-
-const AlwaysOn = () => {
-	return null;
-};
 
 const withMutation = Component => {
 	return function MutationHOC(props) {
@@ -38,7 +35,6 @@ const withMutation = Component => {
 
 class AWS_Auth extends React.PureComponent {
 	state = {
-		authState: null,
 		currentUser: null,
 		error: null,
 		attribute: 'password',
@@ -49,17 +45,12 @@ class AWS_Auth extends React.PureComponent {
 	}
 
 	onStateChange = async authState => {
-		this.setState({ authState: authState });
-		switch (authState) {
-			case 'signedIn':
-				const authUser = await currentUser();
-				if (authUser) {
-					this.setState({ currentUser: authUser });
-					this.props.setCurrentUser(authUser.attributes.email, true);
-				}
-				break;
-			default:
-				return null;
+		if (authState === 'signedIn') {
+			const authUser = await currentUser();
+			if (authUser) {
+				this.setState({ currentUser: authUser });
+				this.props.setCurrentUser(authUser.attributes.email, true);
+			}
 		}
 	};
 
@@ -86,16 +77,24 @@ class AWS_Auth extends React.PureComponent {
 						errorMessage={map}
 						onStateChange={this.onStateChange}
 					>
-						<SignIn />
+						<CustomizedSignIn
+							setError={this.setError}
+							attribute={this.state.attribute}
+							onAttributeToggle={this.onAttributeToggle}
+							error={this.state.error}
+						/>
 						<ForgotPassword />
 						<RequireNewPassword />
 						<VerifyContact />
-						<ConfirmSignUp />
+						<CustomizedConfirmSignUp
+							setError={this.setError}
+							error={this.state.error}
+						/>
 						<CustomizedSignUp
 							setError={this.setError}
 							attribute={this.state.attribute}
-              onAttributeToggle={this.onAttributeToggle}
-              error={this.state.error}
+							onAttributeToggle={this.onAttributeToggle}
+							error={this.state.error}
 						/>
 					</Authenticator>
 					{this.state.currentUser && (
@@ -116,9 +115,6 @@ class AWS_Auth extends React.PureComponent {
 												email:
 													currentUser.attributes
 														.email,
-												telephone:
-													currentUser.attributes
-														.phone_number,
 											},
 										},
 									});

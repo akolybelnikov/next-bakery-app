@@ -1,47 +1,56 @@
 import { Auth } from 'aws-amplify';
-import { Button, Card, CardContent, CardFooter, CardFooterItem, Column, Columns, Container, Control, Field, Icon, Label } from 'bloomer';
+import { Button, Card, CardContent, CardFooter, CardFooterItem, Column, Columns, Container, Control, Field, Label } from 'bloomer';
 import { Form, Text } from 'informed';
-import { handleError } from '../../lib/awsAuth';
+import { handleError, validateEmail } from '../../lib/awsAuth';
 import ErrorNotification from '../ErrorNotification';
 
-const CustomizedSignIn = props => {
-	const signIn = async formState => {
+const CustomizedConfirmSignUp = props => {
+	const confirmSignUp = async formState => {
 		props.setError(null);
 
-		if (formState.values.email && formState.values.password) {
+		if (formState.values.email && formState.values.code) {
+            try {
+                await Auth.confirmSignUp(
+                    formState.values.email.trim(),
+                    formState.values.code.trim(),
+                    {
+                        forceAliasCreation: 'true',
+                    },
+                );
+                props.onStateChange('signIn');
+            } catch (e) {
+                const error = handleError(e.code);
+                props.setError(error);
+            }
+        }
+	};
+
+	const resendCode = async formState => {
+		props.setError(null);
+
+		if (formState.values.email) {
 			try {
-				await Auth.signIn(
-					formState.values.email.trim(),
-					formState.values.password.trim(),
+				await Auth.resendSignUp(formState.values.email.trim());
+				props.setError(
+					'Код подтверждения выслан на Ваш адрес эл. почты',
 				);
-				props.onStateChange('signedIn');
 			} catch (e) {
-				if (e.code === 'UserNotConfirmedException') {
-					props.onStateChange('confirmSignUp');
-				} else {
-					const error = handleError(e.code);
-					props.setError(error);
-				}
+				const error = handleError(e.code);
+				props.setError(error);
 			}
 		}
 	};
 
 	const dismiss = () => props.setError(null);
 
-	const {
-		authState,
-		onStateChange,
-		attribute,
-		onAttributeToggle,
-		error,
-	} = props;
+	const { authState, onStateChange, error } = props;
 
 	return (
 		<React.Fragment>
 			{error && (
 				<ErrorNotification notification={error} dismiss={dismiss} />
 			)}
-			{authState === 'signIn' && (
+			{authState === 'confirmSignUp' && (
 				<Container>
 					<Columns
 						style={{
@@ -59,7 +68,7 @@ const CustomizedSignIn = props => {
 								style={{ marginBottom: '24px' }}
 							>
 								<span className="subtitle">
-									Вход пользователя
+									Подтвердить регистрацию
 								</span>
 							</div>
 							<Form>
@@ -72,16 +81,23 @@ const CustomizedSignIn = props => {
 												</Label>
 												<Control>
 													<Text
+														required
 														field="email"
 														id="email"
 														placeholder="Введите свой адрес эл.почты"
 														className="input"
+														validate={validateEmail}
+														validateOnBlur
 													/>
 												</Control>
+												<p className="has-text-left is-size-7 has-text-primary">
+													{formState.errors.email &&
+														formState.errors.email}
+												</p>
 											</Field>
 											<Field>
-												<Label htmlFor="password">
-													Пароль
+												<Label htmlFor="code">
+													Код подтверждения
 												</Label>
 												<Control
 													style={{
@@ -90,38 +106,26 @@ const CustomizedSignIn = props => {
 													}}
 												>
 													<Text
-														type={attribute}
-														field="password"
-														id="password"
-														placeholder="Введите свой пароль"
+														required
+														type="text"
+														field="code"
+														id="code"
+														placeholder="Введите код"
 														className="input"
-													/>
-													<Icon
-														onClick={
-															onAttributeToggle
-														}
-														style={{
-															cursor: 'pointer',
-															margin:
-																'0 0 0 10px',
-														}}
-														className="fas fa-eye has-text-primary"
 													/>
 												</Control>
 											</Field>
 											<Field>
-												<span>Пароль утерян? </span>
+												<span>Код утерян? </span>
 												<a
 													style={{
 														marginLeft: '10px',
 													}}
 													onClick={() =>
-														onStateChange(
-															'forgotPassword',
-														)
+														resendCode(formState)
 													}
 												>
-													Запросить новый пароль
+													Выслать повторно
 												</a>
 											</Field>
 										</CardContent>
@@ -134,23 +138,23 @@ const CustomizedSignIn = props => {
 													isColor="primary"
 													type="submit"
 													onClick={() =>
-														signIn(formState)
+														confirmSignUp(formState)
 													}
 												>
-													Войти
+													Подтвердить
 												</Button>
 											</CardFooterItem>
 											<CardFooterItem>
-												<span>Нет профиля?</span>
 												<a
+													role="button"
 													style={{
 														marginLeft: '10px',
 													}}
 													onClick={() =>
-														onStateChange('signUp')
+														onStateChange('signIn')
 													}
 												>
-													Зарегистрироваться
+													Вход пользователя
 												</a>
 											</CardFooterItem>
 										</CardFooter>
@@ -165,4 +169,4 @@ const CustomizedSignIn = props => {
 	);
 };
 
-export default CustomizedSignIn;
+export default CustomizedConfirmSignUp;

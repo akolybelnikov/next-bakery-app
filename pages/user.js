@@ -19,7 +19,7 @@ class UserProfile extends React.Component {
   }
 
   onStateChange = authState => {
-    console.log(authState);
+
     switch (authState) {
       case "signIn":
         this.props.setCurrentUser(null, false);
