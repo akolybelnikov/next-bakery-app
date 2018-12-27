@@ -37,7 +37,7 @@ export default props => (
         position: fixed;
         max-height: 100px;
         width: 320px;
-        top: 15%;
+        top: 5.5rem;
         right: 50%;
         margin-right: -160px;
         z-index: 20;

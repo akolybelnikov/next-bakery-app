@@ -59,15 +59,8 @@ class MyApp extends App {
             .custom_body {
               color: #331507;
             }
-            @media all and (min-width: 600px) {
-              html {
-                padding-top: 4.25rem;
-              }
-            }
-            @media all and (max-width: 599px) {
-              html {
-                padding-top: 2.25rem;
-              }
+            html {
+              padding-top: 4.25rem;
             }
             @font-face {
               font-family: "Raleway";

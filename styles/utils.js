@@ -23,7 +23,8 @@ export const AwsTheme = {
     color: theme.primary
   },
   container: {
-    color: theme.info
+    color: theme.info,
+    minWidth: '300px'
   },
   formContainer: {
     color: theme.info,
@@ -64,7 +65,7 @@ export const AwsTheme = {
     color: theme.info
   },
   toast: {
-    backgroundColor: theme.primary
+    backgroundColor: theme.success
   },
   navItem: {
     display: `block`
