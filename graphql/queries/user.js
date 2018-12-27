@@ -1,9 +1,8 @@
 import gql from 'graphql-tag'
 
 const GET_USER = gql(`
-    query ($id: ID!) {
+    query ($id: String!) {
         getUser(id: $id) {
-            status
             email
             id
             avatar
