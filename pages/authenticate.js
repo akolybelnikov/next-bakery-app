@@ -1,6 +1,6 @@
 import { I18n } from '@aws-amplify/core';
 import { Authenticator, ForgotPassword, RequireNewPassword, VerifyContact } from 'aws-amplify-react';
-import { Container } from 'bloomer';
+import { Hero, HeroBody } from 'bloomer';
 import Router from 'next/router';
 import { Query } from 'react-apollo';
 import CustomizedConfirmSignUp from '../components/AWS/ConfirmSignUp';
@@ -14,8 +14,6 @@ import GET_USER from '../graphql/queries/user';
 import { currentUser, dict, map } from '../lib/awsAuth';
 import { AwsTheme } from '../styles/utils';
 import withData from '../withData';
-
-
 
 class Authenticate extends React.PureComponent {
   state = {
@@ -52,48 +50,50 @@ class Authenticate extends React.PureComponent {
     const { currentUser } = this.state
     return (
       <ErrorBoundary>
-        <Container style={{ paddingTop: '1rem' }}>
-          <Authenticator
-            hideDefault={true}
-            theme={AwsTheme}
-            authState='signUp'
-            errorMessage={map}
-            onStateChange={this.onStateChange}>
-            <CustomizedSignIn
-              setNotification={this.setNotification}
-              attribute={this.state.attribute}
-              onAttributeToggle={this.onAttributeToggle}
-              error={this.state.error}
-            />
-            <ForgotPassword />
-            <RequireNewPassword />
-            <VerifyContact />
-            <CustomizedConfirmSignUp
-              setNotification={this.setNotification}
-              error={this.state.error}
-            />
-            <CustomizedSignUp
-              setNotification={this.setNotification}
-              attribute={this.state.attribute}
-              onAttributeToggle={this.onAttributeToggle}
-              error={this.state.error}
-            />
-          </Authenticator>
-          {currentUser && (
-            <Query
-              query={GET_USER}
-              variables={{ email: this.state.currentUser.attributes.email }}>
-              {({ loading, error, data }) => {
-                if (loading) {
-                  return <LoadingScreen />
-                }
-                if (error) return <ErrorScreen />
-                setTimeout(() => Router.push('/'), 500)
-                return <SuccessScreen />
-              }}
-            </Query>
-          )}
-        </Container>
+        <Hero isColor="success" isFullHeight isFullWidth>
+          <HeroBody style={{justifyContent: 'center'}}>
+            <Authenticator
+              hideDefault={true}
+              theme={AwsTheme}
+              authState='signUp'
+              errorMessage={map}
+              onStateChange={this.onStateChange}>
+              <CustomizedSignIn
+                setNotification={this.setNotification}
+                attribute={this.state.attribute}
+                onAttributeToggle={this.onAttributeToggle}
+                error={this.state.error}
+              />
+              <ForgotPassword />
+              <RequireNewPassword />
+              <VerifyContact />
+              <CustomizedConfirmSignUp
+                setNotification={this.setNotification}
+                error={this.state.error}
+              />
+              <CustomizedSignUp
+                setNotification={this.setNotification}
+                attribute={this.state.attribute}
+                onAttributeToggle={this.onAttributeToggle}
+                error={this.state.error}
+              />
+            </Authenticator>
+            {currentUser && (
+              <Query
+                query={GET_USER}
+                variables={{ email: this.state.currentUser.attributes.email }}>
+                {({ loading, error, data }) => {
+                  if (loading) {
+                    return <LoadingScreen />
+                  }
+                  if (error) return <ErrorScreen />
+                  setTimeout(() => Router.push('/'), 500)
+                  return <SuccessScreen />
+                }}
+              </Query>
+            )}
+          </HeroBody>
+        </Hero>
       </ErrorBoundary>
     )
   }

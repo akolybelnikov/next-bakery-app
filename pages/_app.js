@@ -60,7 +60,12 @@ class MyApp extends App {
               color: #331507;
             }
             html {
-              padding-top: 4.25rem;
+              padding-top: 7.25rem;
+            }
+            @media screen and (max-width: 599px) {
+              html {
+                padding-top: 5.25rem;
+              }
             }
             @font-face {
               font-family: "Raleway";

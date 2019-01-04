@@ -1,7 +1,7 @@
 import { Notification, Delete } from 'bloomer'
 
 export default props => (
-  <Notification className='slideInDown' isColor='success'>
+  <Notification className='slideInDown' isColor='primary'>
     <p>{props.notification}</p>
     <Delete onClick={props.dismiss} />
     <style jsx global>{`
