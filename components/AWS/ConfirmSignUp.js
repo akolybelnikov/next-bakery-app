@@ -2,9 +2,11 @@ import { Auth } from 'aws-amplify';
 import { Button, Card, CardContent, CardFooter, CardFooterItem, Column, Columns, Container, Control, Field, Label } from 'bloomer';
 import { Form, Text } from 'informed';
 import { Mutation } from 'react-apollo';
-import CREATE_USER from '../../graphql/mutations/user';
+import { CREATE_USER } from '../../graphql/mutations/user';
 import { handleError, validateEmail } from '../../lib/awsAuth';
 import ErrorNotification from '../ErrorNotification';
+import LoadingScreen from '../LoadingScreen';
+import SuccessScreen from '../SuccessScreen';
 
 const withMutation = Component => {
   return function MutationHOC(props) {
@@ -24,6 +26,14 @@ const withMutation = Component => {
 }
 
 const ConfirmSignUp = props => {
+  const {
+    mutate,
+    loading,
+    error,
+    onStateChange,
+    setNotification,
+    authState,
+  } = props
   const confirmSignUp = async formState => {
     props.setNotification(null)
 
@@ -36,45 +46,45 @@ const ConfirmSignUp = props => {
             forceAliasCreation: 'true',
           },
         )
-        props.mutate({
+        mutate({
           variables: {
             input: {
-              id: this.state.currentUser.username,
-              email: this.state.currentUser.attributes.email,
+              email: formState.values.email.trim(),
             },
           },
         })
-        if (props.loading) {
+        if (loading) {
           return <LoadingScreen />
         }
-        if (props.error) return <ErrorScreen />
-        setTimeout(() => props.onStateChange('signIn'), 500)
+        if (error) return <ErrorScreen />
+        setTimeout(() => onStateChange('signIn'), 500)
+        setNotification(null)
         return <SuccessScreen />
       } catch (e) {
-		  console.log(e)
-        const error = handleError(e.code)
-        props.setNotification(error)
+        console.log(e)
+        const error = handleError(e.code, e.message)
+        setNotification(error)
       }
     }
   }
 
   const resendCode = async formState => {
-    props.setNotification(null)
+    setNotification(null)
 
     if (formState.values.email) {
       try {
         await Auth.resendSignUp(formState.values.email.trim())
-        props.setNotification('Код подтверждения выслан на Ваш адрес эл. почты')
+        setNotification('Код подтверждения выслан на Ваш адрес эл. почты')
       } catch (e) {
-        const error = handleError(e.code)
-        props.setNotification(error)
+        const err = handleError(e.code)
+        setNotification(err)
       }
+    } else {
+      setNotification('Введите свой адрес эл. почты')
     }
   }
 
-  const dismiss = () => props.setNotification(null)
-
-  const { authState, onStateChange, error } = props
+  const dismiss = () => setNotification(null)
 
   return (
     <React.Fragment>
@@ -92,7 +102,9 @@ const ConfirmSignUp = props => {
               <div
                 className='is-size-7-mobile'
                 style={{ marginBottom: '24px' }}>
-                <span className='subtitle'>Подтвердить регистрацию</span>
+                <span className='subtitle has-text-info'>
+                  Подтвердить регистрацию
+                </span>
               </div>
               <Form>
                 {({ formState }) => (

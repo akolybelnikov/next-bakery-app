@@ -1,13 +1,24 @@
 import gql from 'graphql-tag'
 
-const CREATE_USER = gql(`
+export const CREATE_USER = gql(`
     mutation ($input: CreateUserInput!) {
         createUser(input: $input) {
             email
-            id
-            createdAt
         }
     }
   `)
 
-  export default CREATE_USER
+export const UPDATE_USER = gql(`
+    mutation ($input: UpdateUserInput!) {
+        updateUser(input: $input) {
+            email
+            firstname
+            lastname
+            dob
+            telephone
+            votes
+            avatar
+            lastActive
+        }
+    }
+  `)

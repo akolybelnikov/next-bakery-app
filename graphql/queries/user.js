@@ -1,17 +1,15 @@
 import gql from 'graphql-tag'
 
 const GET_USER = gql(`
-    query ($id: String!) {
-        getUser(id: $id) {
+    query ($email: String!) {
+        getUser(email: $email) {
             email
-            id
             avatar
             firstname
             lastname
             dob
             telephone
             votes
-            createdAt
         }
     }
   `)

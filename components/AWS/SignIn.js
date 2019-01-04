@@ -17,6 +17,7 @@ const CustomizedSignIn = props => {
 				props.onStateChange('signedIn');
 			} catch (e) {
 				if (e.code === 'UserNotConfirmedException') {
+					props.setNotification('Подтвердите свой адрес эл. почты с помощью высланного Вам кода');
 					props.onStateChange('confirmSignUp');
 				} else {
 					const error = handleError(e.code);

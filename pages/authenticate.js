@@ -82,7 +82,7 @@ class Authenticate extends React.PureComponent {
           {currentUser && (
             <Query
               query={GET_USER}
-              variables={{ id: this.state.currentUser.username }}>
+              variables={{ email: this.state.currentUser.attributes.email }}>
               {({ loading, error, data }) => {
                 if (loading) {
                   return <LoadingScreen />
