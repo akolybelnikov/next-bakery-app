@@ -30,7 +30,6 @@ const CustomizedSignUp = props => {
         )
         onStateChange('signedUp')
       } catch (e) {
-        console.log(e)
         const error = handleError(e.code)
         setNotification(error)
       }
