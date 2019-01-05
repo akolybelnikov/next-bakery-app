@@ -72,7 +72,6 @@ const nextConfig = {
       '/products': { page: '/products' },
     }
   },
-  target: 'serverless',
 }
 
 module.exports = withPlugins(
