@@ -1,16 +1,18 @@
-import { Icon, Section } from "bloomer";
+import { Icon, Section } from 'bloomer'
 
 export default () => {
   return (
-    <Section hasTextColor='primary'
-      style={{
-        position: 'absolute',
-        left: '40%'
-      }}
-    >
+    <Section className="success-root" hasTextColor='primary'>
       <div>
-        <Icon className="fas fa-thumbs-up fa-2x" />
+        <Icon className='fas fa-thumbs-up fa-2x' />
       </div>
+      <style jsx global>
+        {`
+          section :global(.success-root) {
+            position: absolute; 
+          }
+        `}
+      </style>
     </Section>
-  );
-};
+  )
+}

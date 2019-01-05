@@ -1,11 +1,12 @@
 import { I18n } from '@aws-amplify/core';
-import { Authenticator, ForgotPassword, RequireNewPassword, VerifyContact } from 'aws-amplify-react';
+import { Authenticator, ForgotPassword, RequireNewPassword } from 'aws-amplify-react';
 import { Hero, HeroBody } from 'bloomer';
 import Router from 'next/router';
 import { Query } from 'react-apollo';
 import CustomizedConfirmSignUp from '../components/AWS/ConfirmSignUp';
 import CustomizedSignIn from '../components/AWS/SignIn';
 import CustomizedSignUp from '../components/AWS/SignUp';
+import CustomizedVerifyContact from '../components/AWS/VerifyContact';
 import ErrorBoundary from '../components/ErrorBoundary';
 import ErrorScreen from '../components/ErrorScreen';
 import LoadingScreen from '../components/LoadingScreen';
@@ -29,10 +30,9 @@ class Authenticate extends React.PureComponent {
   onStateChange = async authState => {
     if (authState === 'signedIn') {
       const authUser = await currentUser()
-      if (authUser) {
-        this.setState({ currentUser: authUser })
-        this.props.setCurrentUser(authUser.attributes.email, true)
-      }
+      this.setState({ currentUser: authUser })
+      this.props.setCurrentUser(authUser.attributes.email, true)
+      setTimeout(() => Router.push('/'), 1000)
     }
   }
 
@@ -50,8 +50,8 @@ class Authenticate extends React.PureComponent {
     const { currentUser } = this.state
     return (
       <ErrorBoundary>
-        <Hero isColor="success" isFullHeight isFullWidth>
-          <HeroBody style={{justifyContent: 'center'}}>
+        <Hero isColor='success' isFullHeight isFullWidth>
+          <HeroBody style={{ justifyContent: 'center' }}>
             <Authenticator
               hideDefault={true}
               theme={AwsTheme}
@@ -66,7 +66,10 @@ class Authenticate extends React.PureComponent {
               />
               <ForgotPassword />
               <RequireNewPassword />
-              <VerifyContact />
+              <CustomizedVerifyContact
+                setNotification={this.setNotification}
+                error={this.state.error}
+              />
               <CustomizedConfirmSignUp
                 setNotification={this.setNotification}
                 error={this.state.error}
@@ -81,13 +84,12 @@ class Authenticate extends React.PureComponent {
             {currentUser && (
               <Query
                 query={GET_USER}
-                variables={{ email: this.state.currentUser.attributes.email }}>
+                variables={{ email: currentUser.attributes.email }}>
                 {({ loading, error, data }) => {
                   if (loading) {
                     return <LoadingScreen />
                   }
                   if (error) return <ErrorScreen />
-                  setTimeout(() => Router.push('/'), 500)
                   return <SuccessScreen />
                 }}
               </Query>

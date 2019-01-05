@@ -65,8 +65,7 @@ export const AwsTheme = {
 		color: theme.info,
 	},
 	toast: {
-		backgroundColor: theme.success,
-		color: theme.info,
+		backgroundColor: theme.primary
 	},
 	navItem: {
 		display: `block`,

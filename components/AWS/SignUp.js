@@ -6,8 +6,17 @@ import { handleError, validateEmail, validatePassword } from '../../lib/awsAuth'
 import ErrorNotification from '../ErrorNotification';
 
 const CustomizedSignUp = props => {
+  const {
+    authState,
+    attribute,
+    onAttributeToggle,
+    error,
+    setNotification,
+    onStateChange,
+  } = props
+
   const handleSignUp = async formState => {
-    props.setNotification(null)
+    setNotification(null)
     if (
       formState.values.email &&
       formState.values.password &&
@@ -19,114 +28,116 @@ const CustomizedSignUp = props => {
           formState.values.email.trim(),
           formState.values.password.trim(),
         )
-        props.onStateChange('signedUp')
+        onStateChange('signedUp')
       } catch (e) {
+        console.log(e)
         const error = handleError(e.code)
-        props.setNotification(error)
+        setNotification(error)
       }
     }
   }
 
-  const dismiss = () => props.setNotification(null)
+  const dismiss = () => setNotification(null)
 
   const onGoToSignIn = () => {
-    props.setNotification(null)
-    props.onStateChange('signIn')
+    setNotification(null)
+    onStateChange('signIn')
   }
 
-  const { authState, attribute, onAttributeToggle, error } = props
   return (
     <React.Fragment>
       {error && <ErrorNotification notification={error} dismiss={dismiss} />}
       {authState === 'signUp' && (
         <Form>
-          {({ formState }) => (
-            <Card>
-              <CardHeader>
-                <CardHeaderTitle>
-                  Регистрация нового пользователя
-                </CardHeaderTitle>
-              </CardHeader>
-              <CardContent>
-                <Field>
-                  <Label htmlFor='state-email'>Адрес эл. почты</Label>
-                  <Control>
-                    <Text
-                      validate={validateEmail}
-                      validateOnBlur
-                      field='email'
-                      id='email'
-                      placeholder='Введите свой адрес эл.почты'
-                      className='input'
-                    />
-                  </Control>
-                  <p className='has-text-left is-size-7 has-text-primary'>
-                    {formState.errors.email && formState.errors.email}
-                  </p>
-                </Field>
-                <Field>
-                  <Label htmlFor='state-password'>Пароль</Label>
-                  <Control
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                    }}>
-                    <Text
-                      validate={validatePassword}
-                      validateOnBlur
-                      validateOnChange
-                      type={attribute}
-                      field='password'
-                      id='password'
-                      placeholder='Введите пароль'
-                      className='input'
-                    />
-                    <Icon
-                      onClick={onAttributeToggle}
+          {({ formState }) => {
+            return (
+              <Card>
+                <CardHeader>
+                  <CardHeaderTitle>
+                    Регистрация нового пользователя
+                  </CardHeaderTitle>
+                </CardHeader>
+                <CardContent>
+                  <Field>
+                    <Label htmlFor='state-email'>Адрес эл. почты</Label>
+                    <Control>
+                      <Text
+                        validate={validateEmail}
+                        validateOnBlur
+                        field='email'
+                        id='email'
+                        placeholder='Введите свой адрес эл.почты'
+                        className='input'
+                      />
+                    </Control>
+                    <p className='has-text-left is-size-7 has-text-primary'>
+                      {formState.errors.email && formState.errors.email}
+                    </p>
+                  </Field>
+                  <Field>
+                    <Label htmlFor='state-password'>Пароль</Label>
+                    <Control
                       style={{
-                        cursor: 'pointer',
-                        margin: '0 0 0 10px',
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}>
+                      <Text
+                        validate={validatePassword}
+                        validateOnBlur
+                        validateOnChange
+                        type={attribute}
+                        field='password'
+                        id='password'
+                        placeholder='Введите пароль'
+                        className='input'
+                      />
+                      <Icon
+                        onClick={onAttributeToggle}
+                        style={{
+                          cursor: 'pointer',
+                          margin: '0 0 0 10px',
+                        }}
+                        className='fas fa-eye has-text-primary'
+                      />
+                    </Control>
+                    <div
+                      style={{
+                        maxWidth: '100%',
+                        wordBreak: 'break-word',
+                        whiteSpace: 'pre-wrap',
                       }}
-                      className='fas fa-eye has-text-primary'
-                    />
-                  </Control>
-                  <div
-                    style={{
-                      maxWidth: '100%',
-                      wordBreak: 'break-word',
-                      whiteSpace: 'pre-wrap',
-                    }}
-                    className='has-text-left is-size-7 has-text-primary'>
-                    {formState.errors.password &&
-                      formState.errors.password.map((error, index) => (
-                        <React.Fragment key={index}>{error}</React.Fragment>
-                      ))}
-                  </div>
-                </Field>
-              </CardContent>
-              <CardFooter style={{ flexWrap: 'wrap' }}>
-                <CardFooterItem>
-                  <Button
-                    onClick={() => handleSignUp(formState)}
-                    isFullWidth
-                    isColor='primary'
-                    type='submit'>
-                    Зарегистрироваться
-                  </Button>
-                </CardFooterItem>
-                <CardFooterItem>
-                  <span>Зарегистрированы?</span>
-                  <a
-                    style={{
-                      marginLeft: '10px',
-                    }}
-                    onClick={() => onGoToSignIn()}>
-                    Войти
-                  </a>
-                </CardFooterItem>
-              </CardFooter>
-            </Card>
-          )}
+                      className='has-text-left is-size-7 has-text-primary'>
+                      {formState.errors.password &&
+                        formState.errors.password.map((error, index) => (
+                          <React.Fragment key={index}>{error}</React.Fragment>
+                        ))}
+                    </div>
+                  </Field>
+                </CardContent>
+                <CardFooter style={{ flexWrap: 'wrap' }}>
+                  <CardFooterItem>
+                    <Button
+                      onClick={() => handleSignUp(formState)}
+                      isFullWidth
+                      isColor='primary'
+                      type='submit'>
+                      Зарегистрироваться
+                    </Button>
+                  </CardFooterItem>
+                  <CardFooterItem>
+                    <span>Зарегистрированы?</span>
+                    <a
+                      style={{
+                        marginLeft: '10px',
+                      }}
+                      onClick={() => onGoToSignIn()}>
+                      Войти
+                    </a>
+                  </CardFooterItem>
+                </CardFooter>
+              </Card>
+            )
+          }}
         </Form>
       )}
     </React.Fragment>

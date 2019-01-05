@@ -1,12 +1,23 @@
-import { Auth } from 'aws-amplify';
-import { Button, Card, CardContent, CardFooter, CardFooterItem, CardHeader, CardHeaderTitle, Control, Field, Label } from 'bloomer';
-import { Form, Text } from 'informed';
-import { Mutation } from 'react-apollo';
-import { CREATE_USER } from '../../graphql/mutations/user';
-import { handleError, validateEmail } from '../../lib/awsAuth';
-import ErrorNotification from '../ErrorNotification';
-import LoadingScreen from '../LoadingScreen';
-import SuccessScreen from '../SuccessScreen';
+import { Auth } from 'aws-amplify'
+import {
+  Button,
+  Card,
+  CardContent,
+  CardFooter,
+  CardFooterItem,
+  CardHeader,
+  CardHeaderTitle,
+  Control,
+  Field,
+  Label,
+} from 'bloomer'
+import { Form, Text } from 'informed'
+import { Mutation } from 'react-apollo'
+import { CREATE_USER } from '../../graphql/mutations/user'
+import { handleError, validateEmail } from '../../lib/awsAuth'
+import ErrorNotification from '../ErrorNotification'
+import LoadingScreen from '../LoadingScreen'
+import SuccessScreen from '../SuccessScreen'
 
 const withMutation = Component => {
   return function MutationHOC(props) {
@@ -35,7 +46,7 @@ const ConfirmSignUp = props => {
     authState,
   } = props
   const confirmSignUp = async formState => {
-    props.setNotification(null)
+    setNotification(null)
 
     if (formState.values.email && formState.values.code) {
       try {
@@ -61,9 +72,8 @@ const ConfirmSignUp = props => {
         setNotification(null)
         return <SuccessScreen />
       } catch (e) {
-        console.log(e)
-        const error = handleError(e.code, e.message)
-        setNotification(error)
+        const err = handleError(e.code, e.message)
+        setNotification(err)
       }
     }
   }
@@ -92,80 +102,82 @@ const ConfirmSignUp = props => {
 
       {(authState === 'confirmSignUp' || authState === 'signedUp') && (
         <Form>
-          {({ formState }) => (
-            <Card>
-              <CardHeader>
-                <CardHeaderTitle>Подтвердить регистрацию</CardHeaderTitle>
-              </CardHeader>
-              <CardContent>
-                <Field>
-                  <Label htmlFor='username'>Адрес эл. почты</Label>
-                  <Control>
-                    <Text
-                      required
-                      field='email'
-                      id='email'
-                      placeholder='Введите свой адрес эл.почты'
-                      className='input'
-                      validate={validateEmail}
-                      validateOnBlur
-                    />
-                  </Control>
-                  <p className='has-text-left is-size-7 has-text-primary'>
-                    {formState.errors.email && formState.errors.email}
-                  </p>
-                </Field>
-                <Field>
-                  <Label htmlFor='code'>Код подтверждения</Label>
-                  <Control
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                    }}>
-                    <Text
-                      required
-                      type='text'
-                      field='code'
-                      id='code'
-                      placeholder='Введите код'
-                      className='input'
-                    />
-                  </Control>
-                </Field>
-                <Field>
-                  <span>Код утерян? </span>
-                  <a
-                    style={{
-                      marginLeft: '10px',
-                    }}
-                    onClick={() => resendCode(formState)}>
-                    Выслать повторно
-                  </a>
-                </Field>
-              </CardContent>
-              <CardFooter style={{ flexWrap: 'wrap' }}>
-                <CardFooterItem>
-                  <Button
-                    isFullWidth
-                    isColor='primary'
-                    type='submit'
-                    onClick={() => confirmSignUp(formState)}>
-                    Подтвердить
-                  </Button>
-                </CardFooterItem>
-                <CardFooterItem>
-                  <a
-                    role='button'
-                    style={{
-                      marginLeft: '10px',
-                    }}
-                    onClick={() => onStateChange('signIn')}>
-                    Вход пользователя
-                  </a>
-                </CardFooterItem>
-              </CardFooter>
-            </Card>
-          )}
+          {({ formState }) => {
+            return (
+              <Card>
+                <CardHeader>
+                  <CardHeaderTitle>Подтвердить регистрацию</CardHeaderTitle>
+                </CardHeader>
+                <CardContent>
+                  <Field>
+                    <Label htmlFor='username'>Адрес эл. почты</Label>
+                    <Control>
+                      <Text
+                        required
+                        field='email'
+                        id='email'
+                        placeholder='Введите свой адрес эл.почты'
+                        className='input'
+                        validate={validateEmail}
+                        validateOnBlur
+                      />
+                    </Control>
+                    <p className='has-text-left is-size-7 has-text-primary'>
+                      {formState.errors.email && formState.errors.email}
+                    </p>
+                  </Field>
+                  <Field>
+                    <Label htmlFor='code'>Код подтверждения</Label>
+                    <Control
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}>
+                      <Text
+                        required
+                        type='text'
+                        field='code'
+                        id='code'
+                        placeholder='Введите код'
+                        className='input'
+                      />
+                    </Control>
+                  </Field>
+                  <Field>
+                    <span>Код утерян? </span>
+                    <a
+                      style={{
+                        marginLeft: '10px',
+                      }}
+                      onClick={() => resendCode(formState)}>
+                      Выслать повторно
+                    </a>
+                  </Field>
+                </CardContent>
+                <CardFooter style={{ flexWrap: 'wrap' }}>
+                  <CardFooterItem>
+                    <Button
+                      isFullWidth
+                      isColor='primary'
+                      type='submit'
+                      onClick={() => confirmSignUp(formState)}>
+                      Подтвердить
+                    </Button>
+                  </CardFooterItem>
+                  <CardFooterItem>
+                    <a
+                      role='button'
+                      style={{
+                        marginLeft: '10px',
+                      }}
+                      onClick={() => onStateChange('signIn')}>
+                      Вход пользователя
+                    </a>
+                  </CardFooterItem>
+                </CardFooter>
+              </Card>
+            )
+          }}
         </Form>
       )}
     </React.Fragment>
