@@ -1,4 +1,4 @@
-import { Footer, Icon, Level, LevelItem, Content } from 'bloomer'
+import { Content, Footer, Icon, Level, LevelItem, Notification } from 'bloomer'
 import Link from 'next/link'
 import FacebookIcon from './SVG/Facebook'
 import InstagramIcon from './SVG/Instagram'
@@ -42,7 +42,10 @@ export default props => {
           </LevelItem>
         )}
       </Level>
-      <Content hasTextAlign='centered' hasTextColor='info' className="footer-content">
+      <Content
+        hasTextAlign='centered'
+        hasTextColor='info'
+        className='footer-content'>
         <p>
           Услуги разработчика:
           <span>
@@ -111,6 +114,29 @@ export default props => {
             </a>
           </span>
         </p>
+        <Level style={{ overflow: 'hidden' }}>
+          <LevelItem>
+            <Notification className='has-text-left footer-note'>
+              <strong>Наш адрес:</strong>
+              <span>109377, г.Москва</span>
+              <span>Рязанский проспект, 58/1</span>
+            </Notification>
+          </LevelItem>
+          <LevelItem>
+            <Notification className='has-text-left footer-note'>
+              <strong>Наши номера телефона:</strong>
+              <span>+7 (926) 982-35-72</span>
+              <span>+7 (926) 629-87-26</span>
+            </Notification>
+          </LevelItem>
+          <LevelItem>
+            <Notification className='has-text-left footer-note'>
+              <strong>Наши часы работы:</strong>
+              <span>с понедельника по субботу: с 8.00 до 20.00</span>
+              <span>в воскресенье: с 9.00 до 18.00</span>
+            </Notification>
+          </LevelItem>
+        </Level>
       </Content>
       <style jsx>
         {`
@@ -118,12 +144,16 @@ export default props => {
             margin: 0 5px;
           }
           :global(.footer-content) {
-              margin-top: 3.5rem !important;
+            margin-top: 3.5rem !important;
+          }
+          :global(.footer-note) {
+            display: flex;
+            flex-direction: column;
           }
           .copyright {
-              display: flex;
-              align-items: center;
-              justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
         `}
       </style>
