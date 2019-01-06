@@ -151,3 +151,5 @@ export const Handset = props => (
 );
 export const SmallHandset = props => <Responsive {...props} maxWidth={359} />;
 export const Default = props => <Responsive {...props} minWidth={600} />;
+export const Touch = props => <Responsive {...props} maxWidth={1087} />
+export const NonTouch = props => <Responsive {...props} minWidth={1088} />

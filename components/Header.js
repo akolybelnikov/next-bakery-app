@@ -245,47 +245,4 @@ class Header extends Component {
   }
 }
 
-const User = id => {
-  return (
-    <Query
-      query={GET_USER}
-      variables={id}
-      fetchPolicy="cache-and-network"
-      errorPolicy="all"
-    >
-      {({ loading, error, data }) => {
-        if (loading) return <LoadingScreen />;
-        if (error) {
-          console.error(error);
-          return (
-            <Link href="/authenticate" prefetch>
-              <NavbarLink
-                onClick={onCloseMenu}
-                className="is-arrowless userlogin has-text-primary is-size-5-tablet"
-              >
-                Вход пользователя
-              </NavbarLink>
-            </Link>
-          );
-        }
-        if (data.getUser) {
-          return (
-            <Link href="/user" prefetch>
-              {data.getUser.firstname ? (
-                <a className="is-capitalized">
-                  Здравствуйте, {data.getUser.fisrtname}
-                </a>
-              ) : (
-                <a>{data.getUser.email}</a>
-              )}
-            </Link>
-          );
-        } else {
-          return <Login />;
-        }
-      }}
-    </Query>
-  );
-};
-
 export default withData(Header);

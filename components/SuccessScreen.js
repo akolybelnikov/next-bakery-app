@@ -6,7 +6,7 @@ export default () => {
       <div>
         <Icon className='fas fa-thumbs-up fa-2x' />
       </div>
-      <style jsx global>
+      <style jsx>
         {`
           section :global(.success-root) {
             position: absolute; 

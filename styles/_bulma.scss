@@ -33,9 +33,13 @@ $colors: (
     $danger-invert,
   ),
 );
+// Layout and text
 $content-heading-color: $info;
 $border: $success-shadow;
 $border-hover: $success;
+$text-strong: $info;
+$footer-background-color: $success-shadow;
+
 // Card
 $card-header-color: $primary;
 $card-color: $info;

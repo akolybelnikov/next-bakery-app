@@ -107,8 +107,8 @@ class MobileFooter extends React.Component {
               left: 0;
               background-color: ${theme.primaryHalf};
               bottom: ${this.state.isScrolledDown
-                ? this.state.windowY - 7.25
-                : 0}em !important;
+                ? this.state.windowY - 200
+                : 0}% !important;
             }
             nav.mobile-footer-nav {
               padding: 0.8rem 0 !important;
