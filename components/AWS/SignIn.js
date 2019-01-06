@@ -1,10 +1,24 @@
 import { Auth } from 'aws-amplify';
 import { Button, Card, CardContent, CardFooter, CardFooterItem, CardHeader, CardHeaderTitle, Control, Field, Icon, Label } from 'bloomer';
 import { Form, Text } from 'informed';
+import { Mutation } from 'react-apollo';
+import { UPDATE_USER } from '../../graphql/mutations/user';
 import { currentUser, handleError } from '../../lib/awsAuth';
 import ErrorNotification from '../ErrorNotification';
 
-const CustomizedSignIn = props => {
+const withMutation = Component => {
+  return function MutationHOC(props) {
+    return (
+      <Mutation mutation={UPDATE_USER}>
+        {(mutate, state) => (
+          <Component {...props} mutate={mutate} loading={state.loading} mutationError={state.error}/>
+        )}
+      </Mutation>
+    )
+  }
+}
+
+const SignIn = props => {
   const {
     authState,
     onStateChange,
@@ -12,6 +26,8 @@ const CustomizedSignIn = props => {
     onAttributeToggle,
     setNotification,
     error,
+    mutate,
+    mutationError,
   } = props
 
   const signIn = async formState => {
@@ -27,6 +43,15 @@ const CustomizedSignIn = props => {
         if (!authUser.attributes.email_verified) {
           onStateChange('verifyContact')
         } else {
+          mutate({
+            variables: {
+              input: {
+                email: formState.values.email.trim(),
+                lastActive: Math.floor(Date.now() / 1000)
+              }
+            }
+          })
+          if (mutationError) console.error(mutationError)
           onStateChange('signedIn')
         }
       } catch (e) {
@@ -132,5 +157,7 @@ const CustomizedSignIn = props => {
     </React.Fragment>
   )
 }
+
+const CustomizedSignIn = withMutation(SignIn)
 
 export default CustomizedSignIn
