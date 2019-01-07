@@ -43,9 +43,11 @@ $notification-background-color: $success-shadow;
 
 // Card
 $card-header-color: $primary;
+$card-header-background-color: $success-shadow;
 $card-color: $info;
 $card-shadow: 0 2px 3px $success-shadow, 0 0 0 1px $success-shadow;
 $card-header-shadow: 0 1px 2px $success-shadow;
+$card-footer-background-color: $success-shadow;
 
 // Dropdown
 $dropdown-item-color: $info;
