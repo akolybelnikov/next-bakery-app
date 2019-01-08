@@ -1,104 +1,101 @@
-import { NavbarBrand, NavbarItem, NavbarLink, NavbarMenu } from "bloomer";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import React, { Component } from "react";
-import { Query } from "react-apollo";
-import { fromEvent, Subscription } from "rxjs";
-import { distinctUntilChanged, filter, map, pairwise, share, throttleTime } from "rxjs/operators";
-import GET_USER from "../graphql/queries/user";
-import LogoSVG from "../static/logos/logo.svg";
-import { Default, Handset, SmallHandset } from "../styles/utils";
-import withData from "../withData";
-import LoadingScreen from "./LoadingScreen";
+import { NavbarBrand, NavbarItem, NavbarLink, NavbarMenu } from 'bloomer';
+import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import React, { Component } from 'react';
+import { fromEvent, Subscription } from 'rxjs';
+import { distinctUntilChanged, filter, map, pairwise, share, throttleTime } from 'rxjs/operators';
+import LogoSVG from '../static/logos/logo.svg';
+import { Default, Handset, SmallHandset } from '../styles/utils';
+import withData from '../withData';
 
-const BurgerIcon = dynamic(() => import("../components/SVG/BurgerIcon"), {
-  ssr: false
-});
+const BurgerIcon = dynamic(() => import('../components/SVG/BurgerIcon'), {
+  ssr: false,
+})
 
 const Direction = {
-  Up: "up",
-  Down: "down"
-};
+  Up: 'up',
+  Down: 'down',
+}
 
 class Header extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       isMenuActive: false,
-      isScrolledUp: true
-    };
+      isScrolledUp: true,
+    }
   }
 
-  scrollUpSubscription = new Subscription();
-  scrollDownSubscription = new Subscription();
+  scrollUpSubscription = new Subscription()
+  scrollDownSubscription = new Subscription()
 
   componentDidMount() {
-    const scroll$ = fromEvent(window, "scroll").pipe(
+    const scroll$ = fromEvent(window, 'scroll').pipe(
       throttleTime(10),
       map(() => window.pageYOffset),
       pairwise(),
       map(([y1, y2]) => (y2 < y1 ? Direction.Up : Direction.Down)),
       distinctUntilChanged(),
-      share()
-    );
+      share(),
+    )
     const scrollUp$ = scroll$.pipe(
-      filter(direction => direction === Direction.Up)
-    );
+      filter(direction => direction === Direction.Up),
+    )
 
     const scrollDown$ = scroll$.pipe(
-      filter(direction => direction === Direction.Down)
-    );
+      filter(direction => direction === Direction.Down),
+    )
 
     this.scrollUpSubscription = scrollUp$.subscribe(() => {
-      return this.setState({ isScrolledUp: true });
-    });
+      return this.setState({ isScrolledUp: true })
+    })
     this.scrollDownSubscription = scrollDown$.subscribe(() => {
       if (window.pageYOffset > 0) {
-        return this.setState({ isScrolledUp: false });
+        return this.setState({ isScrolledUp: false })
       }
-    });
+    })
   }
 
   componentWillUnmount() {
-    this.scrollUpSubscription.unsubscribe();
-    this.scrollDownSubscription.unsubscribe();
+    this.scrollUpSubscription.unsubscribe()
+    this.scrollDownSubscription.unsubscribe()
   }
 
   onToggleMenu = () => {
     this.setState({
-      isMenuActive: !this.state.isMenuActive
-    });
-  };
+      isMenuActive: !this.state.isMenuActive,
+    })
+  }
 
   onCloseMenu = () => {
-    if (this.state.isMenuActive) this.setState({ isMenuActive: false });
-  };
+    if (this.state.isMenuActive) this.setState({ isMenuActive: false })
+  }
 
   render() {
-    const { isAuthenticated, email } = this.props;
+    const { isAuthenticated, email } = this.props
     return (
-      <nav className="navbar is-fixed-top">
+      <nav className='navbar is-fixed-top'>
         <NavbarBrand>
-          <NavbarItem className="logo" isHidden="desktop">
-            <Link prefetch href="/">
-              <NavbarLink className="is-arrowless">
-                <LogoSVG className="logoSVG" />
+          <NavbarItem className='logo' isHidden='desktop'>
+            <Link prefetch href='/'>
+              <NavbarLink className='is-arrowless'>
+                <LogoSVG className='logoSVG' />
               </NavbarLink>
             </Link>
           </NavbarItem>
 
           {isAuthenticated && (
             <Default>
-              <NavbarItem isHidden="desktop">
-                <Link prefetch href="/user">
-                  <NavbarLink className="is-arrowless">{email}</NavbarLink>
+              <NavbarItem isHidden='desktop'>
+                <Link prefetch href='/user'>
+                  <NavbarLink className='is-arrowless'>{email}</NavbarLink>
                 </Link>
               </NavbarItem>
             </Default>
           )}
 
-          <NavbarItem className="burgericon" isHidden="desktop">
+          <NavbarItem className='burgericon' isHidden='desktop'>
             <SmallHandset>
               <BurgerIcon
                 height={60}
@@ -127,53 +124,49 @@ class Header extends Component {
         </NavbarBrand>
         <NavbarMenu isActive={this.state.isMenuActive}>
           <NavbarItem>
-            <Link href="/products" prefetch>
+            <Link href='/products' prefetch>
               <NavbarLink
                 onClick={this.onCloseMenu}
-                className="is-arrowless is-size-5-tablet"
-              >
+                className='is-arrowless is-size-5-tablet'>
                 Ассортимент
               </NavbarLink>
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link href="/offers" prefetch>
+            <Link href='/offers' prefetch>
               <NavbarLink
                 onClick={this.onCloseMenu}
-                className="is-arrowless is-size-5-tablet"
-              >
+                className='is-arrowless is-size-5-tablet'>
                 Спецпредложения
               </NavbarLink>
             </Link>
           </NavbarItem>
-          <NavbarItem isHidden="touch">
-            <Link href="/" prefetch>
-              <NavbarLink className="is-arrowless">
-                <LogoSVG className="logoSVG" />
+          <NavbarItem isHidden='touch'>
+            <Link href='/' prefetch>
+              <NavbarLink className='is-arrowless'>
+                <LogoSVG className='logoSVG' />
               </NavbarLink>
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link href="/contact" prefetch>
+            <Link href='/contact' prefetch>
               <NavbarLink
                 onClick={this.onCloseMenu}
-                className="is-arrowless is-size-5-tablet"
-              >
+                className='is-arrowless is-size-5-tablet'>
                 Контакт
               </NavbarLink>
             </Link>
           </NavbarItem>
           <NavbarItem>
-            <Link href={isAuthenticated ? "/user" : "/authenticate"} prefetch>
+            <Link href={isAuthenticated ? '/user' : '/authenticate'} prefetch>
               <NavbarLink
                 onClick={this.onCloseMenu}
                 className={
                   isAuthenticated
                     ? `is-arrowless`
                     : `is-arrowless is-size-5-tablet`
-                }
-              >
-                {isAuthenticated ? email : "Вход пользователя"}
+                }>
+                {isAuthenticated ? email : 'Вход пользователя'}
               </NavbarLink>
             </Link>
           </NavbarItem>
@@ -241,8 +234,8 @@ class Header extends Component {
           `}
         </style>
       </nav>
-    );
+    )
   }
 }
 
-export default withData(Header);
+export default withData(Header)

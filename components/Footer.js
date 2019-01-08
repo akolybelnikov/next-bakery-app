@@ -1,7 +1,7 @@
-import { Content, Footer, Icon, Level, LevelItem, Notification } from 'bloomer'
-import Link from 'next/link'
-import FacebookIcon from './SVG/Facebook'
-import InstagramIcon from './SVG/Instagram'
+import { Content, Footer, Icon, Level, LevelItem, Notification } from 'bloomer';
+import Link from 'next/link';
+import FacebookIcon from './SVG/Facebook';
+import InstagramIcon from './SVG/Instagram';
 
 export default props => {
   const { isAuthenticated } = props
@@ -24,20 +24,20 @@ export default props => {
         </LevelItem>
         <LevelItem className='has-text-info'>
           <Link prefetch href='/contact'>
-            <Icon className='fas fa-map-pin fa-2x' />
+            <Icon className='fas fa-map-pin fa-2x footer-icon' />
           </Link>
         </LevelItem>
         {isAuthenticated && (
           <LevelItem className='has-text-primary'>
             <Link prefetch href='/user'>
-              <Icon className='fas fa-user-circle fa-2x' />
+              <Icon className='fas fa-user-circle fa-2x footer-icon' />
             </Link>
           </LevelItem>
         )}
         {!isAuthenticated && (
           <LevelItem className='has-text-primary'>
             <Link prefetch href='/authenticate'>
-              <Icon className='fas fa-sign-in-alt fa-2x' />
+              <Icon className='fas fa-sign-in-alt fa-2x footer-icon' />
             </Link>
           </LevelItem>
         )}
@@ -154,6 +154,9 @@ export default props => {
             display: flex;
             align-items: center;
             justify-content: center;
+          }
+          :global(svg.footer-icon) {
+            cursor: pointer;
           }
         `}
       </style>

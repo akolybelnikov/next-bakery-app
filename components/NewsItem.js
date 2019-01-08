@@ -14,7 +14,7 @@ export default ({ news }) => {
             <figure className='image figure-media'>
               <Image
                 style={{ minWidth: '100%' }}
-                className='progressive-image is-background media-image'
+                className='progressive-image media-image'
                 src={`${publicRuntimeConfig.imagehandler}/320x320/${
                   news.image
                 }`}
@@ -27,10 +27,7 @@ export default ({ news }) => {
           </MediaLeft>
           <MediaContent>
             <p className='news-content'>{news.content}</p>
-            <Button
-              isColor='primary'
-              isInverted
-              isPulled='right'>
+            <Button isColor='primary' isInverted isPulled='right'>
               <span>Смотреть все наши новости</span>
               <Icon className='fas fa-chevron-right' />
             </Button>
@@ -41,10 +38,10 @@ export default ({ news }) => {
       <BelowDefault>
         <Card>
           <CardImage>
-            <figure className='image is-square'>
+            <figure className='image figure-card'>
               <Image
                 style={{ minWidth: '100%' }}
-                className='progressive-image'
+                className='progressive-image media-image'
                 src={`${publicRuntimeConfig.imagehandler}/620x620/${
                   news.image
                 }`}
@@ -55,7 +52,7 @@ export default ({ news }) => {
               />
             </figure>
           </CardImage>
-          <CardContent>{news.content}</CardContent>
+          <CardContent className='media-content'>{news.content}</CardContent>
           <CardFooter>
             <CardFooterItem style={{ justifyContent: 'space-around' }}>
               <span>Смотреть все наши новости</span>
@@ -68,6 +65,11 @@ export default ({ news }) => {
         :global(figure.figure-media) {
           width: 200px;
           height: 200px;
+          overflow: hidden;
+        }
+        :global(figure.figure-card) {
+          width: 100%;
+          height: 100vw;
           overflow: hidden;
         }
         :global(img.media-image) {

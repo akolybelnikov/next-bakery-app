@@ -9,17 +9,15 @@ export const Carousel = ({ autoplay, delay, children }) => {
       <div className='carousel-container'>{children}</div>
       <style jsx>
         {`
+          .carousel-container {
+            position: absolute;
+          }
           .carousel {
-            height: 30vh;
+            height: 45vh;
           }
           @media screen and (min-width: 769px) and (max-width: 1024px) {
             .carousel {
               height: 25vh;
-            }
-          }
-          @media screen and (max-width: 599px) {
-            .carousel {
-              height: 40vh;
             }
           }
           @media screen and (min-width: 600px) and (max-width: 768px) {
@@ -31,9 +29,6 @@ export const Carousel = ({ autoplay, delay, children }) => {
             .carousel {
               height: 70vh;
             }
-          }
-          .carousel-container {
-            position: absolute;
           }
         `}
       </style>
