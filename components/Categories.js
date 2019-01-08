@@ -14,7 +14,7 @@ export default ({ categories }) => {
         {categories.length &&
           categories.map((category, index) => (
             <Column key={index}>
-              <Link href={`/category?name=${category.name}`}>
+              <Link as={`/category/${category.name}`} href={`/category?name=${category.name}`}>
                 <a>
                   <CategoryCard category={category} />
                 </a>

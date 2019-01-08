@@ -13,16 +13,21 @@ export const Carousel = ({ autoplay, delay, children }) => {
             position: absolute;
           }
           .carousel {
-            height: 45vh;
+            height: 40vh;
           }
-          @media screen and (min-width: 769px) and (max-width: 1024px) {
+          @media screen and (max-width: 359px) {
             .carousel {
-              height: 25vh;
+              height: 55vh;
             }
           }
           @media screen and (min-width: 600px) and (max-width: 768px) {
             .carousel {
               height: 50vh;
+            }
+          }
+          @media screen and (min-width: 769px) and (max-width: 1024px) {
+            .carousel {
+              height: 25vh;
             }
           }
           @media screen and (max-width: 1023px) and (orientation: landscape) {

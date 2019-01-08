@@ -1,10 +1,9 @@
-import React, { Fragment } from "react"
 import ProgressiveImage from "react-progressive-image"
 
 export default ({ src, alt, className, placeholder }) => (
     <ProgressiveImage src={src} placeholder={placeholder}>
         {(currentSrc, loading) => (
-            <Fragment>
+            <React.Fragment>
                 <img
                     src={currentSrc}
                     alt={alt}
@@ -29,7 +28,7 @@ export default ({ src, alt, className, placeholder }) => (
                         }
                     `}
                 </style>
-            </Fragment>
+            </React.Fragment>
         )}
     </ProgressiveImage>
 )

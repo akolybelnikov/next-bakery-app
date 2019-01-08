@@ -1,20 +1,24 @@
-import { I18n } from '@aws-amplify/core';
-import { Authenticator, ForgotPassword, RequireNewPassword } from 'aws-amplify-react';
-import { Hero, HeroBody } from 'bloomer';
-import Router from 'next/router';
-import { Query } from 'react-apollo';
-import CustomizedConfirmSignUp from '../components/AWS/ConfirmSignUp';
-import CustomizedSignIn from '../components/AWS/SignIn';
-import CustomizedSignUp from '../components/AWS/SignUp';
-import CustomizedVerifyContact from '../components/AWS/VerifyContact';
-import ErrorBoundary from '../components/ErrorBoundary';
-import ErrorScreen from '../components/ErrorScreen';
-import LoadingScreen from '../components/LoadingScreen';
-import SuccessScreen from '../components/SuccessScreen';
-import GET_USER from '../graphql/queries/user';
-import { currentUser, dict, map } from '../lib/awsAuth';
-import { AwsTheme } from '../styles/utils';
-import withData from '../withData';
+import { I18n } from '@aws-amplify/core'
+import {
+  Authenticator,
+  ForgotPassword,
+  RequireNewPassword,
+} from 'aws-amplify-react'
+import { Hero, HeroBody } from 'bloomer'
+import Router from 'next/router'
+import { Query } from 'react-apollo'
+import CustomizedConfirmSignUp from '../components/AWS/ConfirmSignUp'
+import CustomizedSignIn from '../components/AWS/SignIn'
+import CustomizedSignUp from '../components/AWS/SignUp'
+import CustomizedVerifyContact from '../components/AWS/VerifyContact'
+import ErrorBoundary from '../components/ErrorBoundary'
+import ErrorScreen from '../components/ErrorScreen'
+import LoadingScreen from '../components/LoadingScreen'
+import SuccessScreen from '../components/SuccessScreen'
+import GET_USER from '../graphql/queries/user'
+import { currentUser, dict, map } from '../lib/awsAuth'
+import { AwsTheme } from '../styles/utils'
+import withData from '../withData'
 
 class Authenticate extends React.PureComponent {
   state = {
@@ -85,7 +89,7 @@ class Authenticate extends React.PureComponent {
               <Query
                 query={GET_USER}
                 variables={{ email: currentUser.attributes.email }}>
-                {({ loading, error, data }) => {
+                {({ loading, error }) => {
                   if (loading) {
                     return <LoadingScreen />
                   }

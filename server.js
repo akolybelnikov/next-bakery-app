@@ -1,10 +1,11 @@
 const express = require('express')
 const next = require('next')
+const LRUCache = require('lru-cache')
+
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
-const LRUCache = require('lru-cache')
 
 const ssrCache = new LRUCache({
   max: 100,
@@ -17,7 +18,13 @@ app
     const server = express()
 
     server.get('/home', (req, res) => renderAndCache(req, res, '/'))
-    server.get('/', (req, res) => res.redirect(301, '/home'))
+    server.get('/', (_, res) => res.redirect(301, '/home'))
+
+    server.get('/category/:name', (req, res) => {
+      const actualPage = '/category'
+      const queryParams = { name: req.params.name }
+      renderAndCache(req, res, actualPage, queryParams)
+    })
 
     server.get('/*', (req, res) => handle(req, res))
 

@@ -22,22 +22,22 @@ const MobileFooter = ({ isAuthenticated }) => {
           rel='noopener noreferrer'>
           <InstagramIcon width='24px' />
         </LevelItem>
-        <LevelItem className='has-text-warning'>
+        <LevelItem>
           <Link prefetch href='/contact'>
-            <a><Icon className='fas fa-map-pin fa-lg' /></a>
+            <a className='has-text-warning'><Icon className='fas fa-map-pin fa-lg' /></a>
           </Link>
         </LevelItem>
         {isAuthenticated && (
-          <LevelItem className='has-text-success'>
+          <LevelItem>
             <Link prefetch href='/user'>
-              <a><Icon className='fas fa-user-circle fa-lg' /></a>
+              <a className='has-text-success'><Icon className='fas fa-user-circle fa-lg' /></a>
             </Link>
           </LevelItem>
         )}
         {!isAuthenticated && (
-          <LevelItem className='has-text-success'>
+          <LevelItem>
             <Link prefetch href='/authenticate'>
-              <a><Icon className='fas fa-sign-in-alt fa-lg' /></a>
+              <a className='has-text-success'><Icon className='fas fa-sign-in-alt fa-lg' /></a>
             </Link>
           </LevelItem>
         )}
