@@ -43,7 +43,7 @@ export const Carousel = ({ autoplay, delay, children }) => {
 
 export const CarouselItem = ({ children }) => {
   return (
-    <div className='carousel-item has-background'>
+    <div className='carousel-item'>
       {children}
       <style jsx>
         {`

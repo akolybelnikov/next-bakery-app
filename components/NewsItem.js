@@ -1,7 +1,19 @@
-import { Button, Card, CardContent, CardFooter, CardFooterItem, CardImage, Icon, Media, MediaContent, MediaLeft, MediaRight } from 'bloomer';
-import getConfig from 'next/config';
-import { BelowDefault, Default } from '../styles/utils';
-import Image from './Image';
+import {
+  Button,
+  Card,
+  CardContent,
+  CardFooter,
+  CardFooterItem,
+  CardImage,
+  Icon,
+  Media,
+  MediaContent,
+  MediaLeft,
+  MediaRight,
+} from 'bloomer'
+import getConfig from 'next/config'
+import { BelowDefault, Default } from '../styles/utils'
+import Image from './Image'
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -9,7 +21,7 @@ export default ({ news }) => {
   return (
     <React.Fragment>
       <Default>
-        <Media className='index-media'>
+        <Media>
           <MediaLeft>
             <figure className='image figure-media'>
               <Image
@@ -21,7 +33,7 @@ export default ({ news }) => {
                 placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${
                   news.image
                 }`}
-                alt='product news image'
+                alt='news image'
               />
             </figure>
           </MediaLeft>

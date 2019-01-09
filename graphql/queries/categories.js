@@ -1,15 +1,21 @@
-import graphql from 'graphql-tag'
+import gql from 'graphql-tag'
 
-const LIST_CATEGORIES =  graphql(`
-query {
-    listCategories (filter: {status: {eq: "active"}}) {
-        items {
-            name
-            image
-            title
-        }
+export const LIST_CATEGORIES = gql(`
+  query {
+    listCategories(filter: { status: { eq: "active" } }) {
+      items {
+        name
+        image
+        title
+      }
     }
-}
+  }
 `)
 
-export default LIST_CATEGORIES
+export const GET_CATEGORY = gql(`
+  query($name: String!) {
+    getCategory(name: $name) {
+      title
+    }
+  }
+`)

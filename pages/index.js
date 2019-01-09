@@ -1,14 +1,14 @@
+import { Title } from 'bloomer'
 import bulmaCarousel from 'bulma-carousel'
 import { compose, graphql } from 'react-apollo'
 import Categories from '../components/Categories'
 import ComponentContainer from '../components/ComponentContainer'
+import NewsItem from '../components/NewsItem'
 import OffersCarousel from '../components/OffersCarousel'
-import LIST_CATEGORIES from '../graphql/queries/categories'
+import { LIST_CATEGORIES } from '../graphql/queries/categories'
 import LIST_NEWS from '../graphql/queries/news'
 import LIST_OFFERS from '../graphql/queries/offers'
 import withData from '../withData'
-import NewsItem from '../components/NewsItem';
-import { Title } from 'bloomer';
 
 class Index extends React.Component {
   componentDidMount() {
@@ -20,7 +20,11 @@ class Index extends React.Component {
       <ComponentContainer>
         <OffersCarousel offers={this.props.offers} />
         <Categories categories={this.props.categories} />
-        <Title hasTextColor='primary' className='is-size-5-mobile is-size-3 has-text-centered-mobile'>Наши новости</Title>
+        <Title
+          hasTextColor='primary'
+          className='is-size-5-mobile is-size-3 has-text-centered-mobile'>
+          Наши новости
+        </Title>
         <NewsItem news={this.props.news[0]} />
         <style jsx>
           {`
