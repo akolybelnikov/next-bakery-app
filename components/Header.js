@@ -32,7 +32,7 @@ class Header extends Component {
 
   componentDidMount() {
     const scroll$ = fromEvent(window, 'scroll').pipe(
-      throttleTime(10),
+      throttleTime(100),
       map(() => window.pageYOffset),
       pairwise(),
       map(([y1, y2]) => (y2 < y1 ? Direction.Up : Direction.Down)),
