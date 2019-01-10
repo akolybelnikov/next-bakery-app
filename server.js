@@ -7,7 +7,7 @@ const LRUCache = require('lru-cache')
 
 const ssrCache = new LRUCache({
   max: 100,
-  maxAge: process.env.NODE_ENV !== 'production' ? 5 : 1000 * 60 * 60,
+  maxAge: 1000 * 60 * 60,
 })
 
 app
@@ -28,15 +28,8 @@ app
     server.get('/offers', (req, res) => renderAndCache(req, res, '/offers'))
 
     server.get('/category/:name', (req, res) => {
-      const actualPage = '/category'
       const queryParams = { name: req.params.name }
-      renderAndCache(req, res, actualPage, queryParams)
-    })
-
-    server.get('/:category/:id', (req, res) => {
-      const actualPage = '/product'
-      const queryParams = { category: req.params.category, id: req.params.id }
-      renderAndCache(req, res, actualPage, queryParams)
+      renderAndCache(req, res, '/category', queryParams)
     })
 
     server.get('*', (req, res) => {
