@@ -62,6 +62,16 @@ const nextConfig = {
     defaultUserEmail: process.env.DEFAULT_USER_EMAIL,
     defaultUserPassword: process.env.DEFAULT_USER_PASSWORD,
   },
+  exportPathMap: function() {
+    return {
+      '/': { page: '/' },
+      '/user': { page: '/user' },
+      '/authenticate': { page: '/authenticate' },
+      '/contact': { page: '/contact' },
+      '/offers': { page: '/offers' },
+      '/assortment': { page: '/assortment' },
+    }
+  },
 }
 
 module.exports = withPlugins(
