@@ -24,7 +24,7 @@ const MobileFooter = ({ isAuthenticated }) => {
         </LevelItem>
         <LevelItem>
           <Link prefetch href='/contact'>
-            <a className='has-text-warning'><Icon className='fas fa-map-pin fa-lg' /></a>
+            <a className='has-text-success'><Icon className='fas fa-map-signs fa-lg' /></a>
           </Link>
         </LevelItem>
         {isAuthenticated && (
@@ -55,6 +55,7 @@ const MobileFooter = ({ isAuthenticated }) => {
           }
           nav.mobile-footer-nav {
             padding: 0.8rem 0 !important;
+            align-items: flex-start !important;
           }
         `}
       </style>

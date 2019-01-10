@@ -69,7 +69,7 @@ const nextConfig = {
       '/authenticate': { page: '/authenticate' },
       '/contact': { page: '/contact' },
       '/offers': { page: '/offers' },
-      '/products': { page: '/products' },
+      '/assortment': { page: '/assortment' },
     }
   },
 }

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 
-const LIST_PRODUCTS = gql(`
+export const LIST_PRODUCTS = gql(`
     query listProducts(
         $filter: TableProductFilterInput
         $limit: Int
@@ -24,4 +24,19 @@ const LIST_PRODUCTS = gql(`
     }
 `)
 
-export default LIST_PRODUCTS
+export const GET_PRODUCT = gql(`
+    query getProduct($productId: ID!, $category: String!) {
+        getProduct(productId: $productId, category: $category) {
+            image
+            weight
+            price
+            sorts
+            upvotes
+            comments
+            productName
+            content
+            ingridients
+            status
+        }
+    }
+`)

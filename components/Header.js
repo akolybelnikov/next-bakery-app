@@ -124,7 +124,7 @@ class Header extends Component {
         </NavbarBrand>
         <NavbarMenu isActive={this.state.isMenuActive}>
           <NavbarItem>
-            <Link href='/products' prefetch>
+            <Link href='/assortment' prefetch>
               <NavbarLink
                 onClick={this.onCloseMenu}
                 className='is-arrowless is-size-5-tablet'>

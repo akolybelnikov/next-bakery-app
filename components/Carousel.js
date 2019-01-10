@@ -17,7 +17,7 @@ export const Carousel = ({ autoplay, delay, children }) => {
           }
           @media screen and (max-width: 359px) {
             .carousel {
-              height: 55vh;
+              height: 45vh;
             }
           }
           @media screen and (min-width: 600px) and (max-width: 768px) {
@@ -43,7 +43,7 @@ export const Carousel = ({ autoplay, delay, children }) => {
 
 export const CarouselItem = ({ children }) => {
   return (
-    <div className='carousel-item'>
+    <div className='carousel-item has-background'>
       {children}
       <style jsx>
         {`

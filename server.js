@@ -18,11 +18,27 @@ app
     const server = express()
 
     server.get('/home', (req, res) => renderAndCache(req, res, '/'))
-    server.get('/', (_, res) => res.redirect(301, '/home'))
+
+    server.get('/assortment', (req, res) =>
+      renderAndCache(req, res, '/assortment'),
+    )
+    server.get('/authenticate', (req, res) =>
+      renderAndCache(req, res, '/authenticate'),
+    )
 
     server.get('/category/:name', (req, res) => {
       const actualPage = '/category'
       const queryParams = { name: req.params.name }
+      renderAndCache(req, res, actualPage, queryParams)
+    })
+
+    server.get('/contact', (req, res) => renderAndCache(req, res, '/contact'))
+    server.get('/', (_, res) => res.redirect(301, '/home'))
+    server.get('/offers', (req, res) => renderAndCache(req, res, '/offers'))
+
+    server.get('/products/:category/:id', (req, res) => {
+      const actualPage = '/product'
+      const queryParams = { category: req.params.category, id: req.params.id }
       renderAndCache(req, res, actualPage, queryParams)
     })
 
@@ -38,32 +54,32 @@ app
     process.exit(1)
   })
 
-  function getCacheKey (req) {
-	  return `${req.url}`
+function getCacheKey(req) {
+  return `${req.url}`
+}
+
+async function renderAndCache(req, res, pagePath, queryParams) {
+  const key = getCacheKey(req)
+
+  if (ssrCache.has(key)) {
+    res.setHeader('x-cache', 'HIT')
+    res.send(ssrCache.get(key))
+    return
   }
 
-  async function renderAndCache (req, res, pagePath, queryParams) {
-	  const key = getCacheKey(req)
+  try {
+    const html = await app.renderToHTML(req, res, pagePath, queryParams)
 
-	  if (ssrCache.has(key)) {
-		  res.setHeader('x-cache', 'HIT')
-		  res.send(ssrCache.get(key))
-		  return
-	  }
+    if (res.statusCode !== 200) {
+      res.send(html)
+      return
+    }
 
-	  try {
-		  const html = await app.renderToHTML(req, res, pagePath, queryParams)
+    ssrCache.set(key, html)
 
-		  if (res.statusCode !== 200) {
-			  res.send(html)
-			  return
-		  }
-
-		  ssrCache.set(key, html)
-
-		  res.setHeader('x-cache', 'MISS')
-		  res.send(html)
-	  } catch (err) {
-			app.renderError(err, req, res, pagePath, queryParams)
-	  }
+    res.setHeader('x-cache', 'MISS')
+    res.send(html)
+  } catch (err) {
+    app.renderError(err, req, res, pagePath, queryParams)
   }
+}
