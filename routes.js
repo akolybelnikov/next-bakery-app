@@ -1,0 +1,11 @@
+const routes = require('next-routes')
+
+module.exports = routes()
+.add('home', '/home', 'index')
+.add('contact', '/contact', 'contact')
+.add('assortment', '/assortment', 'assortment')
+.add('authenticate', '/authenticate', 'authenticate')
+.add('offers', '/offers', 'offers')
+.add('user', 'user/:id', 'user')
+.add('product', '/:category/:id', 'product')
+.add('category', '/category/:name', 'category')

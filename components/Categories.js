@@ -1,6 +1,6 @@
 import { Column, Columns, Title } from 'bloomer'
+import { Link } from '../routes'
 import CategoryCard from './CategoryCard'
-import Link from 'next/link'
 
 export default ({ categories }) => {
   return (
@@ -14,7 +14,7 @@ export default ({ categories }) => {
         {categories.length &&
           categories.map((category, index) => (
             <Column key={index}>
-              <Link as={`/category/${category.name}`} href={`/category?name=${category.name}`}>
+              <Link route='category' params={{ name: category.name }}>
                 <a>
                   <CategoryCard category={category} />
                 </a>

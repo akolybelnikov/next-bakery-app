@@ -1,5 +1,4 @@
 import { Column, Columns, Title } from 'bloomer'
-import Link from 'next/link'
 import { withRouter } from 'next/router'
 import { Query } from 'react-apollo'
 import LazyLoad from 'react-lazy-load'
@@ -9,6 +8,7 @@ import LoadingScreen from '../components/LoadingScreen'
 import Product from '../components/Product'
 import { GET_CATEGORY } from '../graphql/queries/categories'
 import { LIST_PRODUCTS } from '../graphql/queries/products'
+import { Link } from '../routes'
 import { BelowDefault, Default } from '../styles/utils'
 import withData from '../withData'
 
@@ -52,12 +52,11 @@ const Category = withRouter(({ router }) => {
                               height={100}
                               offsetVertical={200}>
                               <Link
-                                as={`/products/${item.category}/${
-                                  item.productId
-                                }`}
-                                href={`/products?category=${item.category};id=${
-                                  item.productId
-                                }`}>
+                                route='product'
+                                params={{
+                                  category: item.category,
+                                  id: item.productId,
+                                }}>
                                 <a>
                                   <Product product={item} />
                                 </a>
@@ -73,12 +72,11 @@ const Category = withRouter(({ router }) => {
                                 key={index}
                                 isSize={{ mobile: 6, default: 4 }}>
                                 <Link
-                                  as={`/products/${item.category}/${
-                                    item.productId
-                                  }`}
-                                  href={`/products?category=${
-                                    item.category
-                                  };id=${item.productId}`}>
+                                  route='product'
+                                  params={{
+                                    category: item.category,
+                                    id: item.productId,
+                                  }}>
                                   <a>
                                     <Product product={item} />
                                   </a>
