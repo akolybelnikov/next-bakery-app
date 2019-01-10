@@ -24,20 +24,20 @@ const MobileFooter = ({ isAuthenticated }) => {
         </LevelItem>
         <LevelItem>
           <Link prefetch href='/contact'>
-            <a className='has-text-success'><Icon className='fas fa-map-signs fa-lg' /></a>
+            <a aria-label='Contact page link' className='has-text-success'><Icon className='fas fa-map-signs fa-lg' /></a>
           </Link>
         </LevelItem>
         {isAuthenticated && (
           <LevelItem>
             <Link prefetch href='/user'>
-              <a className='has-text-success'><Icon className='fas fa-user-circle fa-lg' /></a>
+              <a aria-label='User profile page link' className='has-text-success'><Icon className='fas fa-user-circle fa-lg' /></a>
             </Link>
           </LevelItem>
         )}
         {!isAuthenticated && (
           <LevelItem>
             <Link prefetch href='/authenticate'>
-              <a className='has-text-success'><Icon className='fas fa-sign-in-alt fa-lg' /></a>
+              <a aria-label='User authentication page link' className='has-text-success'><Icon className='fas fa-sign-in-alt fa-lg' /></a>
             </Link>
           </LevelItem>
         )}

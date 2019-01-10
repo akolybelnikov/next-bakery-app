@@ -11,7 +11,7 @@ import withData from '../withData'
 const Product = withRouter(({ router }) => {
   return (
     <ComponentContainer>
-      <Query
+      {router && <Query
         query={GET_PRODUCT}
         variables={{
           productId: router.query.id,
@@ -33,7 +33,7 @@ const Product = withRouter(({ router }) => {
             </React.Fragment>
           )
         }}
-      </Query>
+      </Query>}
     </ComponentContainer>
   )
 })

@@ -1,12 +1,19 @@
-import { NavbarBrand, NavbarItem, NavbarLink, NavbarMenu } from 'bloomer';
-import dynamic from 'next/dynamic';
-import Link from 'next/link';
-import React, { Component } from 'react';
-import { fromEvent, Subscription } from 'rxjs';
-import { distinctUntilChanged, filter, map, pairwise, share, throttleTime } from 'rxjs/operators';
-import LogoSVG from '../static/logos/logo.svg';
-import { Default, Handset, SmallHandset } from '../styles/utils';
-import withData from '../withData';
+import { NavbarBrand, NavbarItem, NavbarLink, NavbarMenu } from 'bloomer'
+import dynamic from 'next/dynamic'
+import Link from 'next/link'
+import React, { Component } from 'react'
+import { fromEvent, Subscription } from 'rxjs'
+import {
+  distinctUntilChanged,
+  filter,
+  map,
+  pairwise,
+  share,
+  throttleTime,
+} from 'rxjs/operators'
+import LogoSVG from '../static/logos/logo.svg'
+import { Default, Handset, SmallHandset } from '../styles/utils'
+import withData from '../withData'
 
 const BurgerIcon = dynamic(() => import('../components/SVG/BurgerIcon'), {
   ssr: false,
@@ -79,7 +86,7 @@ class Header extends Component {
         <NavbarBrand>
           <NavbarItem className='logo' isHidden='desktop'>
             <Link prefetch href='/'>
-              <NavbarLink className='is-arrowless'>
+              <NavbarLink aria-label='Homepage link' className='is-arrowless'>
                 <LogoSVG className='logoSVG' />
               </NavbarLink>
             </Link>
@@ -89,7 +96,11 @@ class Header extends Component {
             <Default>
               <NavbarItem isHidden='desktop'>
                 <Link prefetch href='/user'>
-                  <NavbarLink className='is-arrowless'>{email}</NavbarLink>
+                  <NavbarLink
+                    aria-label='User profile page link'
+                    className='is-arrowless'>
+                    {email}
+                  </NavbarLink>
                 </Link>
               </NavbarItem>
             </Default>
@@ -126,6 +137,7 @@ class Header extends Component {
           <NavbarItem>
             <Link href='/assortment' prefetch>
               <NavbarLink
+                aria-label='Assortment link'
                 onClick={this.onCloseMenu}
                 className='is-arrowless is-size-5-tablet'>
                 Ассортимент
@@ -135,6 +147,7 @@ class Header extends Component {
           <NavbarItem>
             <Link href='/offers' prefetch>
               <NavbarLink
+                aria-label='Offers page link'
                 onClick={this.onCloseMenu}
                 className='is-arrowless is-size-5-tablet'>
                 Спецпредложения
@@ -143,7 +156,7 @@ class Header extends Component {
           </NavbarItem>
           <NavbarItem isHidden='touch'>
             <Link href='/' prefetch>
-              <NavbarLink className='is-arrowless'>
+              <NavbarLink aria-label='Homepage link' className='is-arrowless'>
                 <LogoSVG className='logoSVG' />
               </NavbarLink>
             </Link>
@@ -151,6 +164,7 @@ class Header extends Component {
           <NavbarItem>
             <Link href='/contact' prefetch>
               <NavbarLink
+                aria-label='Contact page link'
                 onClick={this.onCloseMenu}
                 className='is-arrowless is-size-5-tablet'>
                 Контакт
@@ -160,6 +174,7 @@ class Header extends Component {
           <NavbarItem>
             <Link href={isAuthenticated ? '/user' : '/authenticate'} prefetch>
               <NavbarLink
+                aria-label='User page link'
                 onClick={this.onCloseMenu}
                 className={
                   isAuthenticated

@@ -5,7 +5,7 @@ import LazyLoad from 'react-lazy-load'
 import ComponentContainer from '../components/ComponentContainer'
 import ErrorScreen from '../components/ErrorScreen'
 import LoadingScreen from '../components/LoadingScreen'
-import Product from '../components/Product'
+import Producttem from '../components/Product'
 import { GET_CATEGORY } from '../graphql/queries/categories'
 import { LIST_PRODUCTS } from '../graphql/queries/products'
 import { Link } from '../routes'
@@ -58,7 +58,7 @@ const Category = withRouter(({ router }) => {
                                   id: item.productId,
                                 }}>
                                 <a>
-                                  <Product product={item} />
+                                  <Producttem product={item} />
                                 </a>
                               </Link>
                             </LazyLoad>
@@ -78,7 +78,7 @@ const Category = withRouter(({ router }) => {
                                     id: item.productId,
                                   }}>
                                   <a>
-                                    <Product product={item} />
+                                    <Producttem product={item} />
                                   </a>
                                 </Link>
                               </Column>
