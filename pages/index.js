@@ -41,7 +41,6 @@ class Index extends React.Component {
 const Home = compose(
   graphql(LIST_OFFERS, {
     options: {
-      fetchPolicy: 'cache-and-network',
       errorPolicy: 'all',
     },
     props: props => ({
@@ -50,7 +49,6 @@ const Home = compose(
   }),
   graphql(LIST_CATEGORIES, {
     options: {
-      fetchPolicy: 'cache-and-network',
       errorPolicy: 'all',
     },
     props: props => ({
@@ -61,7 +59,6 @@ const Home = compose(
   }),
   graphql(LIST_NEWS, {
     options: {
-      fetchPolicy: 'cache-and-network',
       errorPolicy: 'all',
     },
     props: props => ({

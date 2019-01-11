@@ -5,7 +5,6 @@ import { LIST_CATEGORIES } from '../queries/categories'
 
 const options = {
     errorPolicy: 'all',
-    fetchPolicy: 'cache-and-network',
 }
 
 export const listOffers = graphql(LIST_OFFERS, {

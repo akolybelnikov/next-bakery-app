@@ -41,15 +41,15 @@ const config = {
       if (!id) {
         const { __typename: typename } = obj
         switch (typename) {
-          case 'UserConnection':
+          case 'User':
             return `${typename}:${obj}.id`
-          case 'OffersConnection':
+          case 'OfferConnection':
             return `${typename}:${obj}.id`
           case 'NewsConnection':
             return `${typename}:${obj}.id`
           case 'CategoriesConnection':
             return `${typename}:${obj}.id`
-          case 'ProductsConnection':
+          case 'ProductConnection':
             return `${typename}:${obj}.id`
           default:
             return id

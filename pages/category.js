@@ -8,6 +8,7 @@ import LoadingScreen from '../components/LoadingScreen'
 import ProductItem from '../components/Product'
 import { GET_CATEGORY } from '../graphql/queries/categories'
 import { LIST_PRODUCTS } from '../graphql/queries/products'
+import { filterByKey } from '../lib/helpers'
 import { Link } from '../routes'
 import { BelowDefault, Default } from '../styles/utils'
 import withData from '../withData'
@@ -24,7 +25,7 @@ const Category = withRouter(({ router }) => {
           return (
             <React.Fragment>
               <Title
-                style={{marginLeft: '10px'}}
+                style={{ marginLeft: '10px' }}
                 hasTextColor='primary'
                 className='is-size-6-mobile is-size-4 has-text-centered-mobile'>
                 {getCategory.title}
@@ -34,7 +35,6 @@ const Category = withRouter(({ router }) => {
                 variables={{
                   limit: 250,
                   filter: {
-                    category: { eq: router.query.name },
                     status: { eq: 'active' },
                   },
                 }}>
@@ -47,7 +47,10 @@ const Category = withRouter(({ router }) => {
                     <React.Fragment>
                       <BelowDefault>
                         {listProducts &&
-                          listProducts.items.map((item, index) => (
+                          filterByKey(
+                            listProducts.items,
+                            router.query.name,
+                          ).map((item, index) => (
                             <LazyLoad
                               key={index}
                               height={100}
@@ -66,9 +69,15 @@ const Category = withRouter(({ router }) => {
                           ))}
                       </BelowDefault>
                       <Default>
-                        <Columns style={{padding: '0 10px'}} isMobile isMultiline>
+                        <Columns
+                          style={{ padding: '0 10px' }}
+                          isMobile
+                          isMultiline>
                           {listProducts &&
-                            listProducts.items.map((item, index) => (
+                            filterByKey(
+                              listProducts.items,
+                              router.query.name,
+                            ).map((item, index) => (
                               <Column
                                 key={index}
                                 isSize={{ mobile: 6, default: 4 }}>

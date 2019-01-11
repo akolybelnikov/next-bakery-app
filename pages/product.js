@@ -7,7 +7,8 @@ import { GET_PRODUCT } from '../graphql/queries/products'
 import { BelowDefault, Default } from '../styles/utils'
 import withData from '../withData'
 
-const Product = withRouter(({ router }) => {
+const Product = withRouter(({ router, isAuthenticated, email }) => {
+  console.log(isAuthenticated, email)
   return (
     <ComponentContainer>
       {router && (

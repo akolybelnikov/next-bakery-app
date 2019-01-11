@@ -1,12 +1,13 @@
-import { Query } from 'react-apollo'
+import { graphql, Query } from 'react-apollo'
 import CategoryWithProducts from '../components/CategoryWithProducts'
 import ErrorScreen from '../components/ErrorScreen'
 import LoadingScreen from '../components/LoadingScreen'
 import { LIST_CATEGORIES } from '../graphql/queries/categories'
 import { LIST_PRODUCTS } from '../graphql/queries/products'
+import { filterByKey } from '../lib/helpers'
 import withData from '../withData'
 
-const Products = () => {
+const Products = ({ products }) => {
   return (
     <Query query={LIST_CATEGORIES}>
       {({ loading, error, data: { listCategories } }) => {
@@ -16,33 +17,11 @@ const Products = () => {
           <React.Fragment>
             {listCategories.items &&
               listCategories.items.map((category, index) => (
-                <Query
+                <CategoryWithProducts
                   key={index}
-                  query={LIST_PRODUCTS}
-                  variables={{
-                    limit: 250,
-                    filter: {
-                      category: { eq: category.name },
-                      status: { eq: 'active' },
-                    },
-                  }}>
-                  {({ loading, error, data: { listProducts } }) => {
-                    if (loading) {
-                      return <LoadingScreen />
-                    }
-                    if (error) {
-                      console.error(error)
-                      return <ErrorScreen />
-                    }
-                    return (
-                      <CategoryWithProducts
-                        key={index}
-                        category={category}
-                        products={listProducts.items.splice(0, 8)}
-                      />
-                    )
-                  }}
-                </Query>
+                  category={category}
+                  products={filterByKey(products, category.name).splice(0, 8)}
+                />
               ))}
           </React.Fragment>
         )
@@ -51,4 +30,13 @@ const Products = () => {
   )
 }
 
-export default withData(Products)
+const ProductsWithData = graphql(LIST_PRODUCTS, {
+  options: {
+    variables: { limit: 250, status: 'active' },
+  },
+  props: props => ({
+    products: props.data.listProducts ? props.data.listProducts.items : [],
+  }),
+})(Products)
+
+export default withData(ProductsWithData)

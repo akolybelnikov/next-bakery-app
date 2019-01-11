@@ -51,7 +51,6 @@ const User = id => {
     <Query
       query={GET_USER}
       variables={id}
-      fetchPolicy="cache-and-network"
       errorPolicy="all"
     >
       {({ loading, error, data }) => {

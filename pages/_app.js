@@ -1,13 +1,13 @@
 import App, { Container } from 'next/app'
 import Head from 'next/head'
 import React from 'react'
+import Footer from '../components/Footer'
 import Header from '../components/Header'
 import MobileFooter from '../components/MobileFooter'
 import { currentUser } from '../lib/awsAuth'
 import Fonts from '../lib/fonts'
 import '../styles/index.scss'
-import { Touch, NonTouch } from '../styles/utils'
-import Footer from '../components/Footer'
+import { NonTouch, Touch } from '../styles/utils'
 
 class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
@@ -50,7 +50,12 @@ class MyApp extends App {
             isAuthenticated={this.state.isAuthenticated}
             email={this.state.email}
           />
-          <Component {...pageProps} setCurrentUser={this.setCurrentUser} />
+          <Component
+            {...pageProps}
+            setCurrentUser={this.setCurrentUser}
+            isAuthenticated={this.state.isAuthenticated}
+            email={this.state.email}
+          />
           <Touch>
             <MobileFooter
               {...pageProps}
