@@ -5,7 +5,7 @@ import LazyLoad from 'react-lazy-load'
 import ComponentContainer from '../components/ComponentContainer'
 import ErrorScreen from '../components/ErrorScreen'
 import LoadingScreen from '../components/LoadingScreen'
-import Producttem from '../components/Product'
+import ProductItem from '../components/Product'
 import { GET_CATEGORY } from '../graphql/queries/categories'
 import { LIST_PRODUCTS } from '../graphql/queries/products'
 import { Link } from '../routes'
@@ -24,6 +24,7 @@ const Category = withRouter(({ router }) => {
           return (
             <React.Fragment>
               <Title
+                style={{marginLeft: '10px'}}
                 hasTextColor='primary'
                 className='is-size-6-mobile is-size-4 has-text-centered-mobile'>
                 {getCategory.title}
@@ -58,14 +59,14 @@ const Category = withRouter(({ router }) => {
                                   id: item.productId,
                                 }}>
                                 <a>
-                                  <Producttem product={item} />
+                                  <ProductItem product={item} />
                                 </a>
                               </Link>
                             </LazyLoad>
                           ))}
                       </BelowDefault>
                       <Default>
-                        <Columns isMobile isMultiline>
+                        <Columns style={{padding: '0 10px'}} isMobile isMultiline>
                           {listProducts &&
                             listProducts.items.map((item, index) => (
                               <Column
@@ -78,7 +79,7 @@ const Category = withRouter(({ router }) => {
                                     id: item.productId,
                                   }}>
                                   <a>
-                                    <Producttem product={item} />
+                                    <ProductItem product={item} />
                                   </a>
                                 </Link>
                               </Column>

@@ -15,8 +15,8 @@ export default props => {
   const { category } = props
 
   return (
-    <Card className='category-card'>
-      <CardHeader style={{alignItems: 'center', padding: '0.5rem'}}>
+    <Card className='category-card zoomIn'>
+      <CardHeader style={{alignItems: 'center', padding: '0 0.5rem'}}>
         <CardHeaderTitle>{category.title}</CardHeaderTitle>
         <Icon className='fas fa-chevron-right' />
       </CardHeader>
@@ -38,6 +38,32 @@ export default props => {
       <style jsx>{`
         :global(div.card.category-card) {
           cursor: pointer;
+        }
+        @-webkit-keyframes zoomIn {
+          from {
+            opacity: 0;
+            -webkit-transform: scale3d(0.3, 0.3, 0.3);
+            transform: scale3d(0.3, 0.3, 0.3);
+          }
+          50% {
+            opacity: 1;
+          }
+        }
+        @keyframes zoomIn {
+          from {
+            opacity: 0;
+            -webkit-transform: scale3d(0.3, 0.3, 0.3);
+            transform: scale3d(0.3, 0.3, 0.3);
+          }
+
+          50% {
+            opacity: 1;
+          }
+        }
+        :global(.card.zoomIn) {
+          -webkit-animation-name: zoomIn;
+          animation-name: zoomIn;
+          animation-duration: 0.6s;
         }
       `}</style>
     </Card>

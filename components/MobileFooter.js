@@ -42,9 +42,9 @@ const MobileFooter = ({ isAuthenticated }) => {
           </LevelItem>
         )}
       </Level>
-      <style global jsx>
+      <style jsx>
         {`
-          div.mobile-footer {
+          :global(.mobile-footer) {
             transition: all 0.5s ease-in-out;
             position: fixed;
             right: 0;
@@ -53,7 +53,7 @@ const MobileFooter = ({ isAuthenticated }) => {
             background-color: ${theme.primaryHalf};
             bottom: 0;
           }
-          nav.mobile-footer-nav {
+          :global(.mobile-footer-nav) {
             padding: 0.8rem 0 !important;
             align-items: flex-start !important;
           }

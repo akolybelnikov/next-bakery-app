@@ -11,7 +11,7 @@ import Image from './Image'
 const { publicRuntimeConfig } = getConfig()
 
 export default ({ product }) => (
-  <Media style={{ alignItems: 'center' }}>
+  <Media className='fadeIn' style={{ alignItems: 'center' }}>
     <MediaLeft>
       <figure className='image product-media'>
         <Image
@@ -54,6 +54,27 @@ export default ({ product }) => (
         top: 50%;
         position: absolute;
         transform: translate(-50%, -50%);
+      }
+      @-webkit-keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      :global(.media.fadeIn) {
+        -webkit-animation-name: fadeIn;
+        animation-name: fadeIn;
+        animation-duration: 0.6s;
       }
     `}</style>
   </Media>

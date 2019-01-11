@@ -1,48 +1,76 @@
 import {
   Card,
   CardContent,
-  CardFooter,
-  CardFooterItem,
+  CardHeader,
+  CardHeaderTitle,
   CardImage,
   Icon,
 } from 'bloomer'
 import getConfig from 'next/config'
+import LazyLoad from 'react-lazy-load'
 import Image from './Image'
+
 const { publicRuntimeConfig } = getConfig()
 
 export default ({ product }) => (
-  <Card>
-    <CardImage>
-      <figure className='image is-square'>
-        <Image
-          style={{ minWidth: '100%' }}
-          className='progressive-image'
-          src={`${publicRuntimeConfig.imagehandler}/400x400/${product.image}`}
-          placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${
-            product.image
-          }`}
-          alt='product image'
+  <LazyLoad height={500} offsetBottom={300}>
+    <Card className='fadeIn'>
+      <CardHeader
+        style={{ display: 'flex', alignItems: 'center', minHeight: '5rem' }}>
+        <CardHeaderTitle>{product.productName}</CardHeaderTitle>
+        <Icon
+          className='fas fa-chevron-right has-text-primary'
+          style={{ marginRight: '5px' }}
         />
-      </figure>
-    </CardImage>
-    <CardContent
-      style={{ minHeight: '6rem' }}
-      className='has-text-centered is-size-6'>
-      {product.productName}
-    </CardContent>
-    <CardFooter>
-      <CardFooterItem style={{ justifyContent: 'space-around' }}>
-        <span>Смотреть все наши новости</span>
-        <Icon className='fas fa-chevron-right' />
-      </CardFooterItem>
-    </CardFooter>
-    <style jsx>{`
-      :global(img.media-image) {
-        left: 50%;
-        top: 50%;
-        position: absolute;
-        transform: translate(-50%, -50%);
-      }
-    `}</style>
-  </Card>
+      </CardHeader>
+      <CardImage>
+        <figure className='image is-square'>
+          <Image
+            style={{ minWidth: '100%' }}
+            className='progressive-image'
+            src={`${publicRuntimeConfig.imagehandler}/600x600/${product.image}`}
+            placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${
+              product.image
+            }`}
+            alt='product image'
+          />
+        </figure>
+      </CardImage>
+      <CardContent
+        style={{ display: 'flex', justifyContent: 'space-around' }}
+        className='has-text-centered is-size-6'>
+        <span>{product.weight && product.weight}</span>
+        <span>{product.price && product.price} руб.</span>
+      </CardContent>
+      <style jsx>{`
+        :global(img.media-image) {
+          left: 50%;
+          top: 50%;
+          position: absolute;
+          transform: translate(-50%, -50%);
+        }
+        @-webkit-keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        :global(.card.fadeIn) {
+          -webkit-animation-name: fadeIn;
+          animation-name: fadeIn;
+          animation-duration: 0.6s;
+        }
+      `}</style>
+    </Card>
+  </LazyLoad>
 )
