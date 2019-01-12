@@ -27,6 +27,8 @@ export const LIST_PRODUCTS = gql(`
 export const GET_PRODUCT = gql(`
     query getProduct($productId: ID!, $category: String!) {
         getProduct(productId: $productId, category: $category) {
+            productId
+            category
             image
             weight
             price

@@ -32,7 +32,7 @@ const Products = ({ products }) => {
 
 const ProductsWithData = graphql(LIST_PRODUCTS, {
   options: {
-    variables: { limit: 250, status: 'active' },
+    variables: { limit: 250, status: { eq: 'active' } },
   },
   props: props => ({
     products: props.data.listProducts ? props.data.listProducts.items : [],

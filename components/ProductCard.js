@@ -13,10 +13,10 @@ import Image from './Image'
 const { publicRuntimeConfig } = getConfig()
 
 export default ({ product }) => (
-  <LazyLoad height={500} offsetBottom={300}>
+  <LazyLoad height={475} offsetBottom={300} offsetTop={0}>
     <Card className='fadeIn'>
       <CardHeader
-        style={{ display: 'flex', alignItems: 'center', minHeight: '5rem' }}>
+        style={{ display: 'flex', alignItems: 'center', minHeight: '6rem' }}>
         <CardHeaderTitle>{product.productName}</CardHeaderTitle>
         <Icon
           className='fas fa-chevron-right has-text-primary'

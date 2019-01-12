@@ -23,6 +23,7 @@ class MyApp extends App {
   state = {
     email: null,
     isAuthenticated: false,
+    currentProduct: null
   }
 
   async componentDidMount() {
@@ -35,6 +36,10 @@ class MyApp extends App {
 
   setCurrentUser = (email, isAuthenticated) => {
     this.setState({ email: email, isAuthenticated: isAuthenticated })
+  }
+
+  setProduct = (product) => {
+    this.setState({ currentProduct: product })
   }
 
   render() {
@@ -55,6 +60,8 @@ class MyApp extends App {
             setCurrentUser={this.setCurrentUser}
             isAuthenticated={this.state.isAuthenticated}
             email={this.state.email}
+            currentProduct={this.state.currentProduct}
+            setProduct={this.setProduct}
           />
           <Touch>
             <MobileFooter

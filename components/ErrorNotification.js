@@ -1,11 +1,11 @@
 import { Notification, Delete } from 'bloomer'
 
 export default props => (
-  <Notification className='slideInDown' isColor='primary'>
+  <Notification isColor='primary'>
     <p>{props.notification}</p>
     <Delete onClick={props.dismiss} />
-    <style jsx global>{`
-      .slideInDown {
+    <style jsx>{`
+      :global(.notification) {
         position: fixed;
         max-height: 100px;
         width: 320px;
@@ -15,7 +15,7 @@ export default props => (
         z-index: 20;
       }
       @media all and (min-width: 768px) {
-        .slideInDown {
+        :global(.notification) {
           top: 7.5rem;
           width: 640px;
           margin-right: -320px;

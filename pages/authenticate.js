@@ -5,7 +5,6 @@ import {
   RequireNewPassword,
 } from 'aws-amplify-react'
 import { Hero, HeroBody } from 'bloomer'
-import Router from 'next/router'
 import { Query } from 'react-apollo'
 import CustomizedConfirmSignUp from '../components/AWS/ConfirmSignUp'
 import CustomizedSignIn from '../components/AWS/SignIn'
@@ -17,6 +16,7 @@ import LoadingScreen from '../components/LoadingScreen'
 import SuccessScreen from '../components/SuccessScreen'
 import GET_USER from '../graphql/queries/user'
 import { currentUser, dict, map } from '../lib/awsAuth'
+import { Router } from '../routes'
 import { AwsTheme } from '../styles/utils'
 import withData from '../withData'
 
@@ -36,7 +36,17 @@ class Authenticate extends React.PureComponent {
       const authUser = await currentUser()
       this.setState({ currentUser: authUser })
       this.props.setCurrentUser(authUser.attributes.email, true)
-      setTimeout(() => Router.push('/'), 1000)
+      setTimeout(() => {
+        if (this.props.currentProduct) {
+          Router.pushRoute('product', {
+            id: this.props.currentProduct.productId,
+            category: this.props.currentProduct.category,
+          })
+          this.props.setProduct(null)
+        } else {
+          Router.pushRoute('/')
+        }
+      }, 1000)
     }
   }
 

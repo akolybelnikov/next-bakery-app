@@ -18,7 +18,7 @@ export default ({ category, products }) => {
         <Column>
           <Columns isMultiline isMobile style={{ padding: '0 0.5rem' }}>
             {products.map((product, index) => (
-              <Column isSize={3} key={index}>
+              <Column isSize={{mobile: 6, tablet: 3}} key={index}>
                 <Link
                   route='product'
                   params={{

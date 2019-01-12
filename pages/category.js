@@ -80,7 +80,7 @@ const Category = withRouter(({ router }) => {
                             ).map((item, index) => (
                               <Column
                                 key={index}
-                                isSize={{ mobile: 6, default: 4 }}>
+                                isSize={{ mobile: 6, tablet: 4, desktop: 3 }}>
                                 <Link
                                   route='product'
                                   params={{

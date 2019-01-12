@@ -1,13 +1,15 @@
 import { Title } from 'bloomer'
 import bulmaCarousel from 'bulma-carousel'
-import { compose, graphql } from 'react-apollo'
+import { compose } from 'react-apollo'
 import Categories from '../components/Categories'
 import ComponentContainer from '../components/ComponentContainer'
 import NewsItem from '../components/NewsItem'
 import OffersCarousel from '../components/OffersCarousel'
-import { LIST_CATEGORIES } from '../graphql/queries/categories'
-import LIST_NEWS from '../graphql/queries/news'
-import LIST_OFFERS from '../graphql/queries/offers'
+import {
+  listCategories,
+  listNews,
+  listOffers,
+} from '../graphql/resolvers/index'
 import withData from '../withData'
 
 class Index extends React.Component {
@@ -39,34 +41,9 @@ class Index extends React.Component {
 }
 
 const Home = compose(
-  graphql(LIST_OFFERS, {
-    options: {
-      errorPolicy: 'all',
-    },
-    props: props => ({
-      offers: props.data.listOffers ? props.data.listOffers.items : [],
-    }),
-  }),
-  graphql(LIST_CATEGORIES, {
-    options: {
-      errorPolicy: 'all',
-    },
-    props: props => ({
-      categories: props.data.listCategories
-        ? props.data.listCategories.items
-        : [],
-    }),
-  }),
-  graphql(LIST_NEWS, {
-    options: {
-      errorPolicy: 'all',
-    },
-    props: props => ({
-      news: props.data.listNews
-        ? props.data.listNews.items.sort((a, b) => b.createdAt - a.createdAt)
-        : [],
-    }),
-  }),
+  listCategories,
+  listOffers,
+  listNews,
 )(Index)
 
 export default withData(Home)
