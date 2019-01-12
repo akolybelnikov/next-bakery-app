@@ -1,11 +1,11 @@
 import { Notification, Delete } from 'bloomer'
 
 export default props => (
-  <Notification isColor='primary'>
+  <Notification className='aws-error' isColor='primary'>
     <p>{props.notification}</p>
     <Delete onClick={props.dismiss} />
     <style jsx>{`
-      :global(.notification) {
+      :global(.aws-error) {
         position: fixed;
         max-height: 100px;
         width: 320px;
@@ -15,7 +15,7 @@ export default props => (
         z-index: 20;
       }
       @media all and (min-width: 768px) {
-        :global(.notification) {
+        :global(.aws-error) {
           top: 7.5rem;
           width: 640px;
           margin-right: -320px;

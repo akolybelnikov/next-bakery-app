@@ -9,19 +9,20 @@ import {
   ModalCardFooter,
   ModalClose,
   ModalContent,
+  Breadcrumb,
+  BreadcrumbItem,
 } from 'bloomer'
+import { Query } from 'react-apollo'
+import { BelowDefault, Default, theme } from '../styles/utils'
 import { withRouter } from 'next/router'
-import { Query, Subscription } from 'react-apollo'
+import { graphql } from 'react-apollo'
 import ComponentContainer from '../components/ComponentContainer'
-import ErrorScreen from '../components/ErrorScreen'
-import LoadingScreen from '../components/LoadingScreen'
 import ProductCardDetails from '../components/ProductCardDetails'
 import { GET_PRODUCT } from '../graphql/queries/products'
-import { Link } from '../routes'
-import withData from '../withData'
-import { UPDATE_PRODUCT } from '../graphql/mutations/product'
-import { graphql, compose } from 'react-apollo'
 import ON_UPDATE_PRODUCT from '../graphql/subscriptions/product'
+import { Link, Router } from '../routes'
+import withData from '../withData'
+import { GET_CATEGORY } from '../graphql/queries/categories'
 
 class Product extends React.Component {
   state = {
@@ -44,14 +45,49 @@ class Product extends React.Component {
   }
 
   render() {
-    const {
-      isAuthenticated,
-      email,
-      setProduct,
-      product
-    } = this.props
+    const { isAuthenticated, email, setProduct, product } = this.props
     return (
       <ComponentContainer>
+        <Default>
+          <Breadcrumb style={{ paddingLeft: '20px' }}>
+            <ul>
+              <BreadcrumbItem>
+                <Link route='home'>
+                  <a>В начало</a>
+                </Link>
+              </BreadcrumbItem>
+              <BreadcrumbItem>
+                <Query
+                  query={GET_CATEGORY}
+                  variables={{ name: product.category }}>
+                  {({ data: { getCategory } }) => {
+                    if (getCategory) {
+                      return (
+                        <Link
+                          route='category'
+                          params={{
+                            name: product.category,
+                          }}>
+                          <a>{getCategory.title}</a>
+                        </Link>
+                      )
+                    } else return null
+                  }}
+                </Query>
+              </BreadcrumbItem>
+              <BreadcrumbItem isActive>
+                <a>{product.productName}</a>
+              </BreadcrumbItem>
+            </ul>
+          </Breadcrumb>
+        </Default>
+        <BelowDefault>
+          <Icon
+            className='fas fa-chevron-left fa-2x has-text-primary'
+            style={{ padding: '2rem' }}
+            onClick={() => Router.back()}
+          />
+        </BelowDefault>
         <Columns>
           <Column
             isSize={{ mobile: 12, tablet: 6, default: 4 }}

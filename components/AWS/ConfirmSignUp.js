@@ -5,11 +5,10 @@ import {
   CardContent,
   CardFooter,
   CardFooterItem,
-  CardHeader,
-  CardHeaderTitle,
   Control,
   Field,
   Label,
+  Title,
 } from 'bloomer'
 import { Form, Text } from 'informed'
 import { Mutation } from 'react-apollo'
@@ -104,78 +103,80 @@ const ConfirmSignUp = props => {
         <Form>
           {({ formState }) => {
             return (
-              <Card>
-                <CardHeader>
-                  <CardHeaderTitle>Подтвердить регистрацию</CardHeaderTitle>
-                </CardHeader>
-                <CardContent>
-                  <Field>
-                    <Label htmlFor='username'>Адрес эл. почты</Label>
-                    <Control>
-                      <Text
-                        required
-                        field='email'
-                        id='email'
-                        placeholder='Введите свой адрес эл.почты'
-                        className='input'
-                        validate={validateEmail}
-                        validateOnBlur
-                      />
-                    </Control>
-                    <p className='has-text-left is-size-7 has-text-primary'>
-                      {formState.errors.email && formState.errors.email}
-                    </p>
-                  </Field>
-                  <Field>
-                    <Label htmlFor='code'>Код подтверждения</Label>
-                    <Control
-                      style={{
-                        display: 'flex',
-                        alignItems: 'center',
-                      }}>
-                      <Text
-                        required
-                        type='text'
-                        field='code'
-                        id='code'
-                        placeholder='Введите код'
-                        className='input'
-                      />
-                    </Control>
-                  </Field>
-                  <Field>
-                    <span>Код утерян? </span>
-                    <a
-                      style={{
-                        marginLeft: '10px',
-                      }}
-                      onClick={() => resendCode(formState)}>
-                      Выслать повторно
-                    </a>
-                  </Field>
-                </CardContent>
-                <CardFooter style={{ flexWrap: 'wrap' }}>
-                  <CardFooterItem>
-                    <Button
-                      isFullWidth
-                      isColor='primary'
-                      type='submit'
-                      onClick={() => confirmSignUp(formState)}>
-                      Подтвердить
-                    </Button>
-                  </CardFooterItem>
-                  <CardFooterItem>
-                    <a
-                      role='button'
-                      style={{
-                        marginLeft: '10px',
-                      }}
-                      onClick={() => onStateChange('signIn')}>
-                      Вход пользователя
-                    </a>
-                  </CardFooterItem>
-                </CardFooter>
-              </Card>
+              <React.Fragment>
+                <Title className='has-text-primary is-size-5-mobile'>
+                  Подтвердить регистрацию
+                </Title>
+                <Card>
+                  <CardContent>
+                    <Field>
+                      <Label htmlFor='username'>Адрес эл. почты</Label>
+                      <Control>
+                        <Text
+                          required
+                          field='email'
+                          id='email'
+                          placeholder='Введите свой адрес эл.почты'
+                          className='input'
+                          validate={validateEmail}
+                          validateOnBlur
+                        />
+                      </Control>
+                      <p className='has-text-left is-size-7 has-text-primary'>
+                        {formState.errors.email && formState.errors.email}
+                      </p>
+                    </Field>
+                    <Field>
+                      <Label htmlFor='code'>Код подтверждения</Label>
+                      <Control
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                        }}>
+                        <Text
+                          required
+                          type='text'
+                          field='code'
+                          id='code'
+                          placeholder='Введите код'
+                          className='input'
+                        />
+                      </Control>
+                    </Field>
+                    <Field>
+                      <span>Код утерян? </span>
+                      <a
+                        style={{
+                          marginLeft: '10px',
+                        }}
+                        onClick={() => resendCode(formState)}>
+                        Выслать повторно
+                      </a>
+                    </Field>
+                  </CardContent>
+                  <CardFooter style={{ flexWrap: 'wrap' }}>
+                    <CardFooterItem>
+                      <Button
+                        isFullWidth
+                        isColor='primary'
+                        type='submit'
+                        onClick={() => confirmSignUp(formState)}>
+                        Подтвердить
+                      </Button>
+                    </CardFooterItem>
+                    <CardFooterItem>
+                      <a
+                        role='button'
+                        style={{
+                          marginLeft: '10px',
+                        }}
+                        onClick={() => onStateChange('signIn')}>
+                        Вход пользователя
+                      </a>
+                    </CardFooterItem>
+                  </CardFooter>
+                </Card>
+              </React.Fragment>
             )
           }}
         </Form>
