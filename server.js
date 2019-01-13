@@ -32,6 +32,11 @@ app
       renderAndCache(req, res, '/category', queryParams)
     })
 
+    server.get('/search/:term', (req, res) => {
+      const queryParams = { term: req.params.term }
+      app.render(req, res, '/search', queryParams)
+    })
+
     server.get('*', (req, res) => {
       return handler(req, res)
     })

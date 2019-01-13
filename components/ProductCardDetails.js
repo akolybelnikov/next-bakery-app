@@ -17,6 +17,7 @@ import { filterByValue } from '../lib/helpers'
 import { BelowDefault, Default, theme } from '../styles/utils'
 import Image from './Image'
 import { EmptyHeart, FilledHeart } from './SVG/Heart'
+import { CardHeader } from 'bloomer/lib/components/Card/Header/CardHeader'
 
 const { publicRuntimeConfig } = getConfig()
 
@@ -46,10 +47,15 @@ const Details = ({
 }) => {
   return (
     <Card className='fadeIn'>
+      <CardHeader style={{padding: '1rem 0'}}>
+        <Subtitle style={{margin: '0 auto'}} className='has-text-primary'>
+          {product && product.productName}
+        </Subtitle>
+      </CardHeader>
       <CardImage>
         <figure className='image is-square'>
           <BelowDefault>
-            {product.image && (
+            {product && product.image && (
               <Image
                 style={{ minWidth: '100%' }}
                 className='progressive-image'
@@ -64,7 +70,7 @@ const Details = ({
             )}
           </BelowDefault>
           <Default>
-            {product.image && (
+            {product && product.image && (
               <Image
                 style={{ minWidth: '100%' }}
                 className='progressive-image'
@@ -81,14 +87,13 @@ const Details = ({
         </figure>
       </CardImage>
       <CardContent className='has-text-centered'>
-        <Subtitle className='has-text-primary'>{product.productName}</Subtitle>
         <p className='product-paragraph is-size-5-tablet is-size-6-mobile'>
-          {product.content}
+          {product && product.content}
         </p>
         <p className='product-paragraph is-size-6-tablet is-size-7-mobile'>
-          {product.ingridients && product.ingridients}
+          {product && product.ingridients && product.ingridients}
         </p>
-        {product.sorts && (
+        {product && product.sorts && (
           <div className='product-paragraph has-text-left'>
             <span className='has-text-primary'>Начинки: </span>
             {product.sorts.map((sort, index) => (
@@ -101,13 +106,15 @@ const Details = ({
         <p
           className='has-text-primary'
           style={{ display: 'flex', justifyContent: 'space-evenly' }}>
-          <span>Вес: {product.weight && product.weight}</span>
-          <span>Цена: {product.price && product.price} руб.</span>
+          <span>Вес: {product && product.weight && product.weight}</span>
+          <span>Цена: {product && product.price && product.price} руб.</span>
         </p>
       </CardContent>
       <CardFooter>
         <CardFooterItem>
-          <span style={{ marginRight: '10px' }}>{product.upvotes && product.upvotes}</span>
+          <span style={{ marginRight: '10px' }}>
+            {product && product.upvotes && product.upvotes}
+          </span>
           {!isAuthenticated && (
             <a aria-label='like button' onClick={onEmptyHeartClick}>
               <EmptyHeart fill={theme.primary} />

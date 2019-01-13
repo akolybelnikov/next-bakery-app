@@ -1,4 +1,6 @@
 import {
+  Breadcrumb,
+  BreadcrumbItem,
   Column,
   Columns,
   Icon,
@@ -9,20 +11,17 @@ import {
   ModalCardFooter,
   ModalClose,
   ModalContent,
-  Breadcrumb,
-  BreadcrumbItem,
 } from 'bloomer'
-import { Query } from 'react-apollo'
-import { BelowDefault, Default, theme } from '../styles/utils'
 import { withRouter } from 'next/router'
-import { graphql } from 'react-apollo'
+import { graphql, Query } from 'react-apollo'
 import ComponentContainer from '../components/ComponentContainer'
 import ProductCardDetails from '../components/ProductCardDetails'
+import { GET_CATEGORY } from '../graphql/queries/categories'
 import { GET_PRODUCT } from '../graphql/queries/products'
 import ON_UPDATE_PRODUCT from '../graphql/subscriptions/product'
 import { Link, Router } from '../routes'
+import { BelowDefault, Default } from '../styles/utils'
 import withData from '../withData'
-import { GET_CATEGORY } from '../graphql/queries/categories'
 
 class Product extends React.Component {
   state = {
@@ -57,7 +56,7 @@ class Product extends React.Component {
                 </Link>
               </BreadcrumbItem>
               <BreadcrumbItem>
-                <Query
+                {product && <Query
                   query={GET_CATEGORY}
                   variables={{ name: product.category }}>
                   {({ data: { getCategory } }) => {
@@ -73,17 +72,17 @@ class Product extends React.Component {
                       )
                     } else return null
                   }}
-                </Query>
+                </Query>}
               </BreadcrumbItem>
               <BreadcrumbItem isActive>
-                <a>{product.productName}</a>
+                <a>{product && product.productName}</a>
               </BreadcrumbItem>
             </ul>
           </Breadcrumb>
         </Default>
         <BelowDefault>
           <Icon
-            className='fas fa-chevron-left fa-2x has-text-primary'
+            className='fas fa-chevron-left has-text-primary'
             style={{ padding: '2rem' }}
             onClick={() => Router.back()}
           />

@@ -6,6 +6,7 @@ import ComponentContainer from '../components/ComponentContainer'
 import ErrorScreen from '../components/ErrorScreen'
 import LoadingScreen from '../components/LoadingScreen'
 import ProductItem from '../components/Product'
+import SearchBar from '../components/SearchBar'
 import { GET_CATEGORY } from '../graphql/queries/categories'
 import { LIST_PRODUCTS } from '../graphql/queries/products'
 import { filterByKey } from '../lib/helpers'
@@ -16,6 +17,7 @@ import withData from '../withData'
 const Category = withRouter(({ router }) => {
   return (
     <ComponentContainer>
+      <SearchBar />
       <Query query={GET_CATEGORY} variables={{ name: router.query.name }}>
         {({ error, data: { getCategory } }) => {
           if (error) {
