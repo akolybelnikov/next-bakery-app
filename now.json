@@ -1,9 +1,9 @@
 {
-    "version": 2,
+    "version": 1,
     "builds": [
         {
             "src": "next.config.js",
-            "use": "@now/next@canary"
+            "use": "@now/next"
         }
     ]
 }
