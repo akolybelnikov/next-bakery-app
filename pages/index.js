@@ -18,17 +18,19 @@ class Index extends React.Component {
   }
 
   render() {
-    console.log(this.props.news)
     return (
       <ComponentContainer>
         <OffersCarousel offers={this.props.offers} />
         <Categories categories={this.props.categories} />
         <Title
+          style={{ margin: '1rem' }}
           hasTextColor='primary'
           className='is-size-5-mobile is-size-3 has-text-centered-mobile'>
           Наши новости
         </Title>
-        <NewsItem news={this.props.news.sort((a, b) => b.createdAt - a.createdAt)[0]} />
+        <NewsItem
+          news={this.props.news.sort((a, b) => b.createdAt - a.createdAt)[0]}
+        />
         <style jsx>
           {`
             :global(h1.title) {

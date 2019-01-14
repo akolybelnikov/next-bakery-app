@@ -84,7 +84,7 @@ class MyApp extends App {
             }
             @media screen and (max-width: 599px) {
               html {
-                padding-top: 5.25rem;
+                padding-top: 5.5rem;
               }
             }
             @font-face {

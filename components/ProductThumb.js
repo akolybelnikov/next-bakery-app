@@ -1,9 +1,6 @@
 import { Card, CardContent, CardImage, Icon } from 'bloomer'
-import getConfig from 'next/config'
+import { NonTouch, Touch } from '../styles/utils'
 import Image from './Image'
-import { Touch, NonTouch } from '../styles/utils'
-
-const { publicRuntimeConfig } = getConfig()
 
 export default ({ product }) => (
   <Card className='fadeIn'>
@@ -12,22 +9,16 @@ export default ({ product }) => (
         <Touch>
           <Image
             style={{ minWidth: '100%' }}
-            className='progressive-image'
-            src={`${publicRuntimeConfig.imagehandler}/400x400/${product.image}`}
-            placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${
-              product.image
-            }`}
+            name={product.image}
+            size='400x400'
             alt='product image'
           />
         </Touch>
         <NonTouch>
           <Image
             style={{ minWidth: '100%' }}
-            className='progressive-image'
-            src={`${publicRuntimeConfig.imagehandler}/200x200/${product.image}`}
-            placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${
-              product.image
-            }`}
+            name={product.image}
+            size='200x200'
             alt='product image'
           />
         </NonTouch>

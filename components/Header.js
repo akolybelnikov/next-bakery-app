@@ -11,13 +11,10 @@ import {
   share,
   throttleTime,
 } from 'rxjs/operators'
-import LogoSVG from '../static/logos/logo.svg'
 import { Default, Handset, SmallHandset } from '../styles/utils'
 import withData from '../withData'
-
-const BurgerIcon = dynamic(() => import('../components/SVG/BurgerIcon'), {
-  ssr: false,
-})
+import ResponsiveLogo from './ResponsiveLogo'
+import BurgerIcon from './SVG/BurgerIcon'
 
 const Direction = {
   Up: 'up',
@@ -87,7 +84,7 @@ class Header extends Component {
           <NavbarItem className='logo' isHidden='desktop'>
             <Link prefetch href='/'>
               <NavbarLink aria-label='Homepage link' className='is-arrowless'>
-                <LogoSVG className='logoSVG' />
+                <ResponsiveLogo />
               </NavbarLink>
             </Link>
           </NavbarItem>
@@ -157,7 +154,7 @@ class Header extends Component {
           <NavbarItem isHidden='touch'>
             <Link href='/' prefetch>
               <NavbarLink aria-label='Homepage link' className='is-arrowless'>
-                <LogoSVG className='logoSVG' />
+                <ResponsiveLogo />
               </NavbarLink>
             </Link>
           </NavbarItem>
@@ -200,7 +197,8 @@ class Header extends Component {
             }
             .navbar-brand {
               justify-content: space-between !important;
-            }
+            }import BurgerIcon from './SVG/BurgerIcon';
+
             .navbar-item {
               transition: all 0.5s ease-in-out;
               text-align: center;
@@ -212,34 +210,6 @@ class Header extends Component {
               min-width: 85px;
               min-height: 85px;
               justify-content: flex-end;
-            }
-            .logo {
-              transition: all 1s ease-in-out;
-              justify-content: center;
-              padding: 0;
-            }
-            .logoSVG {
-              height: auto;
-            }
-            @media all and (max-width: 359px) {
-              .logoSVG {
-                width: 90px;
-              }
-            }
-            @media all and (min-width: 360px) and (max-width: 599px) {
-              .logoSVG {
-                width: 100px;
-              }
-            }
-            @media all and (min-width: 600px) and (max-width: 719px) {
-              .logoSVG {
-                width: 140px;
-              }
-            }
-            @media all and (min-width: 720px) {
-              .logoSVG {
-                width: 160px;
-              }
             }
             @media all and (max-width: 825px) {
               .navbar-item {

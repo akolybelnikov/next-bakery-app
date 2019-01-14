@@ -6,11 +6,8 @@ import {
   CardImage,
   Icon,
 } from 'bloomer'
-import getConfig from 'next/config'
 import LazyLoad from 'react-lazy-load'
 import Image from './Image'
-
-const { publicRuntimeConfig } = getConfig()
 
 export default ({ product }) => (
   <LazyLoad height={475} offsetBottom={300} offsetTop={0}>
@@ -27,11 +24,8 @@ export default ({ product }) => (
         <figure className='image is-square'>
           <Image
             style={{ minWidth: '100%' }}
-            className='progressive-image'
-            src={`${publicRuntimeConfig.imagehandler}/600x600/${product.image}`}
-            placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${
-              product.image
-            }`}
+            size='600x600'
+            name={product.image}
             alt='product image'
           />
         </figure>

@@ -8,7 +8,7 @@ import {
   Subtitle,
   Tag,
 } from 'bloomer'
-import getConfig from 'next/config'
+import { CardHeader } from 'bloomer/lib/components/Card/Header/CardHeader'
 import { Mutation, Query } from 'react-apollo'
 import { UPDATE_PRODUCT } from '../graphql/mutations/product'
 import { UPDATE_USER } from '../graphql/mutations/user'
@@ -17,9 +17,6 @@ import { filterByValue } from '../lib/helpers'
 import { BelowDefault, Default, theme } from '../styles/utils'
 import Image from './Image'
 import { EmptyHeart, FilledHeart } from './SVG/Heart'
-import { CardHeader } from 'bloomer/lib/components/Card/Header/CardHeader'
-
-const { publicRuntimeConfig } = getConfig()
 
 const withMutation = Component => {
   return function MutationHOC(props) {
@@ -47,8 +44,8 @@ const Details = ({
 }) => {
   return (
     <Card className='fadeIn'>
-      <CardHeader style={{padding: '1rem 0'}}>
-        <Subtitle style={{margin: '0 auto'}} className='has-text-primary'>
+      <CardHeader style={{ padding: '1rem 0' }}>
+        <Subtitle style={{ margin: '0 auto' }} className='has-text-primary'>
           {product && product.productName}
         </Subtitle>
       </CardHeader>
@@ -58,13 +55,8 @@ const Details = ({
             {product && product.image && (
               <Image
                 style={{ minWidth: '100%' }}
-                className='progressive-image'
-                src={`${publicRuntimeConfig.imagehandler}/600x600/${
-                  product.image
-                }`}
-                placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${
-                  product.image
-                }`}
+                size='600x600'
+                name={product.image}
                 alt='product image'
               />
             )}
@@ -73,13 +65,8 @@ const Details = ({
             {product && product.image && (
               <Image
                 style={{ minWidth: '100%' }}
-                className='progressive-image'
-                src={`${publicRuntimeConfig.imagehandler}/1200x1200/${
-                  product.image
-                }`}
-                placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${
-                  product.image
-                }`}
+                size='1200x1200'
+                name={product.image}
                 alt='product image'
               />
             )}

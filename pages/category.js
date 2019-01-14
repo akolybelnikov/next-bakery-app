@@ -56,7 +56,7 @@ const Category = withRouter(({ router }) => {
                             <LazyLoad
                               key={index}
                               height={100}
-                              offsetVertical={200}>
+                              offsetBottom={400}>
                               <Link
                                 route='product'
                                 params={{

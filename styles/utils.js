@@ -154,3 +154,4 @@ export const Default = props => <Responsive {...props} minWidth={600} />;
 export const BelowDefault = props => <Responsive {...props} maxWidth={599} />;
 export const Touch = props => <Responsive {...props} maxWidth={1023} />
 export const NonTouch = props => <Responsive {...props} minWidth={1024} />
+export const GTLargeHandset = props => <Responsive {...props} minWidth={720} />

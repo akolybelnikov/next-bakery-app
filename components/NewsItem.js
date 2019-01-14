@@ -11,11 +11,8 @@ import {
   MediaLeft,
   MediaRight,
 } from 'bloomer'
-import getConfig from 'next/config'
 import { BelowDefault, Default } from '../styles/utils'
 import Image from './Image'
-
-const { publicRuntimeConfig } = getConfig()
 
 export default ({ news }) => {
   return (
@@ -26,13 +23,9 @@ export default ({ news }) => {
             <figure className='image figure-media'>
               <Image
                 style={{ minWidth: '100%' }}
-                className='progressive-image media-image'
-                src={`${publicRuntimeConfig.imagehandler}/320x320/${
-                  news.image
-                }`}
-                placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${
-                  news.image
-                }`}
+                className='media-image'
+                name={news.image}
+                size='320x320'
                 alt='news image'
               />
             </figure>
@@ -53,14 +46,10 @@ export default ({ news }) => {
             <figure className='image figure-card'>
               <Image
                 style={{ minWidth: '100%' }}
-                className='progressive-image media-image'
-                src={`${publicRuntimeConfig.imagehandler}/620x620/${
-                  news.image
-                }`}
-                placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${
-                  news.image
-                }`}
-                alt='product news image'
+                className='media-image'
+                name={news.image}
+                size='620x620'
+                alt='news image'
               />
             </figure>
           </CardImage>

@@ -6,6 +6,7 @@ export default ({ categories }) => {
   return (
     <React.Fragment>
       <Title
+        style={{margin: '1rem'}}
         hasTextColor='primary'
         className='is-size-5-mobile is-size-3 has-text-centered-mobile'>
         Наш ассортимент

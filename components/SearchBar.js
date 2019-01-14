@@ -21,17 +21,7 @@ export default () => {
 
   return (
     <Level isMobile>
-      <LevelLeft>
-        <BelowDefault>
-          <LevelItem style={{ flexGrow: 0 }}>
-            <Icon
-              className='fas fa-chevron-left has-text-primary'
-              style={{ padding: '2rem' }}
-              onClick={() => Router.back()}
-            />
-          </LevelItem>
-        </BelowDefault>
-      </LevelLeft>
+      <LevelLeft/>
       <LevelRight>
         <LevelItem style={{ marginRight: '10px' }}>
           <Form>

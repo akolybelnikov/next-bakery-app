@@ -1,14 +1,5 @@
-import {
-  Button,
-  Icon,
-  Media,
-  MediaContent,
-  MediaLeft,
-  MediaRight,
-} from 'bloomer'
-import getConfig from 'next/config'
-import Image from './Image'
-const { publicRuntimeConfig } = getConfig()
+import { Button, Icon, Media, MediaContent, MediaLeft, MediaRight } from 'bloomer';
+import Image from './Image';
 
 export default ({ product }) => (
   <Media className='fadeIn' style={{ alignItems: 'center' }}>
@@ -16,11 +7,9 @@ export default ({ product }) => (
       <figure className='image product-media'>
         <Image
           style={{ minWidth: '100%' }}
-          className='progressive-image media-image'
-          src={`${publicRuntimeConfig.imagehandler}/200x200/${product.image}`}
-          placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${
-            product.image
-          }`}
+          className='media-image'
+          name={product.image}
+          size='200x200'
           alt='product image'
         />
       </figure>
@@ -74,7 +63,7 @@ export default ({ product }) => (
       :global(.media.fadeIn) {
         -webkit-animation-name: fadeIn;
         animation-name: fadeIn;
-        animation-duration: 0.6s;
+        animation-duration: 0.3s;
       }
     `}</style>
   </Media>

@@ -1,9 +1,6 @@
-import getConfig from 'next/config'
 import { Default, Handset, SmallHandset } from '../styles/utils'
 import { Carousel, CarouselItem, CarouselTitle } from './Carousel'
 import Image from './Image'
-
-const { publicRuntimeConfig } = getConfig()
 
 const OffersCarousel = ({ offers }) => {
   return (
@@ -17,39 +14,27 @@ const OffersCarousel = ({ offers }) => {
                 <SmallHandset>
                   <Image
                     style={{ minWidth: '100%' }}
-                    className='progressive-image is-background'
-                    src={`${publicRuntimeConfig.imagehandler}/640x640/${
-                      offer.image
-                    }`}
-                    placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${
-                      offer.image
-                    }`}
+                    className='is-background'
+                    size='640x640'
+                    name={offer.image}
                     alt='offer image'
                   />
                 </SmallHandset>
                 <Handset>
                   <Image
                     style={{ minWidth: '100%' }}
-                    className='progressive-image is-background'
-                    src={`${publicRuntimeConfig.imagehandler}/980x980/${
-                      offer.image
-                    }`}
-                    placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${
-                      offer.image
-                    }`}
+                    className='is-background'
+                    size='980x980'
+                    name={offer.image}
                     alt='offer image'
                   />
                 </Handset>
                 <Default>
                   <Image
                     style={{ minWidth: '100%' }}
-                    className='progressive-image is-background'
-                    src={`${publicRuntimeConfig.imagehandler}/1440x1440/${
-                      offer.image
-                    }`}
-                    placeholder={`${publicRuntimeConfig.imagehandler}/15x15/${
-                      offer.image
-                    }`}
+                    className='is-background'
+                    size='1440x1440'
+                    name={offer.image}
                     alt='offer image'
                   />
                 </Default>
